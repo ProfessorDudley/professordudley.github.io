@@ -1,0 +1,36 @@
+:root
+{
+    /* Colours */
+    --colour-dark: #242424;
+    --colour-light: #f2f2f2;
+    --colour-link: #88ccff;
+
+    /* Fonts */
+    font-size: 14pt;
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+    line-height: 1.5;
+}
+
+h1 {
+    font-size: 36pt;
+    margin: 0;
+}
+
+h2 {
+    font-size: 24pt;
+    margin: 0;
+}
+
+h4 {
+    font-size: 16pt;
+    margin: 0;
+    margin-bottom: 1em;
+}
+
+p {
+    margin: 0;
+}
+
+a {
+    color: var(--colour-link);
+}
