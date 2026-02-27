@@ -9,12 +9,23 @@ body {
 }
 
 header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--colour-light);
+    background: linear-gradient(
+        180deg, var(--colour-light) 70%, var(--colour-light-transparent) 100%
+    );
+}
+
+header nav {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
-    align-items: center;
-    flex-basis: auto;
-    padding: 1rem 0rem;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    margin: 1rem;
+    height: 4rem;
+    font-weight: bold;
 }
 
 footer {
@@ -26,9 +37,13 @@ footer {
 
 section {
     display: grid;
+    box-sizing: border-box;
+    width: 100%;
+    grid-template-columns: repeat(auto-fill, min(100%, 400px));
 }
 
 footer section {
+
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     margin: 3rem auto;
@@ -38,24 +53,19 @@ footer section {
 
 
 main {
+
+    box-sizing: border-box;
     flex-grow: 1;
     margin: 2rem 0rem;
 
     display: flex;
     flex-direction: column;
     gap: 2rem;
+
+    /* margin-top: 140pt;*/
+    margin-bottom: 2000px;
     
 }
-
-/* section {
-    width: 100%;
-
-    display: grid;
-    grid-template-columns: repeat(auto-fill, min(100%, 400px));
-    grid-auto-rows: min-content;
-    gap: 1rem;
-    justify-content: flex-start;
-} */
 
 /* Should mimic Steam Library */
 article {
@@ -68,34 +78,11 @@ article {
     /* padding-bottom: 2rem; */
 }
 
-nav {
-    width: 100%;
-    display: contents;
-    margin: 0;
-    list-style: none;
-    padding: 0;
-}
-
-nav *:first-child
-{
-    text-decoration: none;
-    padding: 0;
-}
-
-ul {
-    list-style: inherit;
-    margin: inherit;
-    padding: inherit;
-}
-
 #App {
     display: block;
 }
 
-#github-svg {
-    height: 2rem;
-    width: auto;
-}
+
 
 
 /* MOBILE */
@@ -104,7 +91,7 @@ ul {
     footer section {
         display: grid;
         grid-template-columns: 1fr;
-        gap: 0;
+        gap: 2rem;
     }
 
     #FOOTER-SITEMAP {

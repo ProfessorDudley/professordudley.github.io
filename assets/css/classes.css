@@ -1,3 +1,18 @@
 .clamp {
     max-width: 1200px;
 }
+
+.nav-bar ul:last-child
+{
+    padding: 0 1em;
+}
+
+.nav-bar ul {
+    background-color: var(--colour-dark-semi-transparent);
+    border-radius: 10pt;
+    padding: 0 2em;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}

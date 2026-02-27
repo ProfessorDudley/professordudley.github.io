@@ -1,14 +1,21 @@
-:root
-{
+:root {
     /* Colours */
-    --colour-dark: #242424;
-    --colour-light: #f2f2f2;
-    --colour-link: #88ccff;
+    --colour-dark: rgba(36, 36, 36, 1);
+    --colour-dark-transparent: rgba(36, 36, 36, 0);
+    --colour-dark-semi-transparent: rgba(36, 36, 36, 0.8);
+    --colour-light: rgba(242, 242, 242, 1);
+    --colour-light-transparent: rgba(242, 242, 242, 0);
+    --colour-light-semi-transparent: rgba(242, 242, 242, 0.4);
+    --colour-link: rgba(136, 204, 255, 1);
 
     /* Fonts */
     font-size: 14pt;
     font-family: 'Atkinson Hyperlegible', sans-serif;
-    line-height: 1.5;
+    line-height: 1;
+}
+
+body {
+    background-color: var(--colour-light);
 }
 
 h1 {
@@ -24,7 +31,7 @@ h2 {
 h4 {
     font-size: 16pt;
     margin: 0;
-    margin-bottom: 1em;
+    margin-bottom: 0.8em;
 }
 
 p {
@@ -33,4 +40,15 @@ p {
 
 a {
     color: var(--colour-link);
+}
+
+ul, ul a {
+    text-decoration: none;
+    list-style: none;
+    margin: inherit;
+    padding: inherit;
+}
+
+svg {
+    height: 2em;
 }
