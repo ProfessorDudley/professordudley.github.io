@@ -1,4 +1,5 @@
 @import url(theme.css);
+@import url(classes.css);
 
 body {
     height: 100dvh;
@@ -23,18 +24,17 @@ footer {
     margin-top: 3rem;
 }
 
-.container {
+section {
     display: grid;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
 }
 
-footer .container {
+footer section {
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     margin: 3rem auto;
+    padding: 0 1rem;
 }
+
 
 
 main {
@@ -47,7 +47,7 @@ main {
     
 }
 
-section {
+/* section {
     width: 100%;
 
     display: grid;
@@ -55,7 +55,7 @@ section {
     grid-auto-rows: min-content;
     gap: 1rem;
     justify-content: flex-start;
-}
+} */
 
 /* Should mimic Steam Library */
 article {
@@ -99,9 +99,9 @@ ul {
 
 
 /* MOBILE */
-@media (max-width: 600px)
+@media (max-width: 700px)
 {
-    footer .container {
+    footer section {
         display: grid;
         grid-template-columns: 1fr;
         gap: 0;
