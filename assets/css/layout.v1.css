@@ -12,9 +12,9 @@ header {
     position: sticky;
     top: 0;
     z-index: 100;
-    background: var(--colour-light);
+    background: var(--colour-dark);
     background: linear-gradient(
-        180deg, var(--colour-light) 70%, var(--colour-light-transparent) 100%
+        180deg, var(--colour-dark) 70%, var(--colour-dark-transparent) 100%
     );
 }
 
@@ -29,7 +29,7 @@ header nav {
 }
 
 footer {
-    background: var(--colour-dark);
+    background: var(--colour-darker);
     color: var(--colour-light);
     
     margin-top: 3rem;

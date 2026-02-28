@@ -1,6 +1,7 @@
 :root {
     /* Colours */
     --colour-dark: rgba(36, 36, 36, 1);
+    --colour-darker: rgba(18, 18, 18, 1);
     --colour-dark-transparent: rgba(36, 36, 36, 0);
     --colour-dark-semi-transparent: rgba(36, 36, 36, 0.8);
     --colour-light: rgba(242, 242, 242, 1);
@@ -15,7 +16,7 @@
 }
 
 body {
-    background-color: var(--colour-light);
+    background-color: var(--colour-dark);
 }
 
 h1 {
@@ -47,8 +48,4 @@ ul, ul a {
     list-style: none;
     margin: inherit;
     padding: inherit;
-}
-
-svg {
-    height: 2em;
 }
