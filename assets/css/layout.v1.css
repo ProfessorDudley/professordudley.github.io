@@ -40,7 +40,8 @@ footer {
 }
 
 main {
-    grid-column: 4  / -1;
+    padding-top: 15vh;
+    grid-column: 4 / -1;
 }
 
 svg {
