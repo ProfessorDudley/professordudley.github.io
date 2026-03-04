@@ -21,3 +21,16 @@ ul.horizontal > * {
 .right-justify * {
     text-align: right;
 }
+
+.content-wrapper {
+    grid-column: 1 / span 4;
+    padding-top: 15dvh;
+    padding-bottom: 4rem;
+    overflow-x: scroll;
+    scrollbar-width: none;
+}
+
+.content-sidebar {
+    padding-top: 15dvh;
+    grid-column: 5 / -1;
+}
