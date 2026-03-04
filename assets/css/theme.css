@@ -10,7 +10,7 @@
     --colour-link: rgba(136, 204, 255, 1);
 
     /* Fonts */
-    font-size: 14pt;
+    font-size: 14px;
     font-family: 'Atkinson Hyperlegible', sans-serif;
     line-height: 1;
 }
@@ -24,25 +24,24 @@ aside {
     color: var(--colour-light);
     fill: var(--colour-light);
 }
-
 main {
     background: var(--colour-light);
 }
 
 h1 {
     color: inherit;
-    font-size: 36pt;
+    font-size: 36px;
     margin: 0;
 }
 
 h2 {
     color: inherit;
-    font-size: 24pt;
+    font-size: 24px;
     margin: 0;
 }
 h5 {
     color: inherit;
-    font-size: 14pt;
+    font-size: 14px;
     margin: 0;
     margin-top: 1em;
 }
