@@ -16,36 +16,51 @@
 }
 
 body {
-    background-color: var(--colour-dark);
+    background-color: var(--colour-light);
+}
+
+aside {
+    background: var(--colour-dark);
+    color: var(--colour-light);
+    fill: var(--colour-light);
+}
+
+main {
+    background: var(--colour-light);
 }
 
 h1 {
+    color: inherit;
     font-size: 36pt;
     margin: 0;
 }
 
 h2 {
+    color: inherit;
     font-size: 24pt;
     margin: 0;
 }
-
-h4 {
-    font-size: 16pt;
+h5 {
+    color: inherit;
+    font-size: 14pt;
     margin: 0;
-    margin-bottom: 0.8em;
+    margin-top: 1em;
 }
 
 p {
     margin: 0;
+    margin-top: 1em;
 }
 
 a {
     color: var(--colour-link);
 }
 
+
+/* WATCH OUT FOR THIS */
 ul, ul a {
     text-decoration: none;
     list-style: none;
-    margin: inherit;
-    padding: inherit;
+    margin: unset;
+    padding: unset;
 }

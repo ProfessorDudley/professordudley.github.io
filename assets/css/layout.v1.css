@@ -3,83 +3,48 @@
 
 body {
     height: 100dvh;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    column-gap: 1rem;
 }
 
-header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: var(--colour-dark);
-    background: linear-gradient(
-        180deg, var(--colour-dark) 70%, var(--colour-dark-transparent) 100%
-    );
+aside {
+    grid-column: 1 / 4;
+    padding: 0 2rem 2rem 0;
+
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-template-rows: 3fr max-content;
 }
 
-header nav {
+nav {
+    margin-top: 300pt;
+    grid-column: 2 / -1;
     display: flex;
-    justify-content: space-between;
-    align-items: stretch;
+    flex-direction: column;
     flex-wrap: nowrap;
-    margin: 1rem;
-    height: 4rem;
-    font-weight: bold;
+    gap: 1rem;
+    align-items: flex-end;
+    justify-content: start;
 }
 
 footer {
-    background: var(--colour-darker);
-    color: var(--colour-light);
-    
-    margin-top: 3rem;
-}
-
-section {
-    display: grid;
-    box-sizing: border-box;
-    width: 100%;
-    grid-template-columns: repeat(auto-fill, min(100%, 400px));
-}
-
-footer section {
-
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    margin: 3rem auto;
-    padding: 0 1rem;
-}
-
-
-
-main {
-
-    box-sizing: border-box;
-    flex-grow: 1;
-    margin: 2rem 0rem;
-
+    grid-column: 2 / -1;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-
-    /* margin-top: 140pt;*/
-    margin-bottom: 2000px;
-    
+    flex-wrap: nowrap;
+    align-items: flex-end;
+    justify-content: end;
+    font-size: 11pt;
+    padding-left: 4rem;
 }
 
-/* Should mimic Steam Library */
-article {
-    border-radius: 2pt;
-    /* Should change based on viewport width */
-    height: 100%;
-    /* padding-right: 56.25%; */
-    box-sizing: border-box;
-    padding: 1rem;
-    /* padding-bottom: 2rem; */
+main {
+    grid-column: 4  / -1;
 }
 
-#App {
-    display: block;
+svg {
+    height: inherit;
 }
 
 
@@ -88,13 +53,5 @@ article {
 /* MOBILE */
 @media (max-width: 700px)
 {
-    footer section {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-
-    #FOOTER-SITEMAP {
-        display: none;
-    }
+    
 }
