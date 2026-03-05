@@ -24,7 +24,7 @@ ul.horizontal > * {
 
 .content-wrapper {
     grid-column: 1 / -1;
-    padding-top: 15dvh;
+    padding-top: 210px;
     padding-bottom: 4rem;
     overflow-x: scroll;
     scrollbar-width: none;
