@@ -5,7 +5,25 @@
 <html lang="en-gb">
 
 <head>
-    {%- include head.html -%}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="{{ page.description }}">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+    </style>
+
+
+    <link rel="stylesheet" href="/assets/css/normalize.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/layout.css" type="text/css">
+    <link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
+
+    {%- if page.append_head -%}
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <script src="script.js" type="text/javascript"></script>
+    {%- endif -%}
+
+    <title>{{ page.title }}</title>
 </head>
 
 <body>
