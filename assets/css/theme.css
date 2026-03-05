@@ -71,6 +71,10 @@ a {
     color: var(--colour-link);
 }
 
+article h3 {
+    margin-bottom: 0.4em;
+}
+
 
 /* WATCH OUT FOR THIS */
 ul, ul a {
@@ -78,4 +82,9 @@ ul, ul a {
     list-style: none;
     margin: unset;
     padding: unset;
+}
+
+.overlay {
+    background: var(--colour-dark-semi-transparent);
+    background: linear-gradient(155deg, var(--colour-dark-semi-transparent) 20%, var(--colour-dark-transparent) 120%);
 }

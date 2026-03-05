@@ -13,7 +13,7 @@ body {
 aside {
         box-sizing: border-box;
     grid-column: 1 / 4;
-    padding: 0 2rem 2rem 0;
+    padding: 0 2rem 1rem 0;
     width: max(30dvw, 316px);
     display: grid;
     grid-template-columns: auto repeat(2, 140px);
@@ -23,10 +23,10 @@ aside {
 
 main {
     max-width: 800px;
-    margin-left: 2rem;
     display: grid;
     column-gap: 2rem;
     grid-template-columns: repeat(6, 1fr) auto;
+    /* overflow: visible; */
 }
 
 nav {
@@ -51,12 +51,39 @@ footer {
     font-size: 11px;
 }
 
+section {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 1rem;
+    margin-bottom: 2em;
+}
+
+article {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    height: 180px;
+}
+
 #MOBILE-FOOTER {
     display: none;
+    padding: 2rem;
 }
 
 svg {
     height: inherit;
+}
+
+img {
+    height: inherit;
+    width: 100%;
+    object-fit: cover;
+    overflow: hidden;
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 1;
 }
 
 
@@ -77,6 +104,10 @@ svg {
     }
     aside {
         width: 100%;
+    }
+
+    .content-wrapper {
+        padding-top: 2rem;
     }
 
     #DESKTOP-FOOTER {
