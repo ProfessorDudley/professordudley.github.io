@@ -6,6 +6,17 @@ title: Home
 <h1>
     Sam Dicken | Game Developer
 </h1>
+
+{% for post in site.posts %}
+    <a href="{{ post.url | replace: 'index', '' }}">
+        <article>
+            <h2> {{ post.title }}</h2>
+            <p>{{ post.summary }}</p>
+        </article>
+    </a>
+    
+{% endfor %}
+
 <p>
     Lorem ipsum dolor sit amet consectetur adipisicing elit. 
     Nihil fugit architecto debitis ea fuga blanditiis temporibus dolorem 

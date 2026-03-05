@@ -11,6 +11,7 @@ body {
 }
 
 aside {
+        box-sizing: border-box;
     grid-column: 1 / 4;
     padding: 0 2rem 2rem 0;
     width: max(30dvw, 316px);
@@ -21,7 +22,7 @@ aside {
 }
 
 main {
-    max-width: 1200px;
+    max-width: 800px;
     margin-left: 2rem;
     display: grid;
     column-gap: 2rem;
@@ -64,21 +65,12 @@ svg {
 /* Small Desktop */
 @media (max-width: 930px)
 {
-    /* aside {
-        grid-template-columns: auto repeat(2, 110px);
-    } */
-
-    .content-wrapper {
-        grid-column: 1 / -1;
-    }
-    .content-sidebar {
-        display: none;
-    }
+    
 }
 
 
 /* MOBILE */
-@media (max-width: 700px)
+@media (max-width: 800px)
 {
     body {
         flex-direction: column;
