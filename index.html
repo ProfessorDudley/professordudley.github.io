@@ -10,9 +10,24 @@ title: Home
 <p>
     {{ site.description }}
 </p>
-<h4>
-    Please explore some of the projects I have worked on in the past:
-</h4>
+
+<section class="gallery">
+    <h3 style="margin: 0;">
+        Please explore some of the projects I have worked on in the past:
+    </h3>
+    {% for post in site.posts %}
+    <a class="invisible" href="{{ post.url | replace: 'index', '' }}">
+        <article>
+            <img src="https://placehold.co/1280x720" alt="Placeholder">
+            <div class="overlay">
+                <h3> {{ post.title }}</h3>
+                <p>{{ post.summary }}</p>
+            </div>
+        </article>
+    </a>
+    
+{% endfor %}
+</section>
 
 <section class="gallery">
     <a class="invisible" href="/">
