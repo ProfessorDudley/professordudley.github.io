@@ -11,7 +11,7 @@ body {
 }
 
 aside {
-        box-sizing: border-box;
+    box-sizing: border-box;
     grid-column: 1 / 4;
     padding: 0 2rem 1rem 0;
     width: max(30dvw, 316px);
@@ -30,7 +30,7 @@ main {
 }
 
 nav {
-    padding-top: 16vh;
+    padding-top: 215px;
     grid-column: 2 / -1;
     display: flex;
     flex-direction: column;
