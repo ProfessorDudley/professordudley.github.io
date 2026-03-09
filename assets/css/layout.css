@@ -63,7 +63,8 @@ article {
     position: relative;
     top: 0px;
     left: 0px;
-    height: 180px;
+    aspect-ratio: 2 / 1;
+    /* height: 180px; */
 }
 
 #MOBILE-FOOTER {
@@ -78,12 +79,12 @@ svg {
 img {
     height: inherit;
     width: 100%;
-    object-fit: cover;
     overflow: hidden;
     position: relative;
     top: 0;
     left: 0;
     z-index: 1;
+    margin-bottom: 1.5em;
 }
 
 
