@@ -1,5 +1,5 @@
 :root {
-    font-size: 14pt;
+    font-size: 16px;
     font-family: 'Atkinson Hyperlegible', sans-serif;
     line-height: 1.2em;
 }
@@ -11,43 +11,27 @@ body {
 }
 
 header {
-    border-bottom: 4pt solid rgb(24, 24, 24);
-    font-size: 18pt;
+    border-bottom: 4px solid rgb(24, 24, 24);
+    font-size: 18px;
 }
 
 footer {
-    border-top: 4pt solid rgb(24, 24, 24);
-    font-size: 14pt;
+    border-top: 4px solid rgb(24, 24, 24);
+    font-size: 14px;
 }
 
 article {
+    display: flex;
+    flex-direction: row;
     background-color: rgb(255, 255, 255);
-    border-radius: 6pt;
-    border: 4pt solid rgb(24, 24, 24);
-    box-shadow: 6px 6px 8px 0px rgba(0, 0, 0, 0.336);
-
-    
-    position: relative;
-    top: 0;
-    left: 0;
-    
-    transition: 
-        box-shadow .22s,
-        top .22s,
-        left .22s;
-    
+    border-radius: 6px;
+    border: 4px solid rgb(24, 24, 24);
     overflow: hidden;
 }
 
-article:hover {
-    position: relative;
-    top: -6px;
-    left: -6px;
-    box-shadow: 18px 18px 16px 0px rgba(0, 0, 0, 0.164);
-    transition: 
-        box-shadow .22s,
-        top .22s,
-        left .22s;
+article > img {
+    clip-path: polygon(100% 0%, 100% 100%, 0% 100%, 14% 0%);
+    margin-right: -10%;
 }
 
 a {
@@ -55,9 +39,15 @@ a {
     text-decoration: none;
 }
 
+.external-link {
+    text-decoration: underline;
+    font-weight: 800;
+    color: black;
+}
+
 .article-index {
     position: absolute;
-    font-size: 240pt;
+    font-size: 240px;
     font-weight: 900;
     top: 33%;
     left: -10%;

@@ -2,7 +2,7 @@
 layout: default
 title: Home
 ---
-{% for app in site.apps %}
+<!-- {% for app in site.apps %}
 <a href="{{ app.url | replace: 'index', '' }}">
     <article>
         <span class="article-index">
@@ -13,9 +13,45 @@ title: Home
     </article>
 </a>
   
-{% endfor %}
+{% endfor %} -->
 
-<script type="text/javascript">
+<article>
+    <div>
+        <a href="https://github.com/ProfessorDudley">
+            <h2>Github</h2>
+        </a>
+        <p>Visit my GitHub profile to see what coding projects I have been working on.
+            I have used many different programming languages and worked on various 
+            unique projects across games, web and desktop applications.
+        </p>
+        <a class="external-link" href="https://github.com/ProfessorDudley">Visit Site &nearr;</a>
+    </div>
+    <img src="/media/images/code_thumb.png" alt="">
+</article>
+<article>
+    <div>
+        <a href="https://professordudley.itch.io/">
+            <h2>Itch.io</h2>
+        </a>
+        <p>On my Itch.io page you will find a few games that I have made and have released
+             publicly. Please have a look and download some if you would like to play!</br>
+            <i>Some of these games also have their source code on <a class="external-link" href="https://github.com/ProfessorDudley">Github.</a></i></p>
+        <a class="external-link" href="https://professordudley.itch.io/">Visit Site <span style="text-decoration: unset !important;">&nearr;</span></a>
+    </div>
+    <img src="/media/images/tiny_moves_thumb.png" alt="">
+</article>
+<article>
+    <div>
+        <a href="https://www.linkedin.com/in/sam-dicken">
+            <h2>Linkedin</h2>
+        </a>
+        <p>Visit my Linkedin page for a comprehensive look at my career and professional development.</p>
+        <a class="external-link" href="https://www.linkedin.com/in/sam-dicken">Visit Site &nearr;</a>
+    </div>
+    <!-- <img src="https://placehold.co/480x480" alt=""> -->
+</article>
+
+<!-- <script type="text/javascript">
     window.onload = () => {
         
         const articles = document.getElementsByTagName("article");
@@ -27,4 +63,4 @@ title: Home
 
         
     };
-</script>
+</script> -->
