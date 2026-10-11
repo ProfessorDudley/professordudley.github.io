@@ -1,13 +1,13 @@
 ---
 title: "Tiny Moves"
-summary: "A 48-hour Godot jam game about tightrope walking. Physics-based controller, endless procedurally spawned rope."
+summary: "A short causal game about not falling from a great hight."
 tech: ["Godot", "GDScript"]
-thumbnail: "https://placehold.co/1280x720/111111/e8a33d?text=Tiny+Moves"
-thumbnail_alt: "Tiny Moves placeholder art"
+thumbnail: "https://img.itch.zone/aW1nLzE5NTg4NjUzLnBuZw==/347x500/IVOitw.png"
+thumbnail_alt: "Tiny Moves game screenshot"
 status: "finished"
 date: 2025-08-27
 links:
-  itch: "https://professordudley.itch.io/"
+  itch: "https://professordudley.itch.io/tiny-moves"
 ---
 
 ## Context

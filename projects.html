@@ -9,23 +9,6 @@ permalink: /projects/
 <div class="card-grid">
   {% assign ordered = site.projects | sort: "date" | reverse %}
   {% for project in ordered %}
-    {% if project.links.itch %}
-      {% assign cta_url = project.links.itch %}
-      {% assign cta_label = "View on Itch" %}
-    {% elsif project.links.demo %}
-      {% assign cta_url = project.links.demo %}
-      {% assign cta_label = "Live demo" %}
-    {% elsif project.links.github %}
-      {% assign cta_url = project.links.github %}
-      {% assign cta_label = "View source" %}
-    {% endif %}
-    {% include project-card.html
-      title=project.title
-      img=project.thumbnail
-      alt=project.thumbnail_alt
-      desc=project.summary
-      tech=project.tech
-      cta_url=cta_url
-      cta_label=cta_label %}
+    {% include project-card.html project=project %}
   {% endfor %}
 </div>
