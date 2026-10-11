@@ -184,6 +184,28 @@ h1 { font-size: 2.5rem; margin: 0 0 0.5rem; }
   letter-spacing: 0.05em;
 }
 
+/* D: boxed tally group — joined boxes, tally dot inside each */
+.boxes {
+  gap: 0;
+  background: var(--surface);
+  border: var(--card-border-w) solid var(--border);
+  border-radius: var(--card-radius);
+  overflow: hidden;
+}
+
+.boxes li + li { border-left: var(--card-border-w) solid var(--border); }
+
+.boxes a {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 0.9rem;
+}
+
+.boxes a[aria-current="page"] { font-weight: 700; }
+
+/* D: plain text links, no tally */
+.plain a:hover { color: var(--accent); }
+
 .subtitle {
   color: var(--muted);
   font-size: 1.15rem;
