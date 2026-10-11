@@ -2,38 +2,23 @@
 layout: default
 title: Home
 ---
-<article>
-    <div>
-        <a href="https://github.com/ProfessorDudley">
-            <h2>Github</h2>
-        </a>
-        <p>Visit my GitHub profile to see what coding projects I have been working on.
-            I have used many different programming languages and worked on various 
-            unique projects across games, web and desktop applications.
-        </p>
-        <a class="external-link" href="https://github.com/ProfessorDudley">Visit Site &nearr;</a>
-    </div>
-    <img src="/media/images/code_thumb.png" alt="">
-</article>
-<article>
-    <div>
-        <a href="https://professordudley.itch.io/">
-            <h2>Itch.io</h2>
-        </a>
-        <p>On my Itch.io page you will find a few games that I have made and have released
-             publicly. Please have a look and download some if you would like to play!</br>
-            <i>Some of these games also have their source code on <a class="external-link" href="https://github.com/ProfessorDudley">Github.</a></i></p>
-        <a class="external-link" href="https://professordudley.itch.io/">Visit Site <span style="text-decoration: unset !important;">&nearr;</span></a>
-    </div>
-    <img src="/media/images/tiny_moves_thumb.png" alt="">
-</article>
-<article>
-    <div>
-        <a href="https://www.linkedin.com/in/sam-dicken">
-            <h2>Linkedin</h2>
-        </a>
-        <p>Visit my Linkedin page for a comprehensive look at my career and professional development.</p>
-        <a class="external-link" href="https://www.linkedin.com/in/sam-dicken">Visit Site &nearr;</a>
-    </div>
-    <!-- <img src="https://placehold.co/480x480" alt=""> -->
-</article>
+<section>
+  <h1>Blank canvas</h1>
+  <p>Clean slate for the redesign. Use the floating menu to tune the background.</p>
+</section>
+
+<aside id="design-menu" aria-label="Design controls">
+  <h2>Background</h2>
+  <p id="bg-value">hsl(220 20% 12%)</p>
+  <label>H <input id="bg-h" type="range" min="0" max="360" step="1" value="220"> <output id="bg-h-val">220</output></label>
+  <label>S <input id="bg-s" type="range" min="0" max="100" step="1" value="20"> <output id="bg-s-val">20%</output></label>
+  <label>L <input id="bg-l" type="range" min="0" max="100" step="1" value="12"> <output id="bg-l-val">12%</output></label>
+  <div class="row">
+    <button id="bg-copy" type="button">Copy CSS</button>
+    <button id="bg-download" type="button">Save JSON</button>
+    <button id="bg-reset" type="button">Reset</button>
+  </div>
+  <pre id="bg-css"></pre>
+</aside>
+
+<script src="/assets/js/lab.js" defer></script>
