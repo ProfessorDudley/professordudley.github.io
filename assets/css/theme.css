@@ -161,6 +161,12 @@ h1 { font-size: 2.5rem; margin: 0 0 0.5rem; }
   gap: 1.5rem;
 }
 
+/* projects page: fixed card size mirroring the landed row */
+.page-main .card-grid {
+  grid-template-columns: repeat(auto-fill, 326px);
+  justify-content: start;
+}
+
 /* landing row: three project cards take the width, archive closer stays slim */
 @media (min-width: 900px) {
   .card-grid:has(> .card.invert) {
