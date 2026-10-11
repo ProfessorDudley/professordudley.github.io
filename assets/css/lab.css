@@ -150,7 +150,7 @@ footer { padding: 1rem 2rem; color: var(--muted); }
 /* landing: footer lives docked in the store column instead */
 body.landing > footer { display: none; }
 
-.col-footer { font-size: 0.85rem; }
+.col-footer { font-size: 0.85rem; text-align: right; }
 .col-footer h5 { margin: 0 0 0.5rem; }
 
 h1 { font-size: 2.5rem; margin: 0 0 0.5rem; }
@@ -373,6 +373,10 @@ h1 { font-size: 2.5rem; margin: 0 0 0.5rem; }
   opacity: 1;
   box-shadow: 0 0 0.4em var(--accent);
 }
+
+/* real bar: tally dots float right with labels left; externals stay centered */
+header .strip .tally a { width: 100%; justify-content: space-between; }
+header .strip .segs.right a { justify-content: center; }
 
 /* A+C: chyron — accent wipe under external links */
 .chyron a { position: relative; padding-bottom: 0.15em; }
