@@ -15,6 +15,7 @@
 
   function apply(t) {
     root.style.setProperty("--accent", `hsl(${t.h} ${t.s}% ${t.l}%)`);
+    root.style.setProperty("--border", `hsl(${t.h} 50% ${Math.max(15, t.l - 26)}%)`);
     if (btn) btn.textContent = t.name;
   }
 
