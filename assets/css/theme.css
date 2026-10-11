@@ -140,7 +140,7 @@ h1 { font-size: 2.5rem; margin: 0 0 0.5rem; }
 
 .hero { min-height: 48vh; display: grid; align-content: center; gap: 1.5rem; }
 
-.hero-bio { font-size: 1.25rem; line-height: 1.6; margin: 0; }
+.hero-bio { font-size: 1.25rem; line-height: 1.6; margin: 0; max-width: 66%; }
 
 @media (max-width: 700px) {
   .hero { min-height: auto; }
