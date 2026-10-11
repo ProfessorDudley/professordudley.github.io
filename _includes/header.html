@@ -1,6 +1,13 @@
-<nav>
-    <ul>
-        <li><a href="/"><h1>Sam Dicken</h1></a></li>
+<nav class="demo-nav strip" aria-label="Main">
+    <ul class="tally segs">
+        <li><a href="/" {% if page.url == "/" %}aria-current="page"{% endif %}>Landing</a></li>
+        <li><a href="/projects/" {% if page.url contains "/projects" %}aria-current="page"{% endif %}>Projects</a></li>
+        <li><a href="/blog/" {% if page.url contains "/blog" %}aria-current="page"{% endif %}>Blog</a></li>
     </ul>
-
+    <span class="spacer" aria-hidden="true"></span>
+    <ul class="segs right">
+        <li><a href="https://professordudley.itch.io/" target="_blank" rel="noreferrer noopener">Itch.io</a></li>
+        <li><a href="https://github.com/ProfessorDudley" target="_blank" rel="noreferrer noopener">Github</a></li>
+        <li><a href="https://www.linkedin.com/in/sam-dicken" target="_blank" rel="noreferrer noopener">Linkedin</a></li>
+    </ul>
 </nav>
