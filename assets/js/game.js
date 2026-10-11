@@ -25,7 +25,18 @@
     } catch {
       /* fall through to default */
     }
-    return ["Yellow"];
+    // First run under ownership: keep any previously selected theme.
+    let prev = null;
+    try {
+      prev = localStorage.getItem(KEY);
+    } catch {
+      /* ignore */
+    }
+    const seed = ["Yellow"];
+    if (prev && THEMES.some((t) => t.name === prev) && !seed.includes(prev)) {
+      seed.push(prev);
+    }
+    return seed;
   }
 
   function saveOwned() {
