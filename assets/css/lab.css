@@ -50,7 +50,7 @@ header .demo-nav {
   border-bottom: var(--card-border-w) solid var(--border);
   border-top: 0;
   border-radius: 0;
-  padding: 0 0.75rem;
+  padding: 0 2rem;
 }
 
 .ticker {
