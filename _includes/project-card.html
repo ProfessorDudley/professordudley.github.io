@@ -22,7 +22,7 @@
   <p class="card-ctas">
     <a class="btn btn-primary" href="{{ primary_url }}">{{ primary_label }}</a>
     {%- if p.links.github and p.links.github != primary_url -%}
-    <a class="btn btn-secondary" href="{{ p.links.github }}">Source</a>
+    <a class="btn btn-ghost" href="{{ p.links.github }}">Source <svg class="chev" viewBox="0 0 8 12" aria-hidden="true"><path d="M1 1l5 5-5 5"/></svg></a>
     {%- endif -%}
   </p>
   {%- endif -%}
