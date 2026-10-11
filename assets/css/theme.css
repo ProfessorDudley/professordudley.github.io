@@ -386,7 +386,11 @@ header .strip .segs.right a { justify-content: center; }
   border: var(--card-border-w) solid var(--border);
   border-radius: var(--card-radius);
   padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
 }
+
+.card .btn, .card .more-link { margin-top: auto; align-self: flex-start; }
 
 .card h2 { margin: 0 0 0.5rem; }
 .card p { margin: 0 0 1rem; line-height: 1.5; }
