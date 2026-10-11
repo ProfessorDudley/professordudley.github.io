@@ -45,9 +45,12 @@ header {
 
 header .demo-nav {
   margin: 0;
-  border-left: 0;
-  border-right: 0;
+  border-left: var(--card-border-w) solid var(--border);
+  border-right: var(--card-border-w) solid var(--border);
+  border-bottom: var(--card-border-w) solid var(--border);
+  border-top: 0;
   border-radius: 0;
+  padding: 0 0.75rem;
 }
 
 .ticker {
