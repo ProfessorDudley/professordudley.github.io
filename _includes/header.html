@@ -1,4 +1,13 @@
-<div class="ticker" aria-hidden="true"></div>
+<div class="ticker" aria-hidden="true"><span class="ticker-time" id="ticker-time">--:--:-- UTC</span></div>
+<script>
+(function () {
+  var el = document.getElementById('ticker-time');
+  if (!el) return;
+  var f = function () { el.textContent = new Date().toISOString().slice(11, 19) + ' UTC'; };
+  f();
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) setInterval(f, 1000);
+})();
+</script>
 <nav class="demo-nav strip" aria-label="Main">
     <ul class="tally segs">
         <li><a href="/" {% if page.url == "/" %}aria-current="page"{% endif %}>Landing</a></li>

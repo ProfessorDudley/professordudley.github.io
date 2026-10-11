@@ -51,10 +51,24 @@ header .demo-nav {
 }
 
 .ticker {
-  height: 8px;
-  background: var(--accent);
-  box-shadow: 0 0 1em var(--accent);
+  min-height: 1rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0.25rem 1rem;
+  background: var(--bg);
+  border-top: 2px solid var(--border);
+  border-bottom: 2px solid var(--border);
 }
+
+.ticker-time {
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.05em;
+}
+
+header .demo-nav { border-top: 0; }
 
 footer { padding: 1rem 1.5rem; color: var(--muted); }
 
