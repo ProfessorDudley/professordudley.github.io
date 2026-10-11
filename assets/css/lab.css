@@ -69,15 +69,6 @@ header .demo-nav {
   letter-spacing: 0.05em;
 }
 
-/* header chrome uses bright accent lines (cards keep the darker border) */
-header .ticker { border-bottom-color: var(--accent); }
-header .demo-nav { border-bottom-color: var(--accent); }
-header .strip .segs li + li,
-header .strip .spacer,
-header .strip .segs.right li:first-child,
-header .strip .segs:not(.right) li:first-child,
-header .strip .segs.right li:last-child { border-color: var(--accent); }
-
 header .demo-nav { border-top: 0; }
 
 footer { padding: 1rem 1.5rem; color: var(--muted); }
@@ -137,7 +128,7 @@ h1 { font-size: 2.5rem; margin: 0 0 0.5rem; }
   gap: 0.75rem;
   margin: 0;
   padding: 0.6rem 1rem;
-  border: 2px solid var(--accent);
+  border: 2px solid var(--border);
   border-radius: var(--card-radius);
   background: var(--surface);
   color: var(--accent);
