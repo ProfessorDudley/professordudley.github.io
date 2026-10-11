@@ -37,17 +37,41 @@ title: Home
 </section>
 
 <aside id="design-menu" aria-label="Design controls">
-  <h2>Background</h2>
-  <p id="bg-value">hsl(220 20% 12%)</p>
-  <label>H <input id="bg-h" type="range" min="0" max="360" step="1" value="220"> <output id="bg-h-val">220</output></label>
-  <label>S <input id="bg-s" type="range" min="0" max="100" step="1" value="20"> <output id="bg-s-val">20%</output></label>
-  <label>L <input id="bg-l" type="range" min="0" max="100" step="1" value="12"> <output id="bg-l-val">12%</output></label>
-  <div class="row">
-    <button id="bg-copy" type="button">Copy CSS</button>
-    <button id="bg-download" type="button">Save JSON</button>
-    <button id="bg-reset" type="button">Reset</button>
+  <div class="menu-body">
+    <div class="menu-cols">
+      <div class="menu-col">
+        <h2 id="edit-title">Background</h2>
+        <p id="bg-value">hsl(220 20% 12%)</p>
+        <label>H <input id="bg-h" type="range" min="0" max="360" step="1" value="220"> <output id="bg-h-val">220</output></label>
+        <label>S <input id="bg-s" type="range" min="0" max="100" step="1" value="20"> <output id="bg-s-val">20%</output></label>
+        <label>L <input id="bg-l" type="range" min="0" max="100" step="1" value="12"> <output id="bg-l-val">12%</output></label>
+        <div class="row">
+          <button id="bg-copy" type="button">Copy CSS</button>
+          <button id="bg-download" type="button">Save JSON</button>
+          <button id="bg-reset" type="button">Reset</button>
+        </div>
+        <pre id="bg-css"></pre>
+      </div>
+      <div class="menu-col">
+        <h2>Type &amp; cards</h2>
+        <label>Font
+          <select id="font-sel">
+            <option value="atkinson">Atkinson Hyperlegible</option>
+            <option value="system">System UI</option>
+            <option value="serif">Georgia Serif</option>
+            <option value="mono">Monospace</option>
+          </select>
+          <output></output>
+        </label>
+        <label>Size <input id="font-size" type="number" min="12" max="24" step="1" value="16"> <output>px</output></label>
+        <label>Radius <input id="card-radius" type="range" min="0" max="24" step="1" value="12"> <output id="card-radius-val">12px</output></label>
+        <label>Border <input id="card-borderw" type="range" min="0" max="8" step="1" value="2"> <output id="card-borderw-val">2px</output></label>
+      </div>
+    </div>
   </div>
-  <pre id="bg-css"></pre>
+  <div class="menu-foot">
+    <button id="menu-toggle" type="button">Minimize</button>
+  </div>
 </aside>
 
 <script src="/assets/js/lab.js" defer></script>

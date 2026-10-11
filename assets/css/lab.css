@@ -9,6 +9,10 @@
   --accent: hsl(205 85% 62%);
   --on-accent: hsl(205 20% 8%);
   --border: hsl(205 40% 35%);
+  --font: "Atkinson Hyperlegible", system-ui, sans-serif;
+  --fs: 16px;
+  --card-radius: 12px;
+  --card-border-w: 2px;
 }
 
 * { box-sizing: border-box; }
@@ -18,7 +22,8 @@ body {
   min-height: 100dvh;
   background: var(--bg);
   color: var(--text);
-  font-family: "Atkinson Hyperlegible", system-ui, sans-serif;
+  font-family: var(--font);
+  font-size: var(--fs);
   transition: background 120ms linear;
 }
 
@@ -42,8 +47,8 @@ h1 { font-size: 2.5rem; margin: 0 0 0.5rem; }
 
 .card {
   background: var(--surface);
-  border: 2px solid var(--border);
-  border-radius: 0.75rem;
+  border: var(--card-border-w) solid var(--border);
+  border-radius: var(--card-radius);
   padding: 1.5rem;
 }
 
@@ -82,6 +87,8 @@ h1 { font-size: 2.5rem; margin: 0 0 0.5rem; }
   background: var(--surface);
 }
 
+.sw.selected { outline: 3px solid var(--accent); outline-offset: 2px; }
+
 .sw-chip { height: 3.5rem; }
 .sw[data-role="bg"] .sw-chip { background: var(--bg); }
 .sw[data-role="surface"] .sw-chip { background: var(--surface); }
@@ -97,13 +104,21 @@ h1 { font-size: 2.5rem; margin: 0 0 0.5rem; }
 .sw-ratio { display: block; margin-top: 0.2rem; }
 .sw-ratio.bad { color: #ff8080; font-weight: 700; }
 .sw-lock { display: flex; gap: 0.35rem; align-items: center; margin-top: 0.35rem; cursor: pointer; }
+.sw-edit {
+  margin-top: 0.4rem;
+  width: 100%;
+  padding: 0.3rem;
+  border: 0;
+  border-radius: 0.35rem;
+  cursor: pointer;
+}
 
 /* ---- floating menu (debug tool UI) ---- */
 #design-menu {
   position: fixed;
   right: 1rem;
   bottom: 1rem;
-  width: min(20rem, calc(100vw - 2rem));
+  width: min(36rem, calc(100vw - 2rem));
   padding: 1rem;
   border-radius: 0.75rem;
   background: rgba(0, 0, 0, 0.78);
@@ -113,11 +128,23 @@ h1 { font-size: 2.5rem; margin: 0 0 0.5rem; }
   z-index: 1000;
 }
 
+#design-menu.min .menu-body { display: none; }
+
+.menu-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 560px) {
+  .menu-cols { grid-template-columns: 1fr; }
+}
+
 #design-menu h2 { margin: 0 0 0.5rem; font-size: 1rem; }
 
 #design-menu label {
   display: grid;
-  grid-template-columns: 1.2rem 1fr 3.5rem;
+  grid-template-columns: 3.2rem 1fr 3.5rem;
   align-items: center;
   gap: 0.5rem;
   margin: 0.4rem 0;
@@ -125,15 +152,35 @@ h1 { font-size: 2.5rem; margin: 0 0 0.5rem; }
 
 #design-menu output { text-align: right; font-variant-numeric: tabular-nums; }
 
+#design-menu select, #design-menu input[type="number"] {
+  width: 100%;
+  padding: 0.25rem;
+  border-radius: 0.3rem;
+  border: 0;
+}
+
 #design-menu .row {
   display: flex;
   gap: 0.5rem;
   margin-top: 0.6rem;
 }
 
-#design-menu button {
+#design-menu .row button {
   flex: 1;
   padding: 0.4rem;
+  border: 0;
+  border-radius: 0.4rem;
+  cursor: pointer;
+}
+
+.menu-foot {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.6rem;
+}
+
+.menu-foot button {
+  padding: 0.35rem 0.9rem;
   border: 0;
   border-radius: 0.4rem;
   cursor: pointer;

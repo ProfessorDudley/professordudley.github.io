@@ -1,23 +1,34 @@
 // LAB ONLY — debug tool. Nothing on the page depends on this file.
 // Strip-out: delete this file, #design-menu, #scheme-panel, lab.css link.
 (() => {
-  const KEY = "design-lab:v2";
+  const KEY = "design-lab:v3";
   const ROLES = ["bg", "surface", "text", "muted", "accent", "on-accent", "border"];
   const LABELS = {
     bg: "Background", surface: "Card surface", text: "Body text",
     muted: "Subtitle", accent: "Accent", "on-accent": "Text on accent", border: "Card border",
+  };
+  const FONTS = {
+    atkinson: '"Atkinson Hyperlegible", system-ui, sans-serif',
+    system: 'system-ui, -apple-system, "Segoe UI", sans-serif',
+    serif: 'Georgia, "Times New Roman", serif',
+    mono: 'ui-monospace, "Cascadia Code", Menlo, monospace',
   };
   // [role, compare-against, minimum ratio]
   const CHECKS = [
     ["text", "bg", 4.5], ["muted", "bg", 3], ["accent", "bg", 3],
     ["on-accent", "accent", 4.5], ["border", "surface", 2],
   ];
-  const defaults = {
+  const defaultRoles = () => ({
     bg: { h: 220, s: 20, l: 12 }, surface: { h: 220, s: 20, l: 18 },
     text: { h: 220, s: 12, l: 92 }, muted: { h: 220, s: 12, l: 65 },
     accent: { h: 205, s: 85, l: 62 }, "on-accent": { h: 205, s: 20, l: 8 },
     border: { h: 205, s: 40, l: 35 },
-  };
+  });
+  const defaultUi = () => ({ font: "atkinson", fs: 16, radius: 12, borderW: 2 });
+  const fresh = () => ({
+    roles: defaultRoles(), ui: defaultUi(), selected: "bg",
+    locks: Object.fromEntries(ROLES.map((r) => [r, false])),
+  });
 
   const root = document.documentElement;
   const $ = (id) => document.getElementById(id);
@@ -49,28 +60,52 @@
       const raw = localStorage.getItem(KEY);
       if (raw) {
         const v = JSON.parse(raw);
-        if (v.roles && v.locks) return v;
+        if (v.roles && v.locks && v.ui) {
+          if (!v.selected || !v.roles[v.selected]) v.selected = "bg";
+          return v;
+        }
       }
     } catch { /* ignore */ }
-    return { roles: structuredClone(defaults), locks: Object.fromEntries(ROLES.map((r) => [r, false])) };
+    return fresh();
   }
   function persist() {
     try { localStorage.setItem(KEY, JSON.stringify(state)); } catch { /* private mode */ }
   }
 
+  function cssText() {
+    const lines = ROLES.map((r) => `  --${r}: ${css(state.roles[r])};`);
+    lines.push(`  --font: ${FONTS[state.ui.font]};`);
+    lines.push(`  --fs: ${state.ui.fs}px;`);
+    lines.push(`  --card-radius: ${state.ui.radius}px;`);
+    lines.push(`  --card-border-w: ${state.ui.borderW}px;`);
+    return ":root {\n" + lines.join("\n") + "\n}";
+  }
+
   function apply(persistIt = true) {
-    for (const r of ROLES) {
-      const c = state.roles[r];
-      root.style.setProperty(`--${r}`, css(c));
-    }
-    const bg = state.roles.bg;
-    $("bg-h").value = bg.h; $("bg-s").value = bg.s; $("bg-l").value = bg.l;
-    $("bg-h-val").textContent = Math.round(bg.h);
-    $("bg-s-val").textContent = `${Math.round(bg.s)}%`;
-    $("bg-l-val").textContent = `${Math.round(bg.l)}%`;
-    $("bg-value").textContent = css(bg);
-    $("bg-css").textContent = ":root {\n" +
-      ROLES.map((r) => `  --${r}: ${css(state.roles[r])};`).join("\n") + "\n}";
+    for (const r of ROLES) root.style.setProperty(`--${r}`, css(state.roles[r]));
+    root.style.setProperty("--font", FONTS[state.ui.font]);
+    root.style.setProperty("--fs", `${state.ui.fs}px`);
+    root.style.setProperty("--card-radius", `${state.ui.radius}px`);
+    root.style.setProperty("--card-border-w", `${state.ui.borderW}px`);
+
+    // colour sliders follow the selected role
+    const c = state.roles[state.selected];
+    $("edit-title").textContent = `Editing: ${LABELS[state.selected]}`;
+    $("bg-h").value = c.h; $("bg-s").value = c.s; $("bg-l").value = c.l;
+    $("bg-h-val").textContent = Math.round(c.h);
+    $("bg-s-val").textContent = `${Math.round(c.s)}%`;
+    $("bg-l-val").textContent = `${Math.round(c.l)}%`;
+    $("bg-value").textContent = css(c);
+    $("bg-css").textContent = cssText();
+
+    // type & card controls
+    $("font-sel").value = state.ui.font;
+    $("font-size").value = state.ui.fs;
+    $("card-radius").value = state.ui.radius;
+    $("card-borderw").value = state.ui.borderW;
+    $("card-radius-val").textContent = `${state.ui.radius}px`;
+    $("card-borderw-val").textContent = `${state.ui.borderW}px`;
+
     renderSwatches();
     if (persistIt) persist();
   }
@@ -83,13 +118,14 @@
       const rel = CHECKS.filter(([, b]) => b === r).map(([a]) => `${a}: ${results[`${a}/${r}`].v.toFixed(1)}`);
       const bad = CHECKS.some(([a, b, min]) => (a === r || b === r) && results[`${a}/${b}`].v < min);
       const d = document.createElement("div");
-      d.className = "sw";
+      d.className = "sw" + (state.selected === r ? " selected" : "");
       d.dataset.role = r;
       d.innerHTML =
         `<div class="sw-chip"></div><div class="sw-body"><strong>${LABELS[r]}</strong>` +
         `<code>${css(state.roles[r])}</code>` +
         (rel.length ? `<span class="sw-ratio${bad ? " bad" : ""}">${rel.join(" · ")}${bad ? " !" : ""}</span>` : "") +
-        `<label class="sw-lock"><input type="checkbox" data-lock="${r}"${state.locks[r] ? " checked" : ""}> lock</label></div>`;
+        `<label class="sw-lock"><input type="checkbox" data-lock="${r}"${state.locks[r] ? " checked" : ""}> lock</label>` +
+        `<button class="sw-edit" type="button" data-edit="${r}">Edit</button></div>`;
       box.appendChild(d);
     }
     box.querySelectorAll("[data-lock]").forEach((cb) =>
@@ -97,9 +133,14 @@
         state.locks[cb.dataset.lock] = cb.checked;
         persist();
       }));
+    box.querySelectorAll("[data-edit]").forEach((btn) =>
+      btn.addEventListener("click", () => {
+        state.selected = btn.dataset.edit;
+        apply();
+      }));
   }
 
-  // ---- harmonious + legible regeneration ----
+  // ---- harmonious + legible regeneration (colours only) ----
   function genBg(cur) {
     const dark = cur.l < 50;
     return { h: Math.round(rand(0, 360)), s: Math.round(rand(10, 35)), l: Math.round(dark ? rand(8, 20) : rand(86, 95)) };
@@ -166,15 +207,33 @@
   }
 
   // ---- wiring ----
-  const readBg = () => ({ h: Number($("bg-h").value), s: Number($("bg-s").value), l: Number($("bg-l").value) });
+  const readSliders = () => ({ h: Number($("bg-h").value), s: Number($("bg-s").value), l: Number($("bg-l").value) });
   for (const id of ["bg-h", "bg-s", "bg-l"]) {
     $(id).addEventListener("input", () => {
-      state.roles.bg = readBg();
-      state.locks.bg = true; // hand-tuned means approved
+      state.roles[state.selected] = readSliders();
+      state.locks[state.selected] = true; // hand-tuned means approved
       apply();
     });
   }
+  $("font-sel").addEventListener("change", () => { state.ui.font = $("font-sel").value; apply(); });
+  $("font-size").addEventListener("input", () => {
+    state.ui.fs = Math.min(24, Math.max(12, Number($("font-size").value) || 16));
+    apply();
+  });
+  $("card-radius").addEventListener("input", () => {
+    state.ui.radius = Number($("card-radius").value);
+    apply();
+  });
+  $("card-borderw").addEventListener("input", () => {
+    state.ui.borderW = Number($("card-borderw").value);
+    apply();
+  });
   $("regen").addEventListener("click", regenerate);
+  $("menu-toggle").addEventListener("click", () => {
+    const menu = $("design-menu");
+    menu.classList.toggle("min");
+    $("menu-toggle").textContent = menu.classList.contains("min") ? "Expand" : "Minimize";
+  });
   $("bg-copy").addEventListener("click", async () => {
     try {
       await navigator.clipboard.writeText($("bg-css").textContent);
@@ -182,7 +241,7 @@
     } catch { $("bg-value").textContent = "Copy blocked — select the snippet below."; }
   });
   $("bg-download").addEventListener("click", () => {
-    const blob = new Blob([JSON.stringify({ scheme: state.roles, locks: state.locks }, null, 2)], { type: "application/json" });
+    const blob = new Blob([JSON.stringify({ scheme: state.roles, ui: state.ui, locks: state.locks }, null, 2)], { type: "application/json" });
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
     a.download = "design-state.json";
@@ -191,7 +250,9 @@
   });
   $("bg-reset").addEventListener("click", () => {
     try { localStorage.removeItem(KEY); } catch { /* ignore */ }
-    state = { roles: structuredClone(defaults), locks: Object.fromEntries(ROLES.map((r) => [r, false])) };
+    const sel = state.selected;
+    state = fresh();
+    state.selected = sel;
     apply();
   });
 
