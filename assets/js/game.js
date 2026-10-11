@@ -114,6 +114,29 @@
 
   renderWallet(readWallet());
 
+  // First-visit awards: 5 coins per new project/blog page.
+  const VISITS_KEY = "site-visits";
+  const VISIT_AWARD = 5;
+  (function awardVisit() {
+    const slug = location.pathname.replace(/\/+$/, "") || "/";
+    if (!/^\/(projects|blog)(\/|$)/.test(slug)) return;
+    let visits = [];
+    try {
+      const arr = JSON.parse(localStorage.getItem(VISITS_KEY));
+      if (Array.isArray(arr)) visits = arr;
+    } catch {
+      /* start fresh */
+    }
+    if (visits.includes(slug)) return;
+    visits.push(slug);
+    try {
+      localStorage.setItem(VISITS_KEY, JSON.stringify(visits));
+    } catch {
+      /* private mode: visits just won't persist */
+    }
+    grant(VISIT_AWARD);
+  })();
+
   // Store: buy buttons per theme, fixed cost for now.
   const COST = 5;
   const storeEl = document.getElementById("store-list");

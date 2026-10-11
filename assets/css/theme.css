@@ -43,6 +43,8 @@ main {
 
 .main-col { display: grid; gap: 2.5rem; }
 
+.page-main { display: grid; gap: 2rem; align-content: start; }
+
 @media (max-width: 1100px) {
   .page-grid { grid-template-columns: 1fr; }
 }

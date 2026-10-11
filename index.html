@@ -15,27 +15,30 @@ title: Sam Dicken | Game Developer
     <section aria-label="Featured projects">
       <h2 class="visually-hidden">Featured projects</h2>
       <div class="card-grid">
-        <article class="card">
-          <img src="https://placehold.co/1280x720/111111/e8a33d?text=Tiny+Moves" alt="Tiny Moves placeholder art" loading="lazy">
-          <h2>Tiny Moves</h2>
-          <p>A 48-hour Godot jam game about tightrope walking. Physics-based controller, endless procedurally spawned rope.</p>
-          <p class="tech">Godot · GDScript</p>
-          <a class="btn btn-primary" href="https://professordudley.itch.io/">View on Itch</a>
-        </article>
-        <article class="card">
-          <img src="https://placehold.co/1280x720/111111/e8a33d?text=Mimic" alt="Mimic placeholder art" loading="lazy">
-          <h2>Mimic</h2>
-          <p>An in-progress project exploring enemy AI that learns from the player. Combat prototype with telemetry.</p>
-          <p class="tech">Unity · C#</p>
-          <a class="btn btn-primary" href="https://github.com/ProfessorDudley">Follow progress</a>
-        </article>
-        <article class="card">
-          <img src="https://placehold.co/1280x720/111111/e8a33d?text=CLI+Tool" alt="Command line tool placeholder art" loading="lazy">
-          <h2>CLI Tool</h2>
-          <p>Developer tooling for the terminal. Fast, scriptable, documented — the unglamorous work that compounds.</p>
-          <p class="tech">Rust · CLI</p>
-          <a class="btn btn-primary" href="https://github.com/ProfessorDudley">View source</a>
-        </article>
+        {% include project-card.html
+          title="Tiny Moves"
+          img="https://placehold.co/1280x720/111111/e8a33d?text=Tiny+Moves"
+          alt="Tiny Moves placeholder art"
+          desc="A 48-hour Godot jam game about tightrope walking. Physics-based controller, endless procedurally spawned rope."
+          tech="Godot · GDScript"
+          cta_url="https://professordudley.itch.io/"
+          cta_label="View on Itch" %}
+        {% include project-card.html
+          title="Mimic"
+          img="https://placehold.co/1280x720/111111/e8a33d?text=Mimic"
+          alt="Mimic placeholder art"
+          desc="An in-progress project exploring enemy AI that learns from the player. Combat prototype with telemetry."
+          tech="Unity · C#"
+          cta_url="https://github.com/ProfessorDudley"
+          cta_label="Follow progress" %}
+        {% include project-card.html
+          title="CLI Tool"
+          img="https://placehold.co/1280x720/111111/e8a33d?text=CLI+Tool"
+          alt="Command line tool placeholder art"
+          desc="Developer tooling for the terminal. Fast, scriptable, documented — the unglamorous work that compounds."
+          tech="Rust · CLI"
+          cta_url="https://github.com/ProfessorDudley"
+          cta_label="View source" %}
         <article class="card invert">
           <h2>More projects</h2>
           <p>The full archive — jam games, tools, and experiments — lives on the projects page.</p>
