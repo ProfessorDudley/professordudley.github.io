@@ -33,6 +33,7 @@ github_username:  ProfessorDudley
 # even if it accidentally reaches master.
 exclude:
   - docs/
+  - design-state.json
   - .sass-cache/
   - .jekyll-cache/
   - gemfiles/

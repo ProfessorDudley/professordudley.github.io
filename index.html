@@ -1,77 +1,12 @@
 ---
 layout: default
-title: Home
+title: Sam Dicken | Game Developer
 ---
 <section>
   <h1>Sam Dicken</h1>
-  <p class="subtitle">Building tiny games and tools — currently prototyping this site.</p>
-</section>
-
-<section>
-  <h2>Project card</h2>
-  <article class="card">
-    <h2>Tiny Moves</h2>
-    <p>A 48-hour Godot jam game about tightrope walking. Physics-based hamster-ball controller, endless procedurally spawned rope, pixel-style shader.</p>
-    <a class="btn btn-primary" href="https://professordudley.itch.io/">View on Itch</a>
-    <a class="btn btn-secondary" href="https://github.com/ProfessorDudley">Source</a>
-  </article>
-</section>
-
-<section>
-  <h2>Body copy</h2>
-  <p>Software developer from the North East of England focused on game development. Experienced working on commercial and hobby projects, applying strong engineering principles to interactive software and games.</p>
+  <p class="subtitle">Building tiny games and tools.</p>
   <p>
-    <a class="btn btn-primary" href="#">Primary</a>
-    <a class="btn btn-secondary" href="#">Secondary</a>
-    <a class="btn btn-ghost" href="#">Ghost link &rarr;</a>
+    <a class="btn btn-primary" href="https://professordudley.itch.io/">Itch.io</a>
+    <a class="btn btn-secondary" href="https://github.com/ProfessorDudley">GitHub</a>
   </p>
 </section>
-
-<section id="scheme-panel" aria-label="Colour scheme controls">
-  <h2>Colour scheme</h2>
-  <p class="subtitle">Tick to lock approved colours. Regenerate only changes unticked ones, keeping contrast for text on surfaces.</p>
-  <div class="swatches" id="swatches"></div>
-  <p>
-    <button class="btn btn-primary" id="regen" type="button">Regenerate unlocked</button>
-  </p>
-</section>
-
-<aside id="design-menu" aria-label="Design controls">
-  <div class="menu-body">
-    <div class="menu-cols">
-      <div class="menu-col">
-        <h2 id="edit-title">Background</h2>
-        <p id="bg-value">hsl(0 0% 3%)</p>
-        <label>H <input id="bg-h" type="range" min="0" max="360" step="1" value="0"> <output id="bg-h-val">0</output></label>
-        <label>S <input id="bg-s" type="range" min="0" max="100" step="1" value="0"> <output id="bg-s-val">0%</output></label>
-        <label>L <input id="bg-l" type="range" min="0" max="100" step="1" value="3"> <output id="bg-l-val">3%</output></label>
-        <div class="row">
-          <button id="bg-copy" type="button">Copy CSS</button>
-          <button id="bg-download" type="button">Save JSON</button>
-          <button id="bg-reset" type="button">Reset</button>
-        </div>
-        <pre id="bg-css"></pre>
-      </div>
-      <div class="menu-col">
-        <h2>Type &amp; cards</h2>
-        <label>Font
-          <select id="font-sel">
-            <option value="atkinson">Atkinson Hyperlegible</option>
-            <option value="system">System UI</option>
-            <option value="serif">Georgia Serif</option>
-            <option value="mono">Monospace</option>
-          </select>
-          <output></output>
-        </label>
-        <label>Size <input id="font-size" type="number" min="12" max="24" step="1" value="18"> <output>px</output></label>
-        <label>Radius <input id="card-radius" type="range" min="0" max="24" step="1" value="0"> <output id="card-radius-val">0px</output></label>
-        <label>Border <input id="card-borderw" type="range" min="0" max="8" step="1" value="4"> <output id="card-borderw-val">4px</output></label>
-      </div>
-    </div>
-  </div>
-  <div class="menu-foot">
-    <button id="menu-toggle" type="button">Minimize</button>
-  </div>
-</aside>
-
-<script src="/assets/js/lab.js" defer></script>
