@@ -34,7 +34,7 @@ main {
 
 .page-grid {
   display: grid;
-  grid-template-columns: 1.3fr 1fr;
+  grid-template-columns: 1.5fr 1fr;
   gap: 6rem;
   align-items: stretch;
 }
