@@ -157,7 +157,7 @@ h1 { font-size: 2.5rem; margin: 0 0 0.5rem; }
 
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
   gap: 1.5rem;
 }
 
@@ -190,6 +190,8 @@ h1 { font-size: 2.5rem; margin: 0 0 0.5rem; }
   background: var(--accent);
   border-color: var(--accent);
   color: var(--on-accent);
+  max-width: 18rem;
+  justify-self: start;
 }
 
 .more-link {
