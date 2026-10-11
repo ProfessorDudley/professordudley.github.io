@@ -60,16 +60,53 @@
   }
 
   function grant(n) {
-    const total = readWallet() + n;
-    try {
-      localStorage.setItem(WALLET_KEY, String(total));
-    } catch {
-      /* private mode: wallet just won't persist */
-    }
-    renderWallet(total);
+    setWallet(readWallet() + n);
   }
 
   renderWallet(readWallet());
+
+  // Store: buy buttons per theme, fixed cost for now.
+  const COST = 5;
+  const storeEl = document.getElementById("store-list");
+
+  function setWallet(n) {
+    try {
+      localStorage.setItem(WALLET_KEY, String(n));
+    } catch {
+      /* private mode: wallet just won't persist */
+    }
+    renderWallet(n);
+  }
+
+  function buy(i) {
+    const wallet = readWallet();
+    if (wallet < COST) return;
+    setWallet(wallet - COST);
+    current = THEMES[i];
+    try {
+      localStorage.setItem(KEY, current.name);
+    } catch {
+      /* private mode: theme just won't persist */
+    }
+    apply(current);
+  }
+
+  function renderStore() {
+    if (!storeEl) return;
+    storeEl.innerHTML = "";
+    THEMES.forEach((t, i) => {
+      const row = document.createElement("div");
+      row.className = "store-row";
+      row.innerHTML =
+        `<span>${t.name}</span>` +
+        `<button type="button" class="buy-btn" style="--buy-bg:hsl(${t.h} ${t.s}% ${t.l}%)">Buy</button>` +
+        `<span class="cost">${COST} <img src="/media/images/coin.png" alt="" width="16" height="16"></span>`;
+      row.querySelector("button").addEventListener("click", () => buy(i));
+      storeEl.appendChild(row);
+    });
+  }
+
+  renderStore();
 
   // Debug faucet (debug page only): unstyled on purpose.
   const faucet = document.getElementById("coin-debug");
