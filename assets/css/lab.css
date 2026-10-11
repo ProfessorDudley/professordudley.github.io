@@ -35,9 +35,11 @@ main {
 .page-grid {
   display: grid;
   grid-template-columns: 1.3fr 1fr;
-  gap: 2rem;
+  gap: 6rem;
   align-items: stretch;
 }
+
+.side-col { display: flex; flex-direction: column; }
 
 .main-col { display: grid; gap: 2.5rem; }
 
