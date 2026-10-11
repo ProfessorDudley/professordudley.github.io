@@ -40,4 +40,40 @@
       apply(current);
     });
   }
+
+  // Wallet: coin count persisted in localStorage, shown in the ticker.
+  const WALLET_KEY = "site-wallet";
+  const GRANT = 10;
+  const walletEl = document.getElementById("coin-count");
+
+  function readWallet() {
+    try {
+      const n = parseInt(localStorage.getItem(WALLET_KEY), 10);
+      return Number.isFinite(n) && n >= 0 ? n : 0;
+    } catch {
+      return 0;
+    }
+  }
+
+  function renderWallet(n) {
+    if (walletEl) walletEl.textContent = n;
+  }
+
+  function grant(n) {
+    const total = readWallet() + n;
+    try {
+      localStorage.setItem(WALLET_KEY, String(total));
+    } catch {
+      /* private mode: wallet just won't persist */
+    }
+    renderWallet(total);
+  }
+
+  renderWallet(readWallet());
+
+  // Debug faucet (debug page only): unstyled on purpose.
+  const faucet = document.getElementById("coin-debug");
+  if (faucet) {
+    faucet.addEventListener("click", () => grant(GRANT));
+  }
 })();
