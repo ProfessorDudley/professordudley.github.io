@@ -100,7 +100,7 @@ h1 { font-size: 2.5rem; margin: 0 0 0.5rem; }
   border: 2px solid var(--accent);
   border-radius: var(--card-radius);
   background: var(--surface);
-  color: var(--muted);
+  color: var(--accent);
   font-size: 1.15rem;
 }
 
