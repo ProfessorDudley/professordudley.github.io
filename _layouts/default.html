@@ -8,7 +8,7 @@
 	{%- include head.html -%}
 </head>
 
-<body>
+<body{% if page.url == "/" %} class="landing"{% endif %}>
 	<header>
 		{%- include header.html -%}
 	</header>

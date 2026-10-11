@@ -34,9 +34,9 @@ main {
 
 .page-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.3fr 1fr;
   gap: 2rem;
-  align-items: start;
+  align-items: stretch;
 }
 
 .main-col { display: grid; gap: 2.5rem; }
@@ -143,7 +143,13 @@ header .demo-nav {
 
 header .demo-nav { border-top: 0; }
 
-footer { padding: 1rem 2rem; color: var(--muted); border-top: 2px solid var(--border); }
+footer { padding: 1rem 2rem; color: var(--muted); }
+
+/* landing: footer lives docked in the store column instead */
+body.landing > footer { display: none; }
+
+.col-footer { font-size: 0.85rem; }
+.col-footer h5 { margin: 0 0 0.5rem; }
 
 h1 { font-size: 2.5rem; margin: 0 0 0.5rem; }
 
@@ -201,7 +207,11 @@ h1 { font-size: 2.5rem; margin: 0 0 0.5rem; }
   background: var(--surface);
   border: 2px solid var(--muted);
   padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
 }
+
+.col-footer { margin-top: auto; padding: 2rem 0 0; }
 
 #gacha-store h2 { margin: 0; font-size: 1.25rem; }
 
