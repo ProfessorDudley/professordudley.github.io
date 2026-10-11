@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en-gb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sprite Studio</title>
+<style>
+  :root {
+    --bg: #0a0a0a; --surface: #141414; --text: #eee7da;
+    --muted: #87a0b8; --accent: #eba93f; --border: #6a4a20;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font-family: system-ui, sans-serif; padding: 2rem; }
+  main { max-width: 56rem; margin: 0 auto; display: grid; gap: 1.5rem; }
+  h1 { color: var(--accent); margin: 0; }
+  .row { display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: end; }
+  label { display: grid; gap: 0.3rem; font-size: 0.85rem; color: var(--muted); }
+  textarea, select, input[type="text"] {
+    background: var(--surface); color: var(--text);
+    border: 2px solid var(--border); border-radius: 0; padding: 0.5rem;
+    font: inherit; }
+  textarea { width: 100%; min-height: 4.5rem; resize: vertical; }
+  button {
+    background: var(--accent); color: #14100a; border: 0;
+    padding: 0.6rem 1.2rem; font: inherit; font-weight: 700; cursor: pointer; }
+  button.ghost { background: transparent; color: var(--text);
+    border: 2px solid var(--border); }
+  button:disabled { opacity: 0.4; cursor: wait; }
+  #stage { display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: start; }
+  canvas {
+    image-rendering: pixelated;
+    background: repeating-conic-gradient(#1c1c1c 0 25%, #101010 0 50%) 0 0 / 16px 16px; }
+  pre {
+    background: var(--surface); border: 2px solid var(--border);
+    padding: 0.75rem; overflow: auto; max-height: 16rem; font-size: 0.8rem; flex: 1;
+    min-width: 16rem; margin: 0; white-space: pre-wrap; word-break: break-all; }
+  .warn { color: var(--accent); }
+  .err { color: #ff8080; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Sprite Studio</h1>
+  <div>
+    <label>Prompt
+      <textarea id="prompt" placeholder="16x16 slime enemy, amber and black, facing viewer"></textarea>
+    </label>
+  </div>
+  <div class="row">
+    <label>Template <select id="template"><option value="">blank canvas</option></select></label>
+    <label>Model <select id="model"></select></label>
+    <label>Size
+      <select id="size">
+        <option>16</option><option>24</option><option>32</option>
+      </select>
+    </label>
+    <label>Frames
+      <select id="frames"><option value="1">1</option><option value="2">2 (bob)</option></select>
+    </label>
+    <label>Name <input type="text" id="name" value="sprite" maxlength="32"></label>
+    <button id="go" type="button">Generate</button>
+  </div>
+  <div id="stage">
+    <canvas id="preview" width="256" height="256"></canvas>
+    <pre id="log">Describe a sprite and hit Generate.</pre>
+  </div>
+  <div class="row">
+    <button id="dl-lua" type="button" class="ghost" disabled>Download .lua</button>
+    <button id="dl-png" type="button" class="ghost" disabled>Download .png</button>
+    <button id="paint" type="button" class="ghost" disabled>Send to Aseprite</button>
+  </div>
+  <div id="result"></div>
+</main>
+<script src="/app.js" defer></script>
+</body>
+</html>

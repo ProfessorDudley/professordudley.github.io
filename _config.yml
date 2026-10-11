@@ -34,6 +34,7 @@ github_username:  ProfessorDudley
 exclude:
   - docs/
   - design-state.json
+  - tools/
   - .sass-cache/
   - .jekyll-cache/
   - gemfiles/
