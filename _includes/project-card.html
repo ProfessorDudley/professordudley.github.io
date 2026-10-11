@@ -3,18 +3,16 @@
   {%- if p.thumbnail -%}
   <img src="{{ p.thumbnail }}" alt="{{ p.thumbnail_alt | default: p.title }}" loading="lazy">
   {%- endif -%}
-  <div class="card-body">
-    <h2>{{ p.title }}</h2>
-    <p>{{ p.summary }}</p>
-    {%- if p.tech -%}
-    <p class="tech">{{ p.tech | join: " · " }}</p>
-    {%- endif -%}
-    {%- if p.links.itch -%}
-    <a class="btn btn-primary" href="{{ p.links.itch }}">View on Itch</a>
-    {%- elsif p.links.demo -%}
-    <a class="btn btn-primary" href="{{ p.links.demo }}">Live demo</a>
-    {%- elsif p.links.github -%}
-    <a class="btn btn-primary" href="{{ p.links.github }}">View source</a>
-    {%- endif -%}
-  </div>
+  <h2>{{ p.title }}</h2>
+  <p>{{ p.summary }}</p>
+  {%- if p.tech -%}
+  <p class="tech">{{ p.tech | join: " · " }}</p>
+  {%- endif -%}
+  {%- if p.links.itch -%}
+  <a class="btn btn-primary" href="{{ p.links.itch }}">View on Itch</a>
+  {%- elsif p.links.demo -%}
+  <a class="btn btn-primary" href="{{ p.links.demo }}">Live demo</a>
+  {%- elsif p.links.github -%}
+  <a class="btn btn-primary" href="{{ p.links.github }}">View source</a>
+  {%- endif -%}
 </article>

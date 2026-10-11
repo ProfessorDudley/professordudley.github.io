@@ -161,11 +161,11 @@ h1 { font-size: 2.5rem; margin: 0 0 0.5rem; }
 }
 
 .card img {
-  width: 100%;
+  width: calc(100% + 3rem);
   aspect-ratio: 16 / 9;
   object-fit: cover;
   display: block;
-  margin: 0;
+  margin: -1.5rem -1.5rem 1rem;
 }
 
 .tech { color: var(--muted); font-size: 0.85rem; }
@@ -189,7 +189,6 @@ h1 { font-size: 2.5rem; margin: 0 0 0.5rem; }
   background: var(--accent);
   border-color: var(--accent);
   color: var(--on-accent);
-  padding: 1.5rem;
 }
 
 .more-link {
@@ -383,27 +382,15 @@ header .strip .segs.right a { justify-content: center; }
 .strip .segs a[aria-current="page"] { font-weight: 700; }
 
 .card {
-  background: transparent;
-  border: 0;
-  border-radius: var(--card-radius);
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-}
-
-.card-body {
   background: var(--surface);
   border: var(--card-border-w) solid var(--border);
-  border-top: 0;
   border-radius: var(--card-radius);
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  flex: 1;
 }
 
-.card-body > .btn, .card .more-link { align-self: flex-start; }
-.card-body > .btn:first-of-type, .card .more-link { margin-top: auto; }
+.card .btn, .card .more-link { margin-top: auto; align-self: flex-start; }
 
 .card h2 { margin: 0 0 0.5rem; }
 .card p { margin: 0 0 1rem; line-height: 1.5; }
