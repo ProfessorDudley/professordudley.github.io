@@ -7,22 +7,24 @@
     "P": "F7E3B8",
     "D": "5C3D12"
   },
-  "rows": [
-    "................",
-    ".....BBBBBB.....",
-    "...BBAAAAAABB...",
-    "..BBAPPPPPAABB..",
-    "..BAPPDDDDAAAB..",
-    ".BAPPDDPADDAAAB.",
-    ".BAPDDPAAADDAAB.",
-    ".BAPDPAAAAADAAB.",
-    ".BAPDAAAAAADAAB.",
-    ".BAPDDAAAADDAAB.",
-    ".BAAADDAADDAAAB.",
-    "..BAAADDDDAAAB..",
-    "..BBAAAAAAAABB..",
-    "...BBAAAAAABB...",
-    ".....BBBBBB.....",
-    "................"
+  "frames": [
+    [
+      "................",
+      ".....BBBBBB.....",
+      "...BBAAAAAABB...",
+      "..BBAPPPPPAABB..",
+      "..BAPPDDDDAAAB..",
+      ".BAPPDDPADDAAAB.",
+      ".BAPDDPAAADDAAB.",
+      ".BAPDPAAAAADAAB.",
+      ".BAPDAAAAAADAAB.",
+      ".BAPDDAAAADDAAB.",
+      ".BAAADDAADDAAAB.",
+      "..BAAADDDDAAAB..",
+      "..BBAAAAAAAABB..",
+      "...BBAAAAAABB...",
+      ".....BBBBBB.....",
+      "................"
+    ]
   ]
 }
