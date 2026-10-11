@@ -48,22 +48,67 @@ HOUSE_PALETTE = {
 
 SYSTEM = (
     "You are a pixel-art sprite designer. Output ONLY a JSON object, no other text.\n"
-    "Schema: {\"palette\": {letter: 6-digit HEX without #}, "
-    "\"rows\": [strings]} for one frame, or \"frames\": [[strings]] for animation.\n"
-    "Rules: canvas exactly WxH pixels. Every row string is exactly W characters. "
-    "Use single letters A-Z for colours, '.' for transparent. "
-    "FILL THE CANVAS: at least 20% of all pixels must be non-transparent, "
+    "Schema: {\"rows\": [\"....\", ...]} for one frame, or "
+    "{\"frames\": [[\"....\"], [\"....\"]]} for animation. "
+    "rows is an array of PLAIN STRINGS, never objects. Emit NO palette key.\n"
+    "Use EXACTLY these letters, nothing else: "
+    "K=dark outline, H=pink, h=dark pink shade, S=skin, s=skin shadow, "
+    "E=dark eyes, J=dark clothes, A=amber, W=white, B=brown. "
+    "Transparent pixels are '.' (dot), never 0 or space.\n"
+    "Canvas is exactly WxH: every row string is exactly W characters. "
+    "FILL THE CANVAS: at least 20% of all pixels must be letters, "
     "spanning at least two thirds of the rows AND two thirds of the columns. "
     "A single row of pixels or a tiny mark is a failure. "
-    "Design for readability at tiny size: big clear silhouette first, "
-    "outline in the darkest colour, then 1-2 detail colours.\n"
-    "Example 8x8 round slime (every row substantially filled): "
-    "{\"palette\": {\"K\": \"171214\", \"G\": \"7AC74F\"}, \"rows\": ["
-    "\"..KKKK..\", \".KGGGGK.\", \"KGKGKGK.\", \"KGGGGGGK\", "
-    "\"KGKGKGK.\", \".KGGGGK.\", \"..KKKK..\", \"........\"]}\n"
-    f"House palette (prefer these, any subset is fine): {json.dumps(HOUSE_PALETTE)}\n"
+    "Design for readability at tiny size: big clear K silhouette first, "
+    "then fill, then 1-2 detail colours.\n"
+    "Example 8x8 slime: {\"rows\": [\"..KKKK..\", \".KAAAKA.\", "
+    "\"KAKEKEKA\", \"KAAAAAAA\", \"KAKEKEKA\", \".KAAAAA.\", "
+    "\"..KKKK..\", \"........\"]}\n"
     "For 2-frame idle: frame 2 is frame 1 shifted up 1 pixel (classic bob)."
 )
+
+
+def extract_json(text):
+    """First balanced {...} object in the text (tolerates chatter around it)."""
+    start = text.find("{")
+    while start != -1:
+        depth, instr, esc = 0, False, False
+        for i in range(start, len(text)):
+            c = text[i]
+            if instr:
+                if esc:
+                    esc = False
+                elif c == "\\":
+                    esc = True
+                elif c == '"':
+                    instr = False
+            elif c == '"':
+                instr = True
+            elif c == "{":
+                depth += 1
+            elif c == "}":
+                depth -= 1
+                if depth == 0:
+                    try:
+                        return json.loads(text[start:i + 1])
+                    except ValueError:
+                        break
+        start = text.find("{", start + 1)
+    raise ValueError("no valid JSON object in model output")
+
+
+def as_rows(block):
+    """Accept a list of strings or a list of {'row_content'|'row'|'pixels': str}."""
+    out = []
+    for item in block or []:
+        if isinstance(item, str):
+            out.append(item)
+        elif isinstance(item, dict):
+            for key in ("row_content", "row", "pixels", "content"):
+                if isinstance(item.get(key), str):
+                    out.append(item[key])
+                    break
+    return out
 
 
 def validate(data, size, frames):
@@ -72,18 +117,22 @@ def validate(data, size, frames):
     pal = {k: v for k, v in data.get("palette", {}).items()
            if re.fullmatch(r"[A-Za-z]", k or "") and re.fullmatch(r"[0-9a-fA-F]{6}", v or "")}
     if not pal:
-        pal = {"K": "171214", "A": "EBA93F"}
-        warn.append("palette missing/invalid, fell back to K+A")
+        pal = dict(HOUSE_PALETTE)
+        warn.append("no usable palette in output, used house palette")
     blocks = data.get("frames") if frames == 2 else [data.get("rows")]
     if not blocks or any(not b for b in blocks):
         return None, ["no pixel rows in model output"]
+    blocks = [as_rows(b) for b in blocks]
+    if any(not b for b in blocks):
+        return None, ["rows came back as objects without usable strings"]
     if frames == 1:
         blocks = blocks[:1]
     clean_blocks = []
     for b in blocks[:max(frames, 1)]:
         rows = []
-        for r in (b or [])[:size]:
-            r = "".join(c if (c == "." or c in pal) else "." for c in str(r))[:size]
+        for r in b[:size]:
+            r = "".join("." if c in "0 " else c for c in str(r))
+            r = "".join(c if (c == "." or c in pal) else "." for c in r)[:size]
             rows.append(r.ljust(size, "."))
         while len(rows) < size:
             rows.append("." * size)
@@ -98,6 +147,11 @@ def validate(data, size, frames):
         clean["rows"] = clean_blocks[0]
     filled = sum(c != "." for b in clean_blocks for r in b for c in r)
     if filled / (size * size * len(clean_blocks)) < 0.10:
+        try:
+            with open(os.path.join(OUT, "last_sparse.txt"), "w") as f:
+                f.write(json.dumps(clean, indent=1)[:20000])
+        except OSError:
+            pass
         return None, ["sprite too sparse (under 10% fill), retry with more detail"]
     return clean, warn
 
@@ -184,14 +238,21 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             base += ("Emit \"frames\" (2 blocks)." if frames == 2 else "Emit \"rows\" (1 block).")
             last_err, raw = "no attempts", None
             for attempt in range(3):
+                res = {}
                 try:
                     res = ollama("/api/generate", {
                         "model": model, "system": SYSTEM,
                         "prompt": base + (f"\nPrevious attempt failed: {last_err}. Try harder to fill the canvas." if attempt else ""),
                         "format": "json", "stream": False,
-                        "options": {"temperature": 0.3 + attempt * 0.2, "num_predict": 8000}})
-                    raw = json.loads(res["response"])
+                        "options": {"temperature": 0.5 + attempt * 0.15, "num_predict": 8000,
+                                    "repeat_penalty": 1.25}})
+                    raw = extract_json(res["response"])
                 except Exception as e:  # noqa: BLE001
+                    try:
+                        with open(os.path.join(OUT, "last_raw.txt"), "w") as f:
+                            f.write(res.get("response", "")[:20000])
+                    except OSError:
+                        pass
                     return self._json({"error": f"ollama: {e}"}, 502)
                 clean, warn = validate(raw, size, frames)
                 if clean is not None:

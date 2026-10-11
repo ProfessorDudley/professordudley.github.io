@@ -12,6 +12,7 @@ local PALETTE = {
   E = "241A20",
   J = "2A2A33",
   A = "EBA93F",
+  W = "F5F2EA",
 }
 local FRAMES = {
   {

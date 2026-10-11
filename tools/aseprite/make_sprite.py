@@ -192,8 +192,9 @@ HERO_PALETTE = {
     "S": "F2C9A0",  # skin
     "s": "C98F66",  # skin shade
     "E": "241A20",  # eyes
-    "J": "2A2A33",  # jacket
-    "A": "EBA93F",  # amber shirt (house colour)
+    "J": "2A2A33",  # dark clothes
+    "A": "EBA93F",  # amber (house colour)
+    "W": "F5F2EA",  # white
 }
 
 
@@ -239,9 +240,53 @@ def bob(rows):
     return rows[1:] + ["." * len(rows[0])]
 
 
+def bunny_rows():
+    w, h = 16, 16
+    g = [["."] * w for _ in range(h)]
+
+    def rect(x0, y0, x1, y1, c):
+        for y in range(y0, y1 + 1):
+            for x in range(x0, x1 + 1):
+                g[y][x] = c
+
+    # bunny ears
+    rect(4, 0, 5, 1, "K")
+    rect(10, 0, 11, 1, "K")
+    rect(4, 1, 5, 1, "H")
+    rect(10, 1, 11, 1, "H")
+    # hair mass
+    rect(2, 2, 13, 9, "K")
+    rect(3, 3, 12, 8, "H")
+    rect(11, 3, 12, 8, "h")     # shade, light from left
+    # face
+    rect(5, 5, 10, 8, "S")
+    rect(9, 5, 10, 8, "s")
+    rect(4, 3, 11, 4, "H")      # fringe
+    rect(11, 4, 11, 4, "h")
+    # side locks
+    rect(3, 5, 4, 9, "H")
+    rect(11, 5, 12, 9, "H")
+    rect(11, 7, 11, 9, "h")
+    # features
+    rect(7, 9, 8, 9, "S")       # neck
+    rect(5, 6, 5, 6, "E")       # eyes
+    rect(10, 6, 10, 6, "E")
+    rect(7, 8, 8, 8, "s")       # mouth
+    # black bunny suit
+    rect(3, 10, 12, 15, "K")
+    rect(4, 11, 11, 14, "J")
+    rect(6, 10, 9, 10, "W")     # white collar
+    rect(7, 11, 8, 11, "A")     # amber bowtie
+    rect(3, 14, 3, 14, "W")     # gloves
+    rect(12, 14, 12, 14, "W")
+    return ["".join(r) for r in g]
+
+
 if __name__ == "__main__":
     emit("coin", coin_rows(), PALETTE)
     base = hero_rows()
-    for r in base:
-        print(r)
     emit_frames("hero", [base, bob(base)], HERO_PALETTE)
+    bbunny = bunny_rows()
+    for r in bbunny:
+        print(r)
+    emit_frames("bunny", [bbunny, bob(bbunny)], HERO_PALETTE)
