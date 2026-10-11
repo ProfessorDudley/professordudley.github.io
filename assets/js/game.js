@@ -1,7 +1,9 @@
-// Site meta-game (MVP): theme cycling. Deferred: zero render-blocking cost.
+// Site meta-game (MVP): accent cycling, wallet, store. Deferred: zero render-blocking cost.
 // Nothing on the page depends on this file; deleting it leaves defaults.
+// ACCENTS is the single source of truth: :root defaults mirror its Yellow
+// entry (border included), and apply() derives --border from the accent.
 (() => {
-  const THEMES = [
+  const ACCENTS = [
     { name: "Yellow", h: 35, s: 78, l: 67 },
     { name: "Red", h: 4, s: 80, l: 64 },
     { name: "Green", h: 145, s: 65, l: 58 },
@@ -45,7 +47,7 @@
       /* ignore */
     }
     const seed = ["Yellow"];
-    if (prev && THEMES.some((t) => t.name === prev) && !seed.includes(prev)) {
+    if (prev && ACCENTS.some((t) => t.name === prev) && !seed.includes(prev)) {
       seed.push(prev);
     }
     return seed;
@@ -69,15 +71,15 @@
     } catch {
       /* private mode: fall through to default */
     }
-    return THEMES.find((t) => t.name === name) || THEMES[0];
+    return ACCENTS.find((t) => t.name === name) || ACCENTS[0];
   }
 
   let current = load();
-  if (!owned.includes(current.name)) current = THEMES[0];
+  if (!owned.includes(current.name)) current = ACCENTS[0];
   apply(current);
   cycleBtns.forEach((b) => {
     b.addEventListener("click", () => {
-      const list = THEMES.filter((t) => owned.includes(t.name));
+      const list = ACCENTS.filter((t) => owned.includes(t.name));
       current = list[(list.indexOf(current) + 1) % list.length];
       try {
         localStorage.setItem(KEY, current.name);
@@ -126,7 +128,7 @@
   }
 
   function buy(i) {
-    const t = THEMES[i];
+    const t = ACCENTS[i];
     if (owned.includes(t.name)) return;
     const wallet = readWallet();
     if (wallet < COST) return;
@@ -146,7 +148,7 @@
   function renderStore() {
     if (!storeEl) return;
     storeEl.innerHTML = "";
-    THEMES.forEach((t, i) => {
+    ACCENTS.forEach((t, i) => {
       const isOwned = owned.includes(t.name);
       const row = document.createElement("div");
       row.className = "store-row" + (isOwned ? " owned" : "");
@@ -180,7 +182,7 @@
         /* ignore */
       }
       owned = ["Yellow"];
-      current = THEMES[0];
+      current = ACCENTS[0];
       apply(current);
       renderStore();
       renderWallet(0);
