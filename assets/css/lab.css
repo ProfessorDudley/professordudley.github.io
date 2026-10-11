@@ -180,6 +180,22 @@ h1 { font-size: 2.5rem; margin: 0 0 0.5rem; }
 
 .tech { color: var(--muted); font-size: 0.85rem; }
 
+.card.invert {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
+}
+
+.more-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  color: var(--on-accent);
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-decoration: none;
+}
+
 /* store: in-flow right column, wallet + theme + buy grid */
 #gacha-store {
   background: var(--surface);
