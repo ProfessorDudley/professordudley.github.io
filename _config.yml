@@ -50,6 +50,16 @@ collections:
   apps:
     output: true
     permalink: :path
+  projects:
+    output: true
+    permalink: /projects/:slug/
+
+defaults:
+  - scope:
+      path: ""
+      type: projects
+    values:
+      layout: post
 
 plugins:
   - jekyll-feed

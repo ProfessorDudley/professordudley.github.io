@@ -170,6 +170,21 @@ h1 { font-size: 2.5rem; margin: 0 0 0.5rem; }
 
 .tech { color: var(--muted); font-size: 0.85rem; }
 
+/* detail pages (projects now, blog posts later) */
+.detail { display: grid; gap: 1.25rem; align-content: start; }
+.detail-meta { display: flex; gap: 0.75rem; align-items: center; margin: 0; color: var(--muted); }
+.badge {
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  padding: 0.1rem 0.6rem;
+  font-size: 0.8rem;
+  border-radius: var(--card-radius);
+}
+.detail-lede { font-size: 1.25rem; line-height: 1.5; color: var(--muted); margin: 0; }
+.detail-thumb { width: 100%; display: block; border: var(--card-border-w) solid var(--border); }
+.detail-links { display: flex; gap: 0.75rem; flex-wrap: wrap; margin: 0; }
+.incoming { color: var(--muted); font-style: italic; }
+
 .card.invert {
   background: var(--accent);
   border-color: var(--accent);
