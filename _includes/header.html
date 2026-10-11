@@ -1,13 +1,4 @@
-<div class="ticker" aria-hidden="true"><span class="ticker-time" id="ticker-time">--:--:-- UTC</span></div>
-<script>
-(function () {
-  var el = document.getElementById('ticker-time');
-  if (!el) return;
-  var f = function () { el.textContent = new Date().toISOString().slice(11, 19) + ' UTC'; };
-  f();
-  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) setInterval(f, 1000);
-})();
-</script>
+<div class="ticker"><span class="wallet"><span class="coin-count">0</span><img src="/media/images/coin.png" alt="" width="16" height="16"></span><button class="theme-cycle tbtn-b" type="button"><svg class="chev" viewBox="0 0 8 12" aria-hidden="true"><path d="M7 1 2 6l5 5"/></svg><span class="theme-name">Yellow</span><svg class="chev" viewBox="0 0 8 12" aria-hidden="true"><path d="M1 1l5 5-5 5"/></svg></button></div>
 <nav class="demo-nav strip" aria-label="Main">
     <ul class="tally segs">
         <li><a href="/" {% if page.url == "/" %}aria-current="page"{% endif %}>Landing</a></li>

@@ -15,3 +15,13 @@
 
 <title>{{ page.title }}</title>
 
+<script>
+/* Theme pre-paint: applies the saved accent before first render so the
+   deferred game.js never flashes the default. Mirrors game.js apply(). */
+try {
+  var t = JSON.parse(localStorage.getItem("site-theme-css"));
+  if (t && t.accent) document.documentElement.style.setProperty("--accent", t.accent);
+  if (t && t.border) document.documentElement.style.setProperty("--border", t.border);
+} catch (e) { /* private mode or nothing saved: defaults stand */ }
+</script>
+

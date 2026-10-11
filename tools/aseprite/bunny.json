@@ -1,0 +1,53 @@
+{
+  "w": 16,
+  "h": 16,
+  "palette": {
+    "K": "171214",
+    "H": "F06BA7",
+    "h": "A93A6E",
+    "S": "F2C9A0",
+    "s": "C98F66",
+    "E": "241A20",
+    "J": "2A2A33",
+    "A": "EBA93F",
+    "W": "F5F2EA"
+  },
+  "frames": [
+    [
+      "....KK....KK....",
+      "....HH....HH....",
+      "..KKKKKKKKKKKK..",
+      "..KHHHHHHHHHhK..",
+      "..KHHHHHHHHhhK..",
+      "..KHHSSSSssHHK..",
+      "..KHHESSSsEHHK..",
+      "..KHHSSSSsshHK..",
+      "..KHHSSsssshHK..",
+      "..KHHKKSSKKhHK..",
+      "...KKKWWWWKKK...",
+      "...KJJJAAJJJK...",
+      "...KJJJJJJJJK...",
+      "...KJJJJJJJJK...",
+      "...WJJJJJJJJW...",
+      "...KKKKKKKKKK..."
+    ],
+    [
+      "....HH....HH....",
+      "..KKKKKKKKKKKK..",
+      "..KHHHHHHHHHhK..",
+      "..KHHHHHHHHhhK..",
+      "..KHHSSSSssHHK..",
+      "..KHHESSSsEHHK..",
+      "..KHHSSSSsshHK..",
+      "..KHHSSsssshHK..",
+      "..KHHKKSSKKhHK..",
+      "...KKKWWWWKKK...",
+      "...KJJJAAJJJK...",
+      "...KJJJJJJJJK...",
+      "...KJJJJJJJJK...",
+      "...WJJJJJJJJW...",
+      "...KKKKKKKKKK...",
+      "................"
+    ]
+  ]
+}
