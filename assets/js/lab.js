@@ -24,7 +24,7 @@
     accent: { h: 35, s: 78, l: 67 }, "on-accent": { h: 35, s: 15, l: 10 },
     border: { h: 35, s: 54, l: 41 },
   });
-  const defaultUi = () => ({ font: "atkinson", fs: 18, radius: 0, borderW: 4 });
+  const defaultUi = () => ({ font: "atkinson", fs: 18, radius: 0, borderW: 2 });
   const fresh = () => ({
     roles: defaultRoles(), ui: defaultUi(), selected: "bg",
     locks: Object.fromEntries(ROLES.map((r) => [r, false])),

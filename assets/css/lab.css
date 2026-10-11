@@ -12,7 +12,7 @@
   --font: "Atkinson Hyperlegible", system-ui, sans-serif;
   --fs: 18px;
   --card-radius: 0px;
-  --card-border-w: 4px;
+  --card-border-w: 2px;
 }
 
 * { box-sizing: border-box; }
@@ -40,10 +40,21 @@ header {
   top: 0;
   z-index: 200;
   background: var(--bg);
-  padding: 1rem 1.5rem;
+  padding: 0;
 }
 
-header .demo-nav { margin: 0; }
+header .demo-nav {
+  margin: 0;
+  border-left: 0;
+  border-right: 0;
+  border-radius: 0;
+}
+
+.ticker {
+  height: 8px;
+  background: var(--accent);
+  box-shadow: 0 0 1em var(--accent);
+}
 
 footer { padding: 1rem 1.5rem; color: var(--muted); }
 
@@ -201,6 +212,12 @@ h1 { font-size: 2.5rem; margin: 0 0 0.5rem; }
 
 .strip ul { gap: 0; }
 
+/* equal-width link boxes across both groups */
+.strip .segs { flex: 1; }
+.strip .segs li { flex: 1 1 0; }
+.strip .segs a { justify-content: center; }
+.strip .spacer { flex: 2; }
+
 .strip .segs a {
   display: inline-flex;
   align-items: center;
@@ -209,8 +226,6 @@ h1 { font-size: 2.5rem; margin: 0 0 0.5rem; }
 }
 
 .strip .segs li + li, .strip .spacer, .strip .segs.right li:first-child { border-left: var(--card-border-w) solid var(--border); }
-
-.strip .spacer { flex: 1; }
 
 .strip .segs a[aria-current="page"] { font-weight: 700; }
 
