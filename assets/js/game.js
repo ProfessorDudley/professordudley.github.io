@@ -98,9 +98,8 @@
       const row = document.createElement("div");
       row.className = "store-row";
       row.innerHTML =
-        `<span>${t.name}</span>` +
-        `<button type="button" class="buy-btn" style="--buy-bg:hsl(${t.h} ${t.s}% ${t.l}%)">Buy</button>` +
-        `<span class="cost">${COST} <img src="/media/images/coin.png" alt="" width="16" height="16"></span>`;
+        `<button type="button" class="buy-btn" style="--buy-bg:hsl(${t.h} ${t.s}% ${t.l}%)">${t.name}</button>` +
+        `<span class="cost">x ${COST} <img src="/media/images/coin.png" alt="" width="16" height="16"></span>`;
       row.querySelector("button").addEventListener("click", () => buy(i));
       storeEl.appendChild(row);
     });
