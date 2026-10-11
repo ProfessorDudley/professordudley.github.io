@@ -19,12 +19,12 @@
     ["on-accent", "accent", 4.5], ["border", "surface", 2],
   ];
   const defaultRoles = () => ({
-    bg: { h: 220, s: 20, l: 12 }, surface: { h: 220, s: 20, l: 18 },
-    text: { h: 220, s: 12, l: 92 }, muted: { h: 220, s: 12, l: 65 },
-    accent: { h: 205, s: 85, l: 62 }, "on-accent": { h: 205, s: 20, l: 8 },
-    border: { h: 205, s: 40, l: 35 },
+    bg: { h: 0, s: 0, l: 3 }, surface: { h: 0, s: 0, l: 7 },
+    text: { h: 0, s: 6, l: 93 }, muted: { h: 217, s: 18, l: 60 },
+    accent: { h: 35, s: 78, l: 67 }, "on-accent": { h: 35, s: 15, l: 10 },
+    border: { h: 35, s: 54, l: 41 },
   });
-  const defaultUi = () => ({ font: "atkinson", fs: 16, radius: 12, borderW: 2 });
+  const defaultUi = () => ({ font: "atkinson", fs: 18, radius: 0, borderW: 4 });
   const fresh = () => ({
     roles: defaultRoles(), ui: defaultUi(), selected: "bg",
     locks: Object.fromEntries(ROLES.map((r) => [r, false])),

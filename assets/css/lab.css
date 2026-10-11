@@ -2,17 +2,17 @@
    Strip-out: delete this link, #design-menu, #scheme-panel, lab.js. Nothing else depends on them. */
 
 :root {
-  --bg: hsl(220 20% 12%);
-  --surface: hsl(220 20% 18%);
-  --text: hsl(220 12% 92%);
-  --muted: hsl(220 12% 65%);
-  --accent: hsl(205 85% 62%);
-  --on-accent: hsl(205 20% 8%);
-  --border: hsl(205 40% 35%);
+  --bg: hsl(0 0% 3%);
+  --surface: hsl(0 0% 7%);
+  --text: hsl(0 6% 93%);
+  --muted: hsl(217 18% 60%);
+  --accent: hsl(35 78% 67%);
+  --on-accent: hsl(35 15% 10%);
+  --border: hsl(35 54% 41%);
   --font: "Atkinson Hyperlegible", system-ui, sans-serif;
-  --fs: 16px;
-  --card-radius: 12px;
-  --card-border-w: 2px;
+  --fs: 18px;
+  --card-radius: 0px;
+  --card-border-w: 4px;
 }
 
 * { box-sizing: border-box; }
