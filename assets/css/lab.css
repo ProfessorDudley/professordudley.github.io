@@ -184,27 +184,40 @@ h1 { font-size: 2.5rem; margin: 0 0 0.5rem; }
   letter-spacing: 0.05em;
 }
 
-/* D: boxed tally group — joined boxes, tally dot inside each */
-.boxes {
-  gap: 0;
-  background: var(--surface);
-  border: var(--card-border-w) solid var(--border);
-  border-radius: var(--card-radius);
-  overflow: hidden;
+/* D: one continuous bar — outer border belongs to the bar, dividers inside */
+.strip {
+  padding: 0;
+  align-items: stretch;
+  border-width: var(--card-border-w);
 }
 
-.boxes li + li { border-left: var(--card-border-w) solid var(--border); }
+.strip ul { gap: 0; }
 
-.boxes a {
+.strip .segs a {
   display: inline-flex;
   align-items: center;
-  padding: 0.5rem 0.9rem;
+  height: 100%;
+  padding: 0.6rem 1rem;
 }
 
-.boxes a[aria-current="page"] { font-weight: 700; }
+.strip .segs li + li, .strip .spacer, .strip .segs.right li:first-child { border-left: var(--card-border-w) solid var(--border); }
 
-/* D: plain text links, no tally */
-.plain a:hover { color: var(--accent); }
+.strip .spacer { flex: 1; }
+
+.strip .segs a[aria-current="page"] { font-weight: 700; }
+
+/* D: inverted glow hover — rest in dark amber, ignite to bright glow */
+.glow-links a {
+  color: var(--border);
+  transition: color 0.25s ease, text-shadow 0.25s ease;
+}
+
+.glow-links a:hover, .glow-links a:focus-visible {
+  color: var(--accent);
+  text-shadow: 0 0 0.5em var(--accent), 0 0 1.5em var(--accent);
+}
+
+.glow-links a[aria-current="page"] { color: var(--accent); }
 
 .subtitle {
   color: var(--muted);
