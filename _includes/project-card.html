@@ -1,7 +1,13 @@
 <article class="card">
-  <img src="{{ include.img }}" alt="{{ include.alt }}" loading="lazy">
+  {%- if include.img -%}
+  <img src="{{ include.img }}" alt="{{ include.alt | default: include.title }}" loading="lazy">
+  {%- endif -%}
   <h2>{{ include.title }}</h2>
   <p>{{ include.desc }}</p>
-  <p class="tech">{{ include.tech }}</p>
+  {%- if include.tech -%}
+  <p class="tech">{{ include.tech | join: " · " }}</p>
+  {%- endif -%}
+  {%- if include.cta_url -%}
   <a class="btn btn-primary" href="{{ include.cta_url }}">{{ include.cta_label }}</a>
+  {%- endif -%}
 </article>

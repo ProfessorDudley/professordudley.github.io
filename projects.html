@@ -7,28 +7,25 @@ permalink: /projects/
 <p class="hero-bio">Games, tools, and experiments — each one finished enough to show.</p>
 
 <div class="card-grid">
-  {% include project-card.html
-    title="Tiny Moves"
-    img="https://placehold.co/1280x720/111111/e8a33d?text=Tiny+Moves"
-    alt="Tiny Moves placeholder art"
-    desc="A 48-hour Godot jam game about tightrope walking. Physics-based controller, endless procedurally spawned rope."
-    tech="Godot · GDScript"
-    cta_url="https://professordudley.itch.io/"
-    cta_label="View on Itch" %}
-  {% include project-card.html
-    title="Mimic"
-    img="https://placehold.co/1280x720/111111/e8a33d?text=Mimic"
-    alt="Mimic placeholder art"
-    desc="An in-progress project exploring enemy AI that learns from the player. Combat prototype with telemetry."
-    tech="Unity · C#"
-    cta_url="https://github.com/ProfessorDudley"
-    cta_label="Follow progress" %}
-  {% include project-card.html
-    title="CLI Tool"
-    img="https://placehold.co/1280x720/111111/e8a33d?text=CLI+Tool"
-    alt="Command line tool placeholder art"
-    desc="Developer tooling for the terminal. Fast, scriptable, documented — the unglamorous work that compounds."
-    tech="Rust · CLI"
-    cta_url="https://github.com/ProfessorDudley"
-    cta_label="View source" %}
+  {% assign ordered = site.projects | sort: "date" | reverse %}
+  {% for project in ordered %}
+    {% if project.links.itch %}
+      {% assign cta_url = project.links.itch %}
+      {% assign cta_label = "View on Itch" %}
+    {% elsif project.links.demo %}
+      {% assign cta_url = project.links.demo %}
+      {% assign cta_label = "Live demo" %}
+    {% elsif project.links.github %}
+      {% assign cta_url = project.links.github %}
+      {% assign cta_label = "View source" %}
+    {% endif %}
+    {% include project-card.html
+      title=project.title
+      img=project.thumbnail
+      alt=project.thumbnail_alt
+      desc=project.summary
+      tech=project.tech
+      cta_url=cta_url
+      cta_label=cta_label %}
+  {% endfor %}
 </div>
