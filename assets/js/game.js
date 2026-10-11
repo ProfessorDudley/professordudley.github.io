@@ -11,12 +11,16 @@
   const KEY = "site-theme";
   const OWNED_KEY = "site-owned";
   const root = document.documentElement;
-  const btn = document.getElementById("theme-cycle");
+  const cycleBtns = document.querySelectorAll(".theme-cycle");
 
   function apply(t) {
     root.style.setProperty("--accent", `hsl(${t.h} ${t.s}% ${t.l}%)`);
     root.style.setProperty("--border", `hsl(${t.h} 50% ${Math.max(15, t.l - 26)}%)`);
-    if (btn) btn.textContent = t.name;
+    cycleBtns.forEach((b) => {
+      const label = b.querySelector(".theme-name");
+      if (label) label.textContent = t.name;
+      else b.textContent = t.name;
+    });
   }
 
   function loadOwned() {
@@ -64,8 +68,8 @@
   let current = load();
   if (!owned.includes(current.name)) current = THEMES[0];
   apply(current);
-  if (btn) {
-    btn.addEventListener("click", () => {
+  cycleBtns.forEach((b) => {
+    b.addEventListener("click", () => {
       const list = THEMES.filter((t) => owned.includes(t.name));
       current = list[(list.indexOf(current) + 1) % list.length];
       try {
@@ -75,7 +79,7 @@
       }
       apply(current);
     });
-  }
+  });
 
   // Wallet: coin count persisted in localStorage, shown wherever .coin-count appears.
   const WALLET_KEY = "site-wallet";

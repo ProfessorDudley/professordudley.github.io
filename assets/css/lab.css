@@ -83,17 +83,63 @@ header .demo-nav {
 
 .wallet img { image-rendering: pixelated; }
 
-#theme-cycle {
+.theme-cycle {
   background: none;
   border: 0;
   padding: 0;
   font: inherit;
   color: inherit;
   cursor: pointer;
+  width: 12ch;
+  text-align: center;
 }
 
-#theme-cycle::before { content: "<| "; }
-#theme-cycle::after { content: " |>"; }
+.chev {
+  width: 0.6em;
+  height: 0.9em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
+/* A: boxed ticker-style button */
+.tbtn-a {
+  width: 14ch;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  border: 2px solid var(--border);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  color: var(--text);
+  padding: 0.3rem 0.5rem;
+}
+
+/* B: solid accent button */
+.tbtn-b {
+  width: 14ch;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  border: 0;
+  border-radius: var(--card-radius);
+  background: var(--accent);
+  color: var(--on-accent);
+  padding: 0.4rem 0.5rem;
+  font-weight: 700;
+}
+
+/* C: minimal text with chevrons */
+.tbtn-c {
+  width: 14ch;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  color: var(--accent);
+}
 
 header .demo-nav { border-top: 0; }
 
