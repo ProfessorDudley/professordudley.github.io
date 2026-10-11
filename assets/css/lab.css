@@ -374,8 +374,10 @@ h1 { font-size: 2.5rem; margin: 0 0 0.5rem; }
   box-shadow: 0 0 0.4em var(--accent);
 }
 
-/* real bar: tally dots float right with labels left; externals stay centered */
-header .strip .tally a { width: 100%; justify-content: space-between; }
+/* real bar: links fill their cells; internal labels left/dots right and wider;
+   externals stay centered at original width */
+header .strip .segs a { width: 100%; }
+header .strip .tally a { justify-content: space-between; padding-inline: 2rem; }
 header .strip .segs.right a { justify-content: center; }
 
 /* A+C: chyron — accent wipe under external links */
