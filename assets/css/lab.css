@@ -166,6 +166,13 @@ h1 { font-size: 2.5rem; margin: 0 0 0.5rem; }
 
 .store-row .buy-btn { flex: 1; }
 
+.store-row.owned { opacity: 0.45; }
+
+.store-row.owned .buy-btn {
+  text-decoration: line-through;
+  cursor: not-allowed;
+}
+
 .buy-btn {
   background: var(--buy-bg);
   color: #14100a;

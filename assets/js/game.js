@@ -9,6 +9,7 @@
     { name: "Purple", h: 278, s: 75, l: 70 },
   ];
   const KEY = "site-theme";
+  const OWNED_KEY = "site-owned";
   const root = document.documentElement;
   const btn = document.getElementById("theme-cycle");
 
@@ -16,6 +17,27 @@
     root.style.setProperty("--accent", `hsl(${t.h} ${t.s}% ${t.l}%)`);
     if (btn) btn.textContent = t.name;
   }
+
+  function loadOwned() {
+    try {
+      const arr = JSON.parse(localStorage.getItem(OWNED_KEY));
+      if (Array.isArray(arr) && arr.length) return arr;
+    } catch {
+      /* fall through to default */
+    }
+    return ["Yellow"];
+  }
+
+  function saveOwned() {
+    try {
+      localStorage.setItem(OWNED_KEY, JSON.stringify(owned));
+    } catch {
+      /* private mode: ownership just won't persist */
+    }
+  }
+
+  let owned = loadOwned();
+  if (!owned.includes("Yellow")) owned.push("Yellow");
 
   function load() {
     let name = null;
@@ -28,10 +50,12 @@
   }
 
   let current = load();
+  if (!owned.includes(current.name)) current = THEMES[0];
   apply(current);
   if (btn) {
     btn.addEventListener("click", () => {
-      current = THEMES[(THEMES.indexOf(current) + 1) % THEMES.length];
+      const list = THEMES.filter((t) => owned.includes(t.name));
+      current = list[(list.indexOf(current) + 1) % list.length];
       try {
         localStorage.setItem(KEY, current.name);
       } catch {
@@ -79,28 +103,36 @@
   }
 
   function buy(i) {
+    const t = THEMES[i];
+    if (owned.includes(t.name)) return;
     const wallet = readWallet();
     if (wallet < COST) return;
     setWallet(wallet - COST);
-    current = THEMES[i];
+    owned.push(t.name);
+    saveOwned();
+    current = t;
     try {
       localStorage.setItem(KEY, current.name);
     } catch {
       /* private mode: theme just won't persist */
     }
     apply(current);
+    renderStore();
   }
 
   function renderStore() {
     if (!storeEl) return;
     storeEl.innerHTML = "";
     THEMES.forEach((t, i) => {
+      const isOwned = owned.includes(t.name);
       const row = document.createElement("div");
-      row.className = "store-row";
+      row.className = "store-row" + (isOwned ? " owned" : "");
       row.innerHTML =
-        `<button type="button" class="buy-btn" style="--buy-bg:hsl(${t.h} ${t.s}% ${t.l}%)">${t.name}</button>` +
+        `<button type="button" class="buy-btn" style="--buy-bg:hsl(${t.h} ${t.s}% ${t.l}%)"${isOwned ? " disabled" : ""}>${t.name}</button>` +
         `<span class="cost">x ${COST} <img src="/media/images/coin.png" alt="" width="16" height="16"></span>`;
-      row.querySelector("button").addEventListener("click", () => buy(i));
+      if (!isOwned) {
+        row.querySelector("button").addEventListener("click", () => buy(i));
+      }
       storeEl.appendChild(row);
     });
   }
