@@ -256,5 +256,13 @@
     apply();
   });
 
+  // UTC timecode for nav study C (frozen under reduced motion)
+  const tc = $("timecode");
+  if (tc) {
+    const tick = () => { tc.textContent = new Date().toISOString().slice(11, 19) + " UTC"; };
+    tick();
+    if (!matchMedia("(prefers-reduced-motion: reduce)").matches) setInterval(tick, 1000);
+  }
+
   apply(false);
 })();

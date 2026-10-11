@@ -60,7 +60,7 @@ h1 { font-size: 2.5rem; margin: 0 0 0.5rem; }
   font-size: 1.15rem;
 }
 
-.status .dot {
+.status .dot, .live-bug .dot {
   width: 0.8em;
   height: 0.8em;
   border-radius: 50%;
@@ -68,13 +68,120 @@ h1 { font-size: 2.5rem; margin: 0 0 0.5rem; }
   animation: breathe 2.4s ease-in-out infinite;
 }
 
+.live-bug .dot { width: 0.6em; height: 0.6em; }
+
 @keyframes breathe {
   0%, 100% { opacity: 0.45; box-shadow: none; }
   50% { opacity: 1; box-shadow: 0 0 0.5em var(--accent), 0 0 1.5em var(--accent); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .status .dot { animation: none; }
+  .status .dot, .live-bug .dot { animation: none; }
+}
+
+/* ---- nav studies (THEME CANDIDATE — ships with the real bar) ---- */
+.demo-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0 2rem;
+  padding: 0.6rem 1rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--card-radius);
+}
+
+.demo-nav ul {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.demo-nav a { color: var(--text); text-decoration: none; }
+
+/* A: tally — lit dot on the live page, dim dots elsewhere */
+.tally a::before {
+  content: "";
+  display: inline-block;
+  width: 0.55em;
+  height: 0.55em;
+  border-radius: 50%;
+  margin-right: 0.45em;
+  vertical-align: baseline;
+  background: var(--muted);
+  opacity: 0.35;
+}
+
+.tally a[aria-current="page"]::before {
+  background: var(--accent);
+  opacity: 1;
+  box-shadow: 0 0 0.4em var(--accent);
+}
+
+/* A+C: chyron — accent wipe under external links */
+.chyron a { position: relative; padding-bottom: 0.15em; }
+
+.chyron a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.chyron a:hover::after, .chyron a:focus-visible::after { transform: scaleX(1); }
+
+/* A: meter hairline — accent segment on the bar's bottom edge */
+.meter { position: relative; border-bottom-width: 2px; }
+
+.meter::after {
+  content: "";
+  position: absolute;
+  left: -1px;
+  bottom: -2px;
+  width: 25%;
+  height: 2px;
+  background: var(--accent);
+}
+
+/* B: LIVE bug — miniature of the hero status chip */
+.live-bug {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.15em 0.5em;
+  border: 1px solid var(--accent);
+  border-radius: var(--card-radius);
+  color: var(--accent);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+}
+
+/* B: signal bars — 3 of 4 lit */
+.signal { display: inline-flex; align-items: flex-end; gap: 3px; }
+
+.signal i { width: 4px; background: var(--accent); box-shadow: 0 0 0.3em var(--accent); }
+.signal i:nth-child(1) { height: 6px; }
+.signal i:nth-child(2) { height: 10px; }
+.signal i:nth-child(3) { height: 14px; }
+.signal i:nth-child(4) { height: 18px; }
+.signal i.dim { background: var(--muted); box-shadow: none; opacity: 0.4; }
+
+/* C: timecode */
+.timecode {
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.05em;
 }
 
 .subtitle {

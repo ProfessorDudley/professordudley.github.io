@@ -27,6 +27,56 @@ title: Home
   </p>
 </section>
 
+<section>
+  <h2>Navigation studies</h2>
+  <p class="subtitle">Static demos — the real bar will be sticky. Hover the external links.</p>
+
+  <p class="subtitle">A — Tally lights + chyron hover + meter hairline</p>
+  <nav class="demo-nav meter tally chyron" aria-label="Demo A">
+    <ul>
+      <li><a href="#" aria-current="page">Home</a></li>
+      <li><a href="#">Projects</a></li>
+      <li><a href="#">Blog</a></li>
+    </ul>
+    <ul>
+      <li><a href="#">Itch</a></li>
+      <li><a href="#">GitHub</a></li>
+      <li><a href="#">LinkedIn</a></li>
+    </ul>
+  </nav>
+
+  <p class="subtitle">B — LIVE bug + signal bars</p>
+  <nav class="demo-nav" aria-label="Demo B">
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Projects</a></li>
+      <li><a href="#">Blog</a></li>
+    </ul>
+    <ul class="externals">
+      <li><span class="live-bug"><span class="dot" aria-hidden="true"></span>LIVE</span></li>
+      <li><span class="signal" aria-hidden="true"><i></i><i></i><i></i><i class="dim"></i></span></li>
+      <li><a href="#">Itch</a></li>
+      <li><a href="#">GitHub</a></li>
+      <li><a href="#">LinkedIn</a></li>
+    </ul>
+  </nav>
+
+  <p class="subtitle">C — Timecode</p>
+  <nav class="demo-nav chyron" aria-label="Demo C">
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Projects</a></li>
+      <li><a href="#">Blog</a></li>
+    </ul>
+    <ul>
+      <li><span class="timecode" id="timecode">--:--:-- UTC</span></li>
+      <li><a href="#">Itch</a></li>
+      <li><a href="#">GitHub</a></li>
+      <li><a href="#">LinkedIn</a></li>
+    </ul>
+  </nav>
+</section>
+
 <section id="scheme-panel" aria-label="Colour scheme controls">
   <h2>Colour scheme</h2>
   <p class="subtitle">Tick to lock approved colours. Regenerate only changes unticked ones, keeping contrast for text on surfaces.</p>
