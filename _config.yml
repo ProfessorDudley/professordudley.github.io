@@ -24,7 +24,7 @@ description: >- # this means to ignore newlines until "baseurl:"
   working on commercial and hobby projects. I create interactive software and games, 
   applying strong software engineering principles through diverse development work.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "samdicken.me" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://samdicken.me" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  ProfessorDudley
 
 
@@ -52,3 +52,8 @@ collections:
   apps:
     output: true
     permalink: :path
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
