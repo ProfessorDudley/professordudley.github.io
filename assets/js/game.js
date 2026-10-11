@@ -41,10 +41,10 @@
     });
   }
 
-  // Wallet: coin count persisted in localStorage, shown in the ticker.
+  // Wallet: coin count persisted in localStorage, shown wherever .coin-count appears.
   const WALLET_KEY = "site-wallet";
   const GRANT = 10;
-  const walletEl = document.getElementById("coin-count");
+  const walletEls = document.querySelectorAll(".coin-count");
 
   function readWallet() {
     try {
@@ -56,7 +56,7 @@
   }
 
   function renderWallet(n) {
-    if (walletEl) walletEl.textContent = n;
+    walletEls.forEach((el) => { el.textContent = n; });
   }
 
   function grant(n) {

@@ -64,9 +64,14 @@ header .demo-nav {
 }
 
 .ticker {
-  height: 8px;
-  background: var(--accent);
-  box-shadow: 0 0 1em var(--accent);
+  min-height: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.25rem 1rem;
+  background: var(--bg);
+  border-bottom: 2px solid var(--border);
+  color: var(--muted);
 }
 
 .wallet {
@@ -86,6 +91,9 @@ header .demo-nav {
   color: inherit;
   cursor: pointer;
 }
+
+#theme-cycle::before { content: "<| "; }
+#theme-cycle::after { content: " |>"; }
 
 header .demo-nav { border-top: 0; }
 
@@ -133,18 +141,16 @@ h1 { font-size: 2.5rem; margin: 0 0 0.5rem; }
   padding: 1.5rem;
 }
 
-#gacha-store h2 { margin: 0 0 1rem; font-size: 1.25rem; }
+#gacha-store h2 { margin: 0; font-size: 1.25rem; }
 
-.store-wallet, .store-theme {
+.store-head {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 0.5rem;
   margin: 0 0 1rem;
-  color: var(--muted);
-  font-variant-numeric: tabular-nums;
 }
 
-.store-wallet img { image-rendering: pixelated; }
+.store-head .wallet { color: var(--muted); }
 
 #store-list {
   display: grid;
