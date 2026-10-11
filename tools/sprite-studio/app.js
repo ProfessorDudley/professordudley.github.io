@@ -151,10 +151,10 @@ $("paint").onclick = async () => {
   log("Rendering in Aseprite…");
   try {
     const d = await api("/api/paint", { data: current, name: $("name").value });
+    const shot = d.preview || d.img;
     $("result").innerHTML =
       `<p>Saved <code>${d.ase}</code> + <code>${d.img}</code></p>` +
-      (d.img.endsWith(".gif") || d.img.endsWith(".png")
-        ? `<img src="${d.img}" style="image-rendering:pixelated;width:256px" alt="aseprite render">` : "") +
+      `<img src="${shot}?t=${Date.now()}" style="image-rendering:pixelated;width:256px" alt="aseprite render">` +
       ((d.warnings || []).map((x) => `<p class="warn">note: ${x}</p>`).join(""));
     log((d.log || []).join("<br>"));
   } catch (e) { log("error: " + e.message, "err"); }
