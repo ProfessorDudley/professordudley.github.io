@@ -62,11 +62,13 @@ header .demo-nav {
   border-bottom: 2px solid var(--border);
 }
 
-.ticker-time {
-  color: var(--muted);
-  font-size: 0.85rem;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.05em;
+#theme-cycle {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: var(--text);
+  cursor: pointer;
 }
 
 header .demo-nav { border-top: 0; }
