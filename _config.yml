@@ -23,6 +23,7 @@ description: >- # this means to ignore newlines until "baseurl:"
   Software developer from the North East of England focussed on game development. Experienced 
   working on commercial and hobby projects. I create interactive software and games, 
   applying strong software engineering principles through diverse development work.
+headline: Independent Software Developer specialised in interactive entertainment and real-time 2D/3D applications
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "samdicken.me" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  ProfessorDudley
@@ -47,8 +48,3 @@ github_username:  ProfessorDudley
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
-
-collections:
-  apps:
-    output: true
-    permalink: :path
