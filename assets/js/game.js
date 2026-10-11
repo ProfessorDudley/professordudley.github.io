@@ -201,6 +201,7 @@
         localStorage.removeItem(WALLET_KEY);
         localStorage.removeItem(OWNED_KEY);
         localStorage.removeItem(KEY);
+        localStorage.removeItem(VISITS_KEY);
       } catch {
         /* ignore */
       }
