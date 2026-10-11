@@ -28,7 +28,7 @@ body {
 }
 
 main {
-  padding: 2rem 6rem 6rem;
+  padding: 2rem 6rem 0rem;
   margin: 0 auto;
 }
 
@@ -164,7 +164,7 @@ h1 { font-size: 2.5rem; margin: 0 0 0.5rem; }
 /* landing row: three project cards take the width, archive closer stays slim */
 @media (min-width: 900px) {
   .card-grid:has(> .card.invert) {
-    grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(0, 0.7fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(0, 0.8fr);
   }
 }
 
@@ -412,12 +412,12 @@ header .strip .segs.right a { justify-content: center; }
   text-decoration: none;
   cursor: pointer;
   border: 2px solid transparent;
-  margin-right: 0.5rem;
+  margin-right: 1.4rem;
 }
 
 .btn-primary { background: var(--accent); color: var(--on-accent); }
 .btn-secondary { background: transparent; color: var(--text); border-color: var(--muted); }
-.btn-ghost { background: transparent; color: var(--accent); padding-left: 0; padding-right: 0; }
+.btn-ghost { background: transparent; color: var(--accent); padding-left: 0; padding-right: 0; margin: 0; }
 
 /* breathing dot (live status chip) */
 .status .dot {
