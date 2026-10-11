@@ -14,8 +14,15 @@
   const cycleBtns = document.querySelectorAll(".theme-cycle");
 
   function apply(t) {
-    root.style.setProperty("--accent", `hsl(${t.h} ${t.s}% ${t.l}%)`);
-    root.style.setProperty("--border", `hsl(${t.h} 50% ${Math.max(15, t.l - 26)}%)`);
+    const accent = `hsl(${t.h} ${t.s}% ${t.l}%)`;
+    const border = `hsl(${t.h} 50% ${Math.max(15, t.l - 26)}%)`;
+    root.style.setProperty("--accent", accent);
+    root.style.setProperty("--border", border);
+    try {
+      localStorage.setItem("site-theme-css", JSON.stringify({ accent, border }));
+    } catch {
+      /* private mode: pre-paint just won't have anything to read */
+    }
     cycleBtns.forEach((b) => {
       const label = b.querySelector(".theme-name");
       if (label) label.textContent = t.name;
