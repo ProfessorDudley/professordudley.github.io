@@ -155,4 +155,23 @@
   if (faucet) {
     faucet.addEventListener("click", () => grant(GRANT));
   }
+
+  // Debug reset: clears game keys only (design-lab tool state untouched).
+  const wipe = document.getElementById("storage-clear");
+  if (wipe) {
+    wipe.addEventListener("click", () => {
+      try {
+        localStorage.removeItem(WALLET_KEY);
+        localStorage.removeItem(OWNED_KEY);
+        localStorage.removeItem(KEY);
+      } catch {
+        /* ignore */
+      }
+      owned = ["Yellow"];
+      current = THEMES[0];
+      apply(current);
+      renderStore();
+      renderWallet(0);
+    });
+  }
 })();
