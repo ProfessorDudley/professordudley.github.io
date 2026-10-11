@@ -3,8 +3,37 @@ layout: default
 title: Home
 ---
 <section>
-  <h1>Blank canvas</h1>
-  <p>Clean slate for the redesign. Use the floating menu to tune the background.</p>
+  <h1>Sam Dicken</h1>
+  <p class="subtitle">Building tiny games and tools — currently prototyping this site.</p>
+</section>
+
+<section>
+  <h2>Project card</h2>
+  <article class="card">
+    <h2>Tiny Moves</h2>
+    <p>A 48-hour Godot jam game about tightrope walking. Physics-based hamster-ball controller, endless procedurally spawned rope, pixel-style shader.</p>
+    <a class="btn btn-primary" href="https://professordudley.itch.io/">View on Itch</a>
+    <a class="btn btn-secondary" href="https://github.com/ProfessorDudley">Source</a>
+  </article>
+</section>
+
+<section>
+  <h2>Body copy</h2>
+  <p>Software developer from the North East of England focused on game development. Experienced working on commercial and hobby projects, applying strong engineering principles to interactive software and games.</p>
+  <p>
+    <a class="btn btn-primary" href="#">Primary</a>
+    <a class="btn btn-secondary" href="#">Secondary</a>
+    <a class="btn btn-ghost" href="#">Ghost link &rarr;</a>
+  </p>
+</section>
+
+<section id="scheme-panel" aria-label="Colour scheme controls">
+  <h2>Colour scheme</h2>
+  <p class="subtitle">Tick to lock approved colours. Regenerate only changes unticked ones, keeping contrast for text on surfaces.</p>
+  <div class="swatches" id="swatches"></div>
+  <p>
+    <button class="btn btn-primary" id="regen" type="button">Regenerate unlocked</button>
+  </p>
 </section>
 
 <aside id="design-menu" aria-label="Design controls">

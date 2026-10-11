@@ -1,9 +1,14 @@
+/* LAB ONLY — temp debug stylesheet. Final site will use style.css/theme.css.
+   Strip-out: delete this link, #design-menu, #scheme-panel, lab.js. Nothing else depends on them. */
+
 :root {
-  --bg-h: 220;
-  --bg-s: 20%;
-  --bg-l: 12%;
-  --bg: hsl(var(--bg-h) var(--bg-s) var(--bg-l));
-  --ink: hsl(var(--bg-h) 20% 92%);
+  --bg: hsl(220 20% 12%);
+  --surface: hsl(220 20% 18%);
+  --text: hsl(220 12% 92%);
+  --muted: hsl(220 12% 65%);
+  --accent: hsl(205 85% 62%);
+  --on-accent: hsl(205 20% 8%);
+  --border: hsl(205 40% 35%);
 }
 
 * { box-sizing: border-box; }
@@ -12,19 +17,88 @@ body {
   margin: 0;
   min-height: 100dvh;
   background: var(--bg);
-  color: var(--ink);
+  color: var(--text);
   font-family: "Atkinson Hyperlegible", system-ui, sans-serif;
   transition: background 120ms linear;
 }
 
 main {
-  padding: 4rem 1.5rem;
+  padding: 2rem 1.5rem 6rem;
   max-width: 60rem;
   margin: 0 auto;
+  display: grid;
+  gap: 2.5rem;
 }
 
 header, footer { padding: 1rem 1.5rem; opacity: 0.7; }
 
+h1 { font-size: 2.5rem; margin: 0 0 0.5rem; }
+
+.subtitle {
+  color: var(--muted);
+  font-size: 1.15rem;
+  margin: 0;
+}
+
+.card {
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+}
+
+.card h2 { margin: 0 0 0.5rem; }
+.card p { margin: 0 0 1rem; line-height: 1.5; }
+
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.5rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  border: 2px solid transparent;
+  margin-right: 0.5rem;
+}
+
+.btn-primary { background: var(--accent); color: var(--on-accent); }
+.btn-secondary { background: transparent; color: var(--text); border-color: var(--muted); }
+.btn-ghost { background: transparent; color: var(--accent); padding-left: 0; padding-right: 0; }
+
+/* ---- scheme section (debug tool UI) ---- */
+#scheme-panel { border-top: 1px dashed var(--muted); padding-top: 1rem; }
+
+.swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+.sw {
+  border: 2px solid var(--border);
+  border-radius: 0.6rem;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.sw-chip { height: 3.5rem; }
+.sw[data-role="bg"] .sw-chip { background: var(--bg); }
+.sw[data-role="surface"] .sw-chip { background: var(--surface); }
+.sw[data-role="text"] .sw-chip { background: var(--text); }
+.sw[data-role="muted"] .sw-chip { background: var(--muted); }
+.sw[data-role="accent"] .sw-chip { background: var(--accent); }
+.sw[data-role="on-accent"] .sw-chip { background: var(--on-accent); }
+.sw[data-role="border"] .sw-chip { background: var(--border); }
+
+.sw-body { padding: 0.5rem 0.6rem; font-size: 0.8rem; }
+.sw-body strong { display: block; }
+.sw-body code { opacity: 0.85; font-size: 0.72rem; }
+.sw-ratio { display: block; margin-top: 0.2rem; }
+.sw-ratio.bad { color: #ff8080; font-weight: 700; }
+.sw-lock { display: flex; gap: 0.35rem; align-items: center; margin-top: 0.35rem; cursor: pointer; }
+
+/* ---- floating menu (debug tool UI) ---- */
 #design-menu {
   position: fixed;
   right: 1rem;
@@ -32,7 +106,7 @@ header, footer { padding: 1rem 1.5rem; opacity: 0.7; }
   width: min(20rem, calc(100vw - 2rem));
   padding: 1rem;
   border-radius: 0.75rem;
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(0, 0, 0, 0.78);
   color: #fff;
   backdrop-filter: blur(6px);
   font-size: 0.9rem;
@@ -72,5 +146,5 @@ header, footer { padding: 1rem 1.5rem; opacity: 0.7; }
   border-radius: 0.4rem;
   white-space: pre-wrap;
   word-break: break-all;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
 }
