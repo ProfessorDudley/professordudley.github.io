@@ -122,7 +122,17 @@ h1 { font-size: 2.5rem; margin: 0 0 0.5rem; }
 }
 
 /* status studies: all-muted vs accent-frame vs all-accent */
-.status-stack { display: grid; gap: 1.5rem; margin: 1rem 0 0; }
+.status-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 1rem 0 0; }
+
+@media (max-width: 700px) {
+  .status-cols { grid-template-columns: 1fr; }
+}
+
+.status-cols h3 { margin: 0 0 0.5rem; font-size: 1rem; color: var(--muted); }
+
+.status-stack { display: grid; gap: 1.5rem; margin: 0; }
+
+.status-cols .soft .nowline { font-weight: 400; }
 
 .status.quiet { border-color: var(--muted); color: var(--muted); }
 .status.framed { color: var(--muted); }
