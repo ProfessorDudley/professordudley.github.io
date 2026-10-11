@@ -119,6 +119,12 @@ h1 { font-size: 2.5rem; margin: 0 0 0.5rem; }
   50% { opacity: 1; box-shadow: 0 0 0.5em var(--accent), 0 0 1.5em var(--accent); }
 }
 
+/* status studies: all-muted vs accent-frame vs all-accent */
+.status-stack { display: grid; gap: 1.5rem; margin: 1rem 0 0; }
+
+.status.quiet { border-color: var(--muted); color: var(--muted); }
+.status.framed { color: var(--muted); }
+
 @media (prefers-reduced-motion: reduce) {
   .status .dot, .live-bug .dot { animation: none; }
 }
