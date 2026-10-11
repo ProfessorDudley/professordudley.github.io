@@ -8,6 +8,7 @@ status: "finished"
 date: 2025-08-27
 links:
   itch: "https://professordudley.itch.io/tiny-moves"
+  github: "https://github.com/ProfessorDudley/tinyjam"
 ---
 
 ## Context

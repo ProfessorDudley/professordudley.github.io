@@ -9,10 +9,21 @@
   <p class="tech">{{ p.tech | join: " · " }}</p>
   {%- endif -%}
   {%- if p.links.itch -%}
-  <a class="btn btn-primary" href="{{ p.links.itch }}">View on Itch</a>
+    {% assign primary_url = p.links.itch %}
+    {% assign primary_label = "View on Itch" %}
   {%- elsif p.links.demo -%}
-  <a class="btn btn-primary" href="{{ p.links.demo }}">Live demo</a>
+    {% assign primary_url = p.links.demo %}
+    {% assign primary_label = "Live demo" %}
   {%- elsif p.links.github -%}
-  <a class="btn btn-primary" href="{{ p.links.github }}">View source</a>
+    {% assign primary_url = p.links.github %}
+    {% assign primary_label = "View source" %}
+  {%- endif -%}
+  {%- if primary_url -%}
+  <p class="card-ctas">
+    <a class="btn btn-primary" href="{{ primary_url }}">{{ primary_label }}</a>
+    {%- if p.links.github and p.links.github != primary_url -%}
+    <a class="btn btn-secondary" href="{{ p.links.github }}">Source</a>
+    {%- endif -%}
+  </p>
   {%- endif -%}
 </article>
