@@ -57,7 +57,6 @@ header .demo-nav {
   align-items: center;
   padding: 0.25rem 1rem;
   background: var(--bg);
-  border-top: 2px solid var(--border);
   border-bottom: 2px solid var(--border);
 }
 
@@ -221,16 +220,16 @@ h1 { font-size: 2.5rem; margin: 0 0 0.5rem; }
 .strip {
   padding: 0;
   align-items: stretch;
+  gap: 0;
   border-width: var(--card-border-w);
 }
 
 .strip ul { gap: 0; }
 
 /* equal-width link boxes across both groups */
-.strip .segs { flex: 1; }
-.strip .segs li { flex: 1 1 0; }
+.strip .segs { flex: none; display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; width: max-content; }
 .strip .segs a { justify-content: center; }
-.strip .spacer { flex: 2; }
+.strip .spacer { flex: 1; min-width: 2rem; }
 
 .strip .segs a {
   display: inline-flex;
@@ -240,6 +239,8 @@ h1 { font-size: 2.5rem; margin: 0 0 0.5rem; }
 }
 
 .strip .segs li + li, .strip .spacer, .strip .segs.right li:first-child { border-left: var(--card-border-w) solid var(--border); }
+.strip .segs:not(.right) li:first-child { border-left: var(--card-border-w) solid var(--border); }
+.strip .segs.right li:last-child { border-right: var(--card-border-w) solid var(--border); }
 
 .strip .segs a[aria-current="page"] { font-weight: 700; }
 
