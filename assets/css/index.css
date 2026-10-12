@@ -1,0 +1,106 @@
+/* Index (landing) layout: two-column grid, hero, store, docked footer. */
+
+.page-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 6rem;
+  align-items: stretch;
+}
+
+.side-col { display: flex; flex-direction: column; }
+
+.main-col { display: grid; gap: 2.5rem; }
+
+@media (max-width: 1100px) {
+  .page-grid { grid-template-columns: 1fr; }
+}
+
+
+/* landing: footer lives docked in the store column instead */
+body.landing > footer { display: none; }
+
+.col-footer {
+  margin-top: auto;
+  padding: 2rem 0 0;
+  font-size: 0.85rem;
+  text-align: right;
+}
+.col-footer h5 { margin: 0 0 0.5rem; }
+
+.hero { min-height: 46vh; display: grid; align-content: center; gap: 1.5rem; }
+
+@media (max-width: 700px) {
+  .hero { min-height: auto; }
+}
+
+/* landing row: three project cards take the width, archive closer stays slim */
+@media (min-width: 900px) {
+  .card-grid:has(> .card.invert) {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(0, 0.8fr);
+  }
+}
+
+/* store: in-flow right column, wallet + theme + buy grid */
+#gacha-store {
+  background: var(--surface);
+  border: 2px solid var(--muted);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+#gacha-store h2 { margin: 0; font-size: 1.25rem; }
+
+.store-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 1rem;
+}
+
+.store-head .wallet { color: var(--muted); }
+
+#store-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem 1rem;
+}
+
+.store-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.store-row .buy-btn { flex: 1; }
+
+.store-row.owned { opacity: 0.45; }
+
+.store-row.owned .buy-btn {
+  text-decoration: line-through;
+  cursor: not-allowed;
+}
+
+.buy-btn {
+  /* Hardcoded per-accent colours: intentionally NOT theme-reactive, so each
+     button always shows its own accent. Update these if accents change. */
+  background: var(--buy-bg);
+  color: #14100a;
+  border: 0;
+  padding: 0.4rem 0.8rem;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: var(--card-radius);
+}
+
+.cost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.cost img { image-rendering: pixelated; }
+
+.hero h1 { font-size: clamp(3.5rem, 10vw, 7rem); margin: 0; color: var(--accent); font-weight: 700; }

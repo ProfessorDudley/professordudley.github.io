@@ -1,0 +1,53 @@
+/* Projects page layout: capped grid hugging left, menu docked to its right. */
+.projects-wrap { display: flex; gap: 1.5rem; align-items: start; }
+
+.projects-main { flex: 1 1 auto; min-width: 0; max-width: 1726px; display: grid; gap: 2rem; align-content: start; }
+
+.projects-main .card-grid { grid-template-columns: repeat(auto-fill, 326px); justify-content: start; }
+
+/* filter menu (projects page): same DNA as the store panel */
+#filter-menu {
+  background: var(--surface);
+  border: 2px solid var(--muted);
+  padding: 1.5rem;
+  align-self: start;
+  position: sticky;
+  top: 9rem;
+}
+
+#filter-menu h2 { margin: 0 0 1rem; font-size: 1.25rem; }
+
+/* same width as a card; height stays content-minimum */
+#filter-menu { width: 326px; }
+
+#filter-tech { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+
+.filter-btn {
+  background: transparent;
+  color: var(--text);
+  border: 2px solid var(--border);
+  border-radius: var(--card-radius);
+  padding: 0.3rem 0.7rem;
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.filter-btn[aria-pressed="true"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
+  font-weight: 700;
+}
+
+.filter-btn[data-mode="not"] {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+.filter-count { color: var(--muted); margin: 0 0 1rem; }
+
+@media (max-width: 1100px) {
+  .projects-wrap { flex-direction: column; }
+  #filter-menu { width: auto; }
+}

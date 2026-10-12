@@ -1,6 +1,6 @@
 // Project filtering (projects page only). Deferred, runs after paint.
 (() => {
-  const grid = document.querySelector(".page-main .card-grid");
+  const grid = document.querySelector(".projects-main .card-grid");
   const buttons = [...document.querySelectorAll("#filter-tech .filter-btn")];
   const count = document.getElementById("filter-count");
   const clear = document.getElementById("filter-clear");
