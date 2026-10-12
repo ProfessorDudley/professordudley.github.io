@@ -10,8 +10,12 @@ lab: true
 
 <section>
   <h2>Project card</h2>
+  <div class="study-row">
+  <div>
   <p class="subtitle">A — current (tech docked with buttons)</p>
   {% include project-card.html project=site.projects.first %}
+  </div>
+  <div>
   <p class="subtitle">B — tech with 0 bottom margin</p>
   <article class="card">
     <h2>Tiny Moves</h2>
@@ -22,6 +26,8 @@ lab: true
     <a class="btn btn-ghost" href="#">Read <svg class="chev" viewBox="0 0 8 12" aria-hidden="true"><path d="M1 1l5 5-5 5"/></svg></a>
     </p>
   </article>
+  </div>
+  <div>
   <p class="subtitle">C — tech under title</p>
   <article class="card">
     <h2>Tiny Moves</h2>
@@ -32,6 +38,8 @@ lab: true
     <a class="btn btn-ghost" href="#">Read <svg class="chev" viewBox="0 0 8 12" aria-hidden="true"><path d="M1 1l5 5-5 5"/></svg></a>
     </p>
   </article>
+  </div>
+  </div>
 </section>
 
 <section>

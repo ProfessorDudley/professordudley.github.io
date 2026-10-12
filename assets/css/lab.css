@@ -116,6 +116,15 @@
 .card p.flat-tech { margin-bottom: 0; }
 .card p.static-tech { margin-top: 0; }
 
+.study-row {
+  display: grid;
+  grid-template-columns: repeat(3, 326px);
+  gap: 1.5rem;
+  overflow-x: auto;
+}
+
+.study-row .card { width: 326px; }
+
 /* ---- scheme section (debug tool UI) ---- */
 #scheme-panel { border-top: 1px dashed var(--muted); padding-top: 1rem; }
 
