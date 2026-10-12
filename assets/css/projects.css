@@ -9,7 +9,7 @@
   align-items: stretch;
 }
 
-.side-col { display: flex; flex-direction: column; }
+.side-col { display: flex; flex-direction: column; width: min-content; }
 
 /* layout footer is replaced by the docked one on this page */
 body.page > footer { display: none; }

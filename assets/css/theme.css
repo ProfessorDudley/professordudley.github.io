@@ -110,8 +110,7 @@ header .demo-nav { border-top: 0; }
 footer { padding: 1rem 2rem; color: var(--muted); }
 
 .col-footer {
-  margin-top: auto;
-  padding: 2rem 0 0;
+  padding: 2rem 0 0 1rem;
   font-size: 0.85rem;
   text-align: right;
 }
