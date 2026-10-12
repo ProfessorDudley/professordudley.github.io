@@ -15,8 +15,7 @@
 body.page > footer { display: none; }
 
 .projects-main {
-  flex: 0 1 auto;
-  min-width: 0;
+  flex: none;
   width: fit-content;
   max-width: 100%;
 }
