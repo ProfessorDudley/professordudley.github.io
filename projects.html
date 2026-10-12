@@ -18,6 +18,7 @@ styles: [projects]
     </div>
   </div>
 
+  <div class="side-col">
   <aside id="filter-menu" aria-label="Filter projects">
     <h2>Filter</h2>
     {% assign techs = "" | split: "," %}
@@ -36,6 +37,8 @@ styles: [projects]
     <p class="filter-count" id="filter-count"></p>
     <p><button type="button" class="btn btn-secondary" id="filter-clear">Clear</button></p>
   </aside>
+  <footer class="col-footer">{% include footer.html %}</footer>
+  </div>
 </div>
 
 <script src="/assets/js/filter.js" defer></script>

@@ -6,8 +6,13 @@
   container-type: inline-size;
   display: flex;
   gap: 1.5rem;
-  align-items: start;
+  align-items: stretch;
 }
+
+.side-col { display: flex; flex-direction: column; }
+
+/* layout footer is replaced by the docked one on this page */
+body.page > footer { display: none; }
 
 .projects-main {
   flex: 0 1 auto;
