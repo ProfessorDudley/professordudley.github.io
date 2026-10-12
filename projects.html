@@ -20,7 +20,10 @@ styles: [projects]
 
   <div class="side-col">
   <aside id="filter-menu" aria-label="Filter projects">
-    <h2>Filter</h2>
+    <div class="filter-head">
+      <h2>Filter</h2>
+      <button type="button" class="btn btn-ghost" id="filter-clear">Clear</button>
+    </div>
     {% assign techs = "" | split: "," %}
     {% for project in site.projects %}
       {% for t in project.tech %}
@@ -59,7 +62,6 @@ styles: [projects]
       <button type="button" class="filter-btn" data-sort="az" aria-pressed="false">A–Z</button>
     </div>
     <p class="filter-count" id="filter-count"></p>
-    <p><button type="button" class="btn btn-secondary" id="filter-clear">Clear</button></p>
   </aside>
   <footer class="col-footer">{% include footer.html %}</footer>
   </div>

@@ -35,7 +35,14 @@ body.page > footer { display: none; }
   padding: 1.5rem;
 }
 
-#filter-menu h2 { margin: 0 0 1rem; font-size: 1.25rem; }
+#filter-menu h2 { margin: 0; font-size: 1.25rem; }
+
+.filter-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
 
 #filter-menu h3 {
   margin: 0 0 0.5rem;
