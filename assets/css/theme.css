@@ -107,11 +107,11 @@ header .demo-nav {
 
 header .demo-nav { border-top: 0; }
 
-footer { padding: 1rem 2rem; color: var(--muted); }
+footer { padding: 1rem 2rem; color: var(--muted); font-size: 1rem; }
 
 .col-footer {
   padding: 2rem 0 0 1rem;
-  font-size: 0.85rem;
+  font-size: 1rem;
   text-align: right;
 }
 .col-footer h5 { margin: 0 0 0.5rem; }
