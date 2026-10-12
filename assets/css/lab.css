@@ -115,6 +115,7 @@
 /* card studies: tech placement variants */
 .card p.flat-tech { margin-bottom: 0; }
 .card p.static-tech { margin-top: 0; }
+.card p.fixed-lines { height: 6em; overflow: hidden; }
 
 .study-row {
   display: grid;
