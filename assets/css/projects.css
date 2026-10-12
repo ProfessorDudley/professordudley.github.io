@@ -27,8 +27,6 @@
   background: var(--surface);
   border: 2px solid var(--muted);
   padding: 1.5rem;
-  position: sticky;
-  top: 6rem;
 }
 
 #filter-menu h2 { margin: 0 0 1rem; font-size: 1.25rem; }
