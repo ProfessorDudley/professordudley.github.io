@@ -1,12 +1,14 @@
 ---
 layout: default
 ---
-<div class="article-wrap">
-<article class="detail">
+<header class="article-head">
   <h1>{{ page.title }}</h1>
   {%- if page.summary -%}
   <p class="detail-lede">{{ page.summary }}</p>
   {%- endif -%}
+</header>
+<div class="article-wrap">
+<article class="detail">
   {%- if page.thumbnail -%}
   <img class="detail-thumb" src="{{ page.thumbnail }}" alt="{{ page.thumbnail_alt | default: page.title }}">
   {%- endif -%}
@@ -15,6 +17,7 @@ layout: default
   {%- if body == "" -%}
   <p class="incoming">Full writeup incoming — Tier 1 listing for now.</p>
   {%- endif -%}
+  <footer>{% include footer.html %}</footer>
 </article>
 <div class="article-side">
 <aside class="meta-box" aria-label="Details">
@@ -29,20 +32,20 @@ layout: default
     {%- if page.tech -%}
     <div><dt>Tech</dt><dd>{{ page.tech | join: " · " }}</dd></div>
     {%- endif -%}
-    {%- if page.links -%}
-    <div><dt>Links</dt><dd class="detail-links">
-      {%- if page.links.itch -%}
-      <a class="btn btn-primary" href="{{ page.links.itch }}">View on Itch</a>
-      {%- endif -%}
-      {%- if page.links.github -%}
-      <a class="btn btn-secondary" href="{{ page.links.github }}">Source</a>
-      {%- endif -%}
-      {%- if page.links.demo -%}
-      <a class="btn btn-secondary" href="{{ page.links.demo }}">Live demo</a>
-      {%- endif -%}
-    </dd></div>
-    {%- endif -%}
   </dl>
+  {%- if page.links -%}
+  <div class="detail-links">
+    {%- if page.links.itch -%}
+    <a class="btn btn-primary" href="{{ page.links.itch }}">View on Itch</a>
+    {%- endif -%}
+    {%- if page.links.github -%}
+    <a class="btn btn-secondary" href="{{ page.links.github }}">Source</a>
+    {%- endif -%}
+    {%- if page.links.demo -%}
+    <a class="btn btn-secondary" href="{{ page.links.demo }}">Live demo</a>
+    {%- endif -%}
+  </div>
+  {%- endif -%}
 </aside>
 </div>
 </div>
