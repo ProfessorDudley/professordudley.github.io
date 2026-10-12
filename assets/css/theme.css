@@ -405,7 +405,8 @@ header .strip .segs.right a { justify-content: center; }
 }
 
 .card p.card-ctas { margin-top: 0.75rem; margin-bottom: 0; }
-.card p.tech { margin-top: auto; }
+.card p.card-summary { margin-bottom: 0.5rem; }
+.card p.tech { margin-top: 0; }
 .card .more-link { margin-top: auto; align-self: flex-start; }
 
 .card h2 { margin: 0 0 0.5rem; }
