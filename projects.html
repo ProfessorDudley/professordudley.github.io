@@ -29,6 +29,7 @@ styles: [projects]
         {% endunless %}
       {% endfor %}
     {% endfor %}
+    <h3>Tech</h3>
     <div id="filter-tech">
       {% for t in techs %}
       <button type="button" class="filter-btn" data-group="tech" data-filter="{{ t | downcase }}" aria-pressed="false">{{ t }}</button>
@@ -41,14 +42,17 @@ styles: [projects]
         {% assign statuses = statuses | push: s %}
       {% endunless %}
     {% endfor %}
+    <h3>Status</h3>
     <div id="filter-status">
       {% for s in statuses %}
       <button type="button" class="filter-btn" data-group="status" data-filter="{{ s | downcase }}" aria-pressed="false">{{ s | capitalize }}</button>
       {% endfor %}
     </div>
+    <h3>Code</h3>
     <div id="filter-source">
       <button type="button" class="filter-btn" data-group="source" data-filter="yes" aria-pressed="false">Has source code</button>
     </div>
+    <h3>Order</h3>
     <div id="filter-sort">
       <button type="button" class="filter-btn" data-sort="new" aria-pressed="true">Newest</button>
       <button type="button" class="filter-btn" data-sort="old" aria-pressed="false">Oldest</button>
