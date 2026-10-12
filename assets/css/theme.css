@@ -294,6 +294,9 @@ h1 { font-size: 2.5rem; margin: 0 0 0.5rem; }
 
 #filter-menu h2 { margin: 0 0 1rem; font-size: 1.25rem; }
 
+/* same width as a card; height stays content-minimum */
+#filter-menu { width: 326px; }
+
 #filter-tech { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
 
 .filter-btn {
