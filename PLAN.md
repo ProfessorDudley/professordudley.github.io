@@ -9,9 +9,9 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
   `dev` = all current work, currently at `0c3105a` on top of `v0.5`;
   `game-prototype` = open, sprite/game exploration. Only `master` deploys
   (workflow triggers on `master` push).
-- **Divergence warning:** `origin/dev` still holds two tablet commits reverted
-  locally (`1f120d1`, `7a20745`). Syncing the remote requires a force-push —
-  needs explicit user approval first.
+- **Branches synced:** after user approval, `dev` was force-pushed over
+  `origin/dev`; the two old tablet commits (`1f120d1`, `7a20745`) are gone
+  from the remote (recoverable via reflog until GC if ever needed).
 - **Pages:** landing `index.html` (hero, featured cards, Store), `/projects/`
   (collection grid + filter sidebar), project articles (`_layouts/article.html`
   with meta rail), `debug.html` (design lab, never ships).
