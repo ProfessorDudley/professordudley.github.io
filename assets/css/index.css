@@ -18,6 +18,7 @@
 
 /* landing: footer lives docked in the store column instead */
 body.landing > footer { display: none; }
+body.landing .col-footer { margin-top: auto; }
 
 .hero { min-height: 46vh; display: grid; align-content: center; gap: 1.5rem; }
 

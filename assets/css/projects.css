@@ -1,7 +1,7 @@
 /* Projects page layout: the wrap is a container, so track counts respond to
    its width — never the viewport. Menu hugs the grid; blank falls right. */
 .page-preface { max-width: 860px; margin-bottom: 2rem; }
-.page-preface .hero-bio { max-width: none; }
+.page-preface .hero-bio { max-width: none; color: var(--muted); }
 .projects-wrap {
   container-type: inline-size;
   display: flex;
