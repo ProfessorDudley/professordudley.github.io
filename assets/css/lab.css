@@ -116,10 +116,11 @@
 .card p.flat-tech { margin-bottom: 0; }
 .card p.static-tech { margin-top: 0; }
 .card p.fixed-lines { height: 6em; overflow: hidden; }
+.card p.tech-lead { margin-top: 0; margin-bottom: 1em; }
 
 .study-row {
   display: grid;
-  grid-template-columns: repeat(3, 326px);
+  grid-template-columns: repeat(4, 326px);
   gap: 1.5rem;
   overflow-x: auto;
 }
