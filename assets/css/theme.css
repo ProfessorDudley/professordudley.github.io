@@ -44,8 +44,6 @@ main {
 .page-grid:has(#filter-menu) {
   grid-template-columns: minmax(0, 1fr) 326px;
   column-gap: 1.5rem;
-  width: fit-content;
-  max-width: 100%;
 }
 
 .page-grid:has(#filter-menu) .main-col { min-width: 0; max-width: 1726px; }
