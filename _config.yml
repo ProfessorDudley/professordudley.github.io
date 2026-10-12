@@ -35,6 +35,8 @@ exclude:
   - docs/
   - design-state.json
   - tools/
+  - PLAN.md
+  - AGENTS.md
   - .sass-cache/
   - .jekyll-cache/
   - gemfiles/
