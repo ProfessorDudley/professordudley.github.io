@@ -19,14 +19,6 @@
 /* landing: footer lives docked in the store column instead */
 body.landing > footer { display: none; }
 
-.col-footer {
-  margin-top: auto;
-  padding: 2rem 0 0;
-  font-size: 0.85rem;
-  text-align: right;
-}
-.col-footer h5 { margin: 0 0 0.5rem; }
-
 .hero { min-height: 46vh; display: grid; align-content: center; gap: 1.5rem; }
 
 @media (max-width: 700px) {
