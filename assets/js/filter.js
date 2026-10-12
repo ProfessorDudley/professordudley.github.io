@@ -7,13 +7,17 @@
   if (!grid || !buttons.length) return;
 
   const cards = [...grid.querySelectorAll(".card")];
-  const active = new Set();
+  const modes = new Map(); // filter -> 0 off | 1 include | 2 exclude
 
   function apply() {
+    const inc = [...modes].filter(([, m]) => m === 1).map(([t]) => t);
+    const exc = [...modes].filter(([, m]) => m === 2).map(([t]) => t);
     let shown = 0;
     for (const card of cards) {
       const tags = (card.dataset.tech || "").split(",");
-      const visible = !active.size || [...active].some((t) => tags.includes(t));
+      const visible =
+        (!inc.length || inc.some((t) => tags.includes(t))) &&
+        !exc.some((t) => tags.includes(t));
       card.hidden = !visible;
       if (visible) shown += 1;
     }
@@ -23,21 +27,22 @@
   buttons.forEach((b) => {
     b.addEventListener("click", () => {
       const t = b.dataset.filter;
-      if (active.has(t)) {
-        active.delete(t);
-        b.setAttribute("aria-pressed", "false");
-      } else {
-        active.add(t);
-        b.setAttribute("aria-pressed", "true");
-      }
+      const next = ((modes.get(t) || 0) + 1) % 3;
+      modes.set(t, next);
+      b.setAttribute("aria-pressed", next === 1 ? "true" : "false");
+      b.dataset.mode = ["", "only", "not"][next];
+      if (next === 0) modes.delete(t);
       apply();
     });
   });
 
   if (clear) {
     clear.addEventListener("click", () => {
-      active.clear();
-      buttons.forEach((b) => b.setAttribute("aria-pressed", "false"));
+      modes.clear();
+      buttons.forEach((b) => {
+        b.setAttribute("aria-pressed", "false");
+        b.dataset.mode = "";
+      });
       apply();
     });
   }
