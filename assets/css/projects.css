@@ -21,7 +21,9 @@
 
 #filter-menu {
   flex: none;
+  align-self: start;
   width: 326px;
+  margin-top: 0;
   background: var(--surface);
   border: 2px solid var(--muted);
   padding: 1.5rem;
