@@ -36,4 +36,4 @@ One honest paragraph. This is the seed of a future blog post.
 - **Tier 1 (card-ready):** frontmatter down to `links`. Enough to list it.
 - **Tier 2 (detail-ready):** the three sections above. Write incrementally.
 - Projects with empty bodies render an "writeup incoming" state — see
-  `_layouts/post.html`. Thin is fine; missing is not.
+  `_layouts/article.html`. Thin is fine; missing is not.

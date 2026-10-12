@@ -13,29 +13,32 @@ lab: true
   <div class="study-row">
   <div>
   <p class="subtitle">A — current (tech docked with buttons)</p>
-  {% include project-card.html project=site.projects.first %}
+  {% assign waiter = site.projects | where: "title", "Waiter!" | first %}
+  {% include project-card.html project=waiter %}
   </div>
   <div>
   <p class="subtitle">B — tech with 0 bottom margin</p>
   <article class="card">
-    <h2>Tiny Moves</h2>
-    <p>A 48-hour Godot jam game about tightrope walking.</p>
-    <p class="tech flat-tech">Godot · GDScript</p>
+    <img src="https://img.itch.zone/aW1hZ2UvMjgyMjUzMS8xNjg2MTgxMi5wbmc=/347x500/hCDttZ.png" alt="Screenshot from the game Waiter" loading="lazy">
+    <h2>Waiter!</h2>
+    <p>Serve copious amounts of food to one customer in this hectic two button game.</p>
+    <p class="tech flat-tech">Godot · C#</p>
     <p class="card-ctas">
-    <a class="btn btn-primary" href="https://professordudley.itch.io/">View on Itch</a>
-    <a class="btn btn-ghost" href="#">Read <svg class="chev" viewBox="0 0 8 12" aria-hidden="true"><path d="M1 1l5 5-5 5"/></svg></a>
+    <a class="btn btn-primary" href="https://professordudley.itch.io/waiter">View on Itch</a>
+    <a class="btn btn-ghost" href="/projects/waiter/">Read <svg class="chev" viewBox="0 0 8 12" aria-hidden="true"><path d="M1 1l5 5-5 5"/></svg></a>
     </p>
   </article>
   </div>
   <div>
   <p class="subtitle">C — tech under title</p>
   <article class="card">
-    <h2>Tiny Moves</h2>
-    <p class="tech static-tech">Godot · GDScript</p>
-    <p>A 48-hour Godot jam game about tightrope walking.</p>
+    <img src="https://img.itch.zone/aW1hZ2UvMjgyMjUzMS8xNjg2MTgxMi5wbmc=/347x500/hCDttZ.png" alt="Screenshot from the game Waiter" loading="lazy">
+    <h2>Waiter!</h2>
+    <p class="tech static-tech">Godot · C#</p>
+    <p>Serve copious amounts of food to one customer in this hectic two button game.</p>
     <p class="card-ctas">
-    <a class="btn btn-primary" href="https://professordudley.itch.io/">View on Itch</a>
-    <a class="btn btn-ghost" href="#">Read <svg class="chev" viewBox="0 0 8 12" aria-hidden="true"><path d="M1 1l5 5-5 5"/></svg></a>
+    <a class="btn btn-primary" href="https://professordudley.itch.io/waiter">View on Itch</a>
+    <a class="btn btn-ghost" href="/projects/waiter/">Read <svg class="chev" viewBox="0 0 8 12" aria-hidden="true"><path d="M1 1l5 5-5 5"/></svg></a>
     </p>
   </article>
   </div>
