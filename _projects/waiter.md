@@ -1,6 +1,6 @@
 ---
 title: "Waiter!"
-summary: "Serve copious amounts of food to one customer in this hectic two button game."
+summary: "Serve copious amounts of food to one customer in this hectic two button game. Work as fast as you can to get high score!"
 tech: ["Godot", "C#"]
 thumbnail: "https://img.itch.zone/aW1hZ2UvMjgyMjUzMS8xNjg2MTgxMi5wbmc=/347x500/hCDttZ.png"
 thumbnail_alt: "Screenshot from the game Waiter"

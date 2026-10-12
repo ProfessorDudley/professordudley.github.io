@@ -1,5 +1,5 @@
 {% assign p = include.project %}
-<article class="card">
+<article class="card" data-tech="{{ p.tech | join: ',' | downcase }}">
   {%- if p.thumbnail -%}
   <img src="{{ p.thumbnail }}" alt="{{ p.thumbnail_alt | default: p.title }}" loading="lazy">
   {%- endif -%}

@@ -3,12 +3,37 @@ layout: page
 title: Projects
 permalink: /projects/
 ---
-<h1>Projects</h1>
-<p class="hero-bio">Games, tools, and experiments — each one finished enough to show.</p>
+<div class="page-grid">
+  <div class="main-col">
+    <h1>Projects</h1>
+    <p class="hero-bio">Games, tools, and experiments — each one finished enough to show.</p>
 
-<div class="card-grid">
-  {% assign ordered = site.projects | sort: "date" | reverse %}
-  {% for project in ordered %}
-    {% include project-card.html project=project %}
-  {% endfor %}
+    <div class="card-grid">
+      {% assign ordered = site.projects | sort: "date" | reverse %}
+      {% for project in ordered %}
+        {% include project-card.html project=project %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <aside id="filter-menu" aria-label="Filter projects">
+    <h2>Filter</h2>
+    {% assign techs = "" | split: "," %}
+    {% for project in site.projects %}
+      {% for t in project.tech %}
+        {% unless techs contains t %}
+          {% assign techs = techs | push: t %}
+        {% endunless %}
+      {% endfor %}
+    {% endfor %}
+    <div id="filter-tech">
+      {% for t in techs %}
+      <button type="button" class="filter-btn" data-filter="{{ t | downcase }}" aria-pressed="false">{{ t }}</button>
+      {% endfor %}
+    </div>
+    <p class="filter-count" id="filter-count"></p>
+    <p><button type="button" class="btn btn-secondary" id="filter-clear">Clear</button></p>
+  </aside>
 </div>
+
+<script src="/assets/js/filter.js" defer></script>
