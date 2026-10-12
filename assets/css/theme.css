@@ -161,7 +161,8 @@ h1 { font-size: 2.5rem; margin: 0 0 0.5rem; }
   gap: 1.5rem;
 }
 
-/* projects page: fixed card size mirroring the landed row */
+/* fixed card footprint: 326 wide on the projects page, 480 tall minimum
+   everywhere (min-height so long copy grows instead of clipping) */
 .page-main .card-grid {
   grid-template-columns: repeat(auto-fill, 326px);
   justify-content: start;
@@ -402,6 +403,7 @@ header .strip .segs.right a { justify-content: center; }
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
+  min-height: 480px;
 }
 
 .card p.card-ctas { margin-top: auto; margin-bottom: 0; padding-top: 0.75rem; }
