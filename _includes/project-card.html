@@ -1,5 +1,5 @@
 {% assign p = include.project %}
-<article class="card" data-tech="{{ p.tech | join: ',' | downcase }}">
+<article class="card" data-tech="{{ p.tech | join: ',' | downcase }}" data-status="{{ p.status | default: 'finished' | downcase }}" data-source="{% if p.links.github %}yes{% else %}no{% endif %}" data-date="{{ p.date | date: '%Y-%m-%d' }}" data-title="{{ p.title | downcase }}">
   {%- if p.thumbnail -%}
   <img src="{{ p.thumbnail }}" alt="{{ p.thumbnail_alt | default: p.title }}" loading="lazy">
   {%- endif -%}

@@ -38,7 +38,7 @@ body.page > footer { display: none; }
 #filter-menu h2 { margin: 0 0 1rem; font-size: 1.25rem; }
 
 /* same width as a card; height stays content-minimum */
-#filter-tech { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+#filter-tech, #filter-status, #filter-source, #filter-sort { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
 
 .filter-btn {
   background: transparent;

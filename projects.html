@@ -31,8 +31,28 @@ styles: [projects]
     {% endfor %}
     <div id="filter-tech">
       {% for t in techs %}
-      <button type="button" class="filter-btn" data-filter="{{ t | downcase }}" aria-pressed="false">{{ t }}</button>
+      <button type="button" class="filter-btn" data-group="tech" data-filter="{{ t | downcase }}" aria-pressed="false">{{ t }}</button>
       {% endfor %}
+    </div>
+    {% assign statuses = "" | split: "," %}
+    {% for project in site.projects %}
+      {% assign s = project.status | default: "finished" %}
+      {% unless statuses contains s %}
+        {% assign statuses = statuses | push: s %}
+      {% endunless %}
+    {% endfor %}
+    <div id="filter-status">
+      {% for s in statuses %}
+      <button type="button" class="filter-btn" data-group="status" data-filter="{{ s | downcase }}" aria-pressed="false">{{ s | capitalize }}</button>
+      {% endfor %}
+    </div>
+    <div id="filter-source">
+      <button type="button" class="filter-btn" data-group="source" data-filter="yes" aria-pressed="false">Has source code</button>
+    </div>
+    <div id="filter-sort">
+      <button type="button" class="filter-btn" data-sort="new" aria-pressed="true">Newest</button>
+      <button type="button" class="filter-btn" data-sort="old" aria-pressed="false">Oldest</button>
+      <button type="button" class="filter-btn" data-sort="az" aria-pressed="false">A–Z</button>
     </div>
     <p class="filter-count" id="filter-count"></p>
     <p><button type="button" class="btn btn-secondary" id="filter-clear">Clear</button></p>
