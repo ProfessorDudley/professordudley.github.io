@@ -112,6 +112,10 @@
   margin: 0;
 }
 
+/* card studies: tech placement variants */
+.card p.flat-tech { margin-bottom: 0; }
+.card p.static-tech { margin-top: 0; }
+
 /* ---- scheme section (debug tool UI) ---- */
 #scheme-panel { border-top: 1px dashed var(--muted); padding-top: 1rem; }
 
