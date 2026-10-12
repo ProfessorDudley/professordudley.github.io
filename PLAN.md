@@ -3,10 +3,10 @@
 Personal portfolio + game-dev hub for Sam Dicken (ProfessorDudley).
 Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 
-## Current state (dev @ `988a56d`, tags v0.2–v0.5)
+## Current state (dev @ `0c3105a`, tags v0.2–v0.5)
 
 - **Branches:** `master` = legacy launchpad (do not touch without a publish plan);
-  `dev` = all current work, currently at `988a56d` on top of `v0.5`;
+  `dev` = all current work, currently at `0c3105a` on top of `v0.5`;
   `game-prototype` = open, sprite/game exploration. Only `master` deploys
   (workflow triggers on `master` push).
 - **Divergence warning:** `origin/dev` still holds two tablet commits reverted
