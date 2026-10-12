@@ -161,6 +161,9 @@ h1 { font-size: 2.5rem; margin: 0 0 0.5rem; }
   gap: 1.5rem;
 }
 
+/* author display:flex beats the UA [hidden] rule without this */
+.card[hidden] { display: none; }
+
 /* fixed card footprint: 326 wide on the projects page, 480 tall minimum
    everywhere (min-height so long copy grows instead of clipping) */
 .page-main .card-grid {
