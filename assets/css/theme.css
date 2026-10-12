@@ -39,6 +39,21 @@ main {
   align-items: stretch;
 }
 
+/* projects variant: grid capped at 5 cards, menu docked to its right,
+   blank space falls on the far right. Narrow screens stack. */
+.page-grid:has(#filter-menu) {
+  grid-template-columns: minmax(0, 1fr) 326px;
+  column-gap: 1.5rem;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.page-grid:has(#filter-menu) .main-col { min-width: 0; max-width: 1726px; }
+
+@media (max-width: 1100px) {
+  .page-grid:has(#filter-menu) { grid-template-columns: 1fr; width: auto; }
+}
+
 .side-col { display: flex; flex-direction: column; }
 
 .main-col { display: grid; gap: 2.5rem; }
