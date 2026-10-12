@@ -18,12 +18,14 @@
     {% assign primary_url = p.links.github %}
     {% assign primary_label = "View source" %}
   {%- endif -%}
-  {%- if primary_url -%}
+  {%- if p.url -%}
   <p class="card-ctas">
     <a class="btn btn-primary" href="{{ primary_url }}">{{ primary_label }}</a>
-    {%- if p.links.github and p.links.github != primary_url -%}
-    <a class="btn btn-ghost" href="{{ p.links.github }}">Source <svg class="chev" viewBox="0 0 8 12" aria-hidden="true"><path d="M1 1l5 5-5 5"/></svg></a>
-    {%- endif -%}
+    <a class="btn btn-ghost" href="{{ p.url }}">Read more <svg class="chev" viewBox="0 0 8 12" aria-hidden="true"><path d="M1 1l5 5-5 5"/></svg></a>
+  </p>
+  {%- elsif primary_url -%}
+  <p class="card-ctas">
+    <a class="btn btn-primary" href="{{ primary_url }}">{{ primary_label }}</a>
   </p>
   {%- endif -%}
 </article>
