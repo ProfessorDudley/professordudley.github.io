@@ -78,7 +78,7 @@ body.page > footer { display: none; }
   text-decoration: line-through;
 }
 
-.filter-count { color: var(--muted); margin: 0 0 1rem; }
+.filter-count { color: var(--muted); margin: 0; font-size: 0.85rem; }
 
 /* wrap width = grid + 1.5rem gap + 326 menu */
 @container (max-width: 2075px) {
