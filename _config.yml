@@ -47,9 +47,6 @@ exclude:
   - vendor/ruby/
 
 collections:
-  apps:
-    output: true
-    permalink: :path
   projects:
     output: true
     permalink: /projects/:slug/
