@@ -165,7 +165,7 @@ A/B/D). Tier C bottom is 1440, not 1380: 1380 cannot fit 280/200/326 minimums
     counts 3/2/2/2/2/1/1 + invert, closer within [260]/[200–260]/[200–260]/
     [200–260]/[200–260]/[200–260]/[200–260], side-col ≥326 everywhere, no
     overflow; projects/article 1440 identical; 768/390/360 unchanged.
-- Status N (Stream N: update ONLY this line): launched.
+- Status N (Stream N: update ONLY this line): done (2 loops) — tiers A/B/C/D per spec in `index.css`; full per-width table + regressions pass (projects/article 1440 identical); ready for orchestrator merge.
 - **Shared rules:** zero JS; no new requests; no markup; unsigned; never
   `master`; drafts in `/tmp`; max 3 loops then STOP and report BLOCKED.
   Do NOT merge/push.
