@@ -64,12 +64,23 @@ body.landing .col-footer { margin-top: auto; }
    (index.html): 3 × article.card then the invert closer, so hiding
    :nth-child(2) and (3) keeps the 1st featured card + invert. */
 @media (max-width: 1440px) and (min-width: 1100px) {
+  /* H1 global sides fix: the base 6rem sides leave only an 893px content
+     column against a 1085px body (viewport minus scrollbar), overflowing by
+     1px. Qualified to beat base (0,0,1); bottom stays 6rem like desktop. */
+  body.landing main { padding: 2rem 2rem 6rem; }
   body.landing .page-grid {
     grid-template-columns: auto minmax(326px, 1fr);
     column-gap: 4rem;
   }
   body.landing .main-col .card-grid {
     grid-template-columns: minmax(280px, 326px) minmax(200px, 260px);
+  }
+  /* hero name on one line: measured ~5.73px width per px of font, so this
+     clamp stays ~20px under main-col/5.73 across the band; nowrap
+     guarantees a single line without risking overflow. */
+  body.landing .hero h1 {
+    font-size: clamp(5.25rem, 1.25rem + 5.8vw, 7rem);
+    white-space: nowrap;
   }
   body.landing .main-col .card-grid > .card:nth-child(2) { display: none; }
   body.landing .main-col .card-grid > .card:nth-child(3) { display: none; }
