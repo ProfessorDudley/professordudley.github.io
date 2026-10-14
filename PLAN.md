@@ -3,7 +3,7 @@
 Personal portfolio + game-dev hub for Sam Dicken (ProfessorDudley).
 Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 
-## Current state (dev @ `810a12f`, tags v0.2–v0.5)
+## Current state (dev @ `0e3c3cb`, tags v0.2–v0.5)
 
 - **Branches:** `master` = legacy launchpad (do not touch without a publish plan);
   `dev` = all current work, currently at `cefe4f2` on top of `v0.5`;
@@ -46,13 +46,8 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 
 ## Direction
 
-- **Now (tablet sprint, 768px):** graceful degradation. In-between sizes keep
-  visual identity via fluid layout; structural moves happen only at
-  breakpoints. Locked: nav externals icon+text on desktop, icon-only at
-  ≤768px on all pages (inline SimpleIcons, zero new requests); projects
-  filter above grid, pure-CSS collapsed single line (`Filter … expand \/`)
-  expanding to desktop-identical menu (zero-JS rule stands); article rail
-  below title + tighter rhythm; 6rem bottom padding desktop + tablet.
+- **Now (tablet sprint, 768px):** DONE — merged, verified, awaiting user
+  sign-off (see Tablet sprint section). Next structural step is phone sizes.
 - **Acceptance (per page):** 768px full-page shot shows the listed change,
   no horizontal scroll, no overlap/clipping; 1440px re-shot hash-matches
   baseline except the approved nav region; zero new JS, no new requests,
@@ -63,44 +58,24 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 - **Later:** blog (first standalone post triggers it), sprites as gacha
   content, flyout store, SEO pass.
 
-## Tablet sprint — task board (active, orchestrator + 3 streams)
+## Tablet sprint — done (768px, merged to `dev`, awaiting user sign-off)
 
-- **Orchestrator (lead agent):** this file is the source of truth. Validate
-  each stream (build + 1440/768 shots vs `/tmp/opencode/baseline/`);
-  merge A→B→C sequentially with rebuild + screenshots per merge; write the
-  final state update for user sign-off. Loop budget: max 3 fix loops per
-  stream, then escalate to the user.
-- **Stream A — landing + nav icons** (`sprint/tablet-a-landing`,
-  worktree `/tmp/opencode/sprint-a`, serve :4011): `_includes/header.html`
-  (inline SimpleIcons itch.io/GitHub/LinkedIn, keep text labels);
-  `assets/css/index.css` (`#gacha-store` hidden ≤768px, hero/cards tuning);
-  nav CSS region in `theme.css` (desktop icon+text, ≤768px icon-only, all
-  pages). Status: VALIDATED (`b7b416a`, 2 loops). Article below-nav 0 diff;
-  landing below-nav RMSE 0.00017 = renderer AA noise only (max 1ch 4/255);
-  768px icon-only nav renders, store hidden, single column, no overflow.
-  Owned files only; SimpleIcons paths inline, zero new requests.
-- **Stream B — projects** (`sprint/tablet-b-projects`, worktree
-  `/tmp/opencode/sprint-b`, serve :4012): `projects.html` +
-  `assets/css/projects.css` only. Filter above grid; pure-CSS collapsed bar
-  (`Filter … expand \/`) expanding to the desktop-identical menu; footer to
-  page bottom left-aligned with grid. `filter.js` untouched. Status: VALIDATED
-  (`47e72e0`, 1 loop). 1440px sha256-identical to baseline; 768px collapsed
-  bar + expanded desktop-identical menu verified, live filtering works
-  (Godot → 2 of 4); only `projects.html` (+2) + `projects.css` (+59) touched.
-  Note: hidden checkbox is in-flow 1px (invisible, harmless).
-- **Stream C — article + global** (`sprint/tablet-c-article`, worktree
-  `/tmp/opencode/sprint-c`, serve :4013): `theme.css` article/padding
-  regions only (disjoint from A's nav block). Meta rail below title via
-  flex `order` (no markup change if possible); tighter rhythm ≤768px; 6rem
-  bottom padding inside the tablet query. Status: VALIDATED (`2ec5811`,
-  1 loop). 1440px sha256-identical to baseline; 768px order is
-  title → lede → Details → thumbnail → body → footer, tight rhythm, no
-  overflow; `article.html` untouched, `theme.css` +16 only.
-- **Shared stream rules:** scoped `@media (max-width: 768px)` queries only,
-  existing queries untouched; zero new JS; no new runtime requests (inline
-  SVG only — dev-time fetches fine); unsigned commits; never touch `master`
-  or `PLAN.md`; verify with `/tmp/opencode/shot.py` (CDP full-page) +
-  `bundle exec jekyll build`; stop after 3 unsuccessful fix loops and report.
+- **Stream A — landing + nav icons** (`b7b416a`, 2 loops): inline SimpleIcons
+  in `header.html` (labels kept); `theme.css` nav block (desktop icon+text,
+  ≤768px icon-only all pages; strut fix holds desktop below-nav identical);
+  `index.css` tablet block (store hidden, single column, clamped hero).
+- **Stream B — projects** (`47e72e0`, 1 loop): pure-CSS checkbox collapse
+  (`Filter … expand \/` → desktop-identical menu, live filtering works);
+  footer bottom-left; `projects.html` +2, `projects.css` +59, `filter.js`
+  untouched.
+- **Stream C — article + global** (`2ec5811`, 1 loop): rail below title via
+  `order:-1`, tightened rhythm, 6rem bottom padding in tablet query;
+  `theme.css` +16, `article.html` untouched.
+- **Orchestrator verification:** merged A→B→C with rebuild + screenshots per
+  merge. Final 1440px below-nav vs baselines: projects 0, article 0, landing
+  renderer-noise only (≤0.0002, single-channel ≤4/255); page heights match
+  baselines exactly. 768px: all acceptance items hold, no overflow/overlap.
+  Zero new JS, no new requests. No stream needed escalation (all ≤2 loops).
 
 ## Conventions (binding)
 
