@@ -331,6 +331,32 @@ header .strip .segs.right a { justify-content: center; }
 
 .strip .segs a[aria-current="page"] { font-weight: 700; }
 
+/* ---- tablet sprint A: nav social icons (Stream A owns this block) ---- */
+.strip .segs.right a { gap: 0.5em; }
+.soc {
+  width: 1.3em;
+  height: 1.3em;
+  fill: currentColor;
+  vertical-align: middle;
+  flex: none;
+  /* keep the in-flow strut at 1em so the taller 1.3em glyph never adds
+     nav-bar height vs the text-only baseline (desktop stays byte-identical
+     below the nav); the glyph itself still paints at full 1.3em. */
+  margin-block: calc((1em - 1.3em) / 2);
+}
+@media (max-width: 768px) {
+  .strip .segs.right a { padding-left: 0.9rem; padding-right: 0.9rem; }
+  .strip .segs.right .soc-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+/* ---- end tablet sprint A nav social icons ---- */
+
 .card {
   background: var(--surface);
   border: var(--card-border-w) solid var(--border);
