@@ -11,6 +11,24 @@
 
 .main-col { display: grid; gap: 2.5rem; }
 
+/* landing fills the viewport exactly; the hero row absorbs leftover
+   space so added chrome (e.g. main bottom padding) never tips the
+   page into a scroll. min-height (not height) lets small screens
+   still grow naturally. */
+body.landing {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+body.landing main {
+  flex: 1;
+  display: grid; /* stretch .page-grid to full height so the 1fr hero row sees the slack */
+}
+
+.main-col { grid-template-rows: minmax(0, 1fr) auto; }
+
 @media (max-width: 1100px) {
   .page-grid { grid-template-columns: 1fr; }
 }
@@ -20,7 +38,7 @@
 body.landing > footer { display: none; }
 body.landing .col-footer { margin-top: auto; }
 
-.hero { min-height: 46vh; display: grid; align-content: center; gap: 1.5rem; }
+.hero { display: grid; align-content: center; gap: 1.5rem; }
 
 @media (max-width: 700px) {
   .hero { min-height: auto; }
