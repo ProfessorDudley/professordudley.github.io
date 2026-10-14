@@ -75,7 +75,10 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
   (inline SimpleIcons itch.io/GitHub/LinkedIn, keep text labels);
   `assets/css/index.css` (`#gacha-store` hidden ≤768px, hero/cards tuning);
   nav CSS region in `theme.css` (desktop icon+text, ≤768px icon-only, all
-  pages). Status: running (ses_ec5cb602cffe20sgwBp9lkfVUY).
+  pages). Status: VALIDATED (`b7b416a`, 2 loops). Article below-nav 0 diff;
+  landing below-nav RMSE 0.00017 = renderer AA noise only (max 1ch 4/255);
+  768px icon-only nav renders, store hidden, single column, no overflow.
+  Owned files only; SimpleIcons paths inline, zero new requests.
 - **Stream B — projects** (`sprint/tablet-b-projects`, worktree
   `/tmp/opencode/sprint-b`, serve :4012): `projects.html` +
   `assets/css/projects.css` only. Filter above grid; pure-CSS collapsed bar
