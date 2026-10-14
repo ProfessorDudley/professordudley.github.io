@@ -3,7 +3,7 @@
 Personal portfolio + game-dev hub for Sam Dicken (ProfessorDudley).
 Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 
-## Current state (dev @ `d61ba27`, tags v0.2–v0.5)
+## Current state (dev @ `6eb22fb`, tags v0.2–v0.5)
 
 - **Branches:** `master` = legacy launchpad (do not touch without a publish plan);
   `dev` = all current work, currently at `cefe4f2` on top of `v0.5`;
@@ -46,8 +46,8 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 
 ## Direction
 
-- **Now (tablet refinements, 768px):** DONE — merged, verified, awaiting user
-  sign-off (see Tablet refinements section).
+- **Now (landing card-bleed + hero room, 768px):** ACTIVE — two landing-only
+  fixes (see Landing fixes task board). Desktop must not move (`baseline2/`).
 - **Acceptance (per page):** 768px full-page shot shows the listed change,
   no horizontal scroll, no overlap/clipping; 1440px re-shot hash-matches
   baseline except the approved nav region; zero new JS, no new requests,
@@ -91,6 +91,30 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
   invisible; D's CSS is a single ≤768px block, provably inert at 1440).
   768px: all eight items (D1–D4, E1–E4) hold on merged shots, no
   overflow/overlap. Zero new JS, no new requests. No escalation needed.
+
+## Landing fixes — task board (active, orchestrator + 1 stream)
+
+Source of truth for Stream F. 1440 baselines: `/tmp/opencode/baseline2/`.
+Helper: `/tmp/opencode/shot.py`. Diagnosis (orchestrator): Stream A added
+`.card img { width:100%; margin-left:0; margin-right:0; }` to the landing
+768px block (`assets/css/index.css:129`), killing the desktop full-bleed
+(`width:calc(100% + 3rem); margin:-1.5rem -1.5rem 1rem` in `theme.css`).
+Projects page never got that override, hence the discrepancy.
+
+- **Stream F — landing fixes** (`sprint/tablet-f-landing`, worktree
+  `/tmp/opencode/sprint-f`, serve :4011, owns `assets/css/index.css` ONLY):
+  - F1: remove the `.card img` 768px override so landing cards inherit the
+    desktop full-bleed (images span full card width, matching projects).
+    Percent-based math works in the fluid 2×2 grid — prove no overflow.
+  - F2: double hero top/bottom padding at ≤768px (`1.5rem 0 2rem` →
+    `3rem 0 4rem`). Scope is tablet-only: desktop hero spacing comes from
+    grid centering and must not change.
+  - Acceptance: 768px shot shows full-bleed card images + roomier hero;
+    1440px sha256-identical to `baseline2/landing-1440.png`; no overflow.
+- Status F (Stream F: update ONLY this line): launched.
+- **Shared rules:** `@media (max-width: 768px)` only; zero JS; no new
+  requests; unsigned commits; never `master`; max 3 loops then STOP and
+  report BLOCKED. Do NOT merge/push — orchestrator merges.
 
 - Git: never sign (repo-local `commit.gpgsign=false` / `tag.gpgsign=false`;
   user signs). Unsigned commits only. Never push `master` without explicit
