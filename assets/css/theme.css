@@ -429,6 +429,9 @@ header .strip .segs.right a { justify-content: center; }
 
   header .demo-nav { flex-wrap: wrap; }
 
+  /* K1: strip side padding → 0 so the button row spans full width. */
+  header .demo-nav.strip { padding-left: 0; padding-right: 0; }
+
   /* Visually hidden but focusable: label click + keyboard both toggle. */
   .nav-toggle {
     display: block;
@@ -453,6 +456,8 @@ header .strip .segs.right a { justify-content: center; }
     cursor: pointer;
     padding: 1rem;
     font-weight: 700;
+    /* K2: bottom border in both states (button row ↔ opened panel). */
+    border-bottom: var(--card-border-w) solid var(--border);
   }
   .menu-icon {
     width: 1.2em;
@@ -487,12 +492,19 @@ header .strip .segs.right a { justify-content: center; }
     align-items: stretch;
     border-top: var(--card-border-w) solid var(--border);
   }
-  .nav-toggle:checked ~ .tally.segs li + li { border-top: var(--card-border-w) solid var(--border); }
+  .nav-toggle:checked ~ .tally.segs li + li { border-top: 0; }
+  /* K4: tally marker back to inline-with-text (undo desktop corner-dock). */
+  header .strip .tally a::after {
+    position: static;
+    top: auto;
+    right: auto;
+    margin-left: 0.45em;
+  }
   /* External icons last, one row right-aligned. */
   .nav-toggle:checked ~ .segs.right {
     display: flex;
     justify-content: flex-end;
     border-top: var(--card-border-w) solid var(--border);
   }
-  .nav-toggle:checked ~ .segs.right li + li { border-left: var(--card-border-w) solid var(--border); }
+  .nav-toggle:checked ~ .segs.right li + li { border-left: 0; }
 }
