@@ -116,15 +116,16 @@ body.landing .col-footer { margin-top: auto; }
 
 .hero h1 { font-size: clamp(3.5rem, 10vw, 7rem); margin: 0; color: var(--accent); font-weight: 700; }
 
-/* tablet sprint A (Stream A): landing ≤768px — store hidden, no overflow */
+/* tablet refinements (Stream D): landing ≤768px — roomy sides, 2×2 cards */
 @media (max-width: 768px) {
   #gacha-store { display: none; }
-  body.landing main { padding: 1.5rem 1.25rem 3rem; }
+  body.landing main { padding: 2rem 6rem 4rem; }
   .page-grid { grid-template-columns: 1fr; gap: 2rem; }
-  .hero { gap: 1rem; }
+  .hero { gap: 1.25rem; padding: 1.5rem 0 2rem; }
   .hero h1 { font-size: clamp(2.5rem, 12vw, 4rem); }
   .hero-bio { max-width: 100%; }
-  .card-grid { grid-template-columns: 1fr; }
-  .card { min-height: 0; }
+  .card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .card { min-height: 0; min-width: 0; }
   .card img { width: 100%; margin-left: 0; margin-right: 0; }
+  body.landing .col-footer { text-align: left; }
 }

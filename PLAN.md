@@ -102,7 +102,7 @@ Compare: `compare -metric RMSE` / `sha256sum` (ImageMagick available).
     only — do not touch the global rule in `theme.css`).
   - Acceptance: 768px shot shows D1–D4; 1440px sha256-identical to
     `baseline2/landing-1440.png`; no horizontal overflow, no overlap.
-- Status D (Stream D: update ONLY this line): launched.
+- Status D (Stream D: update ONLY this line): done (1 loop) — 6rem sides, 2×2 cards, hero padding, footer left at ≤768px; 1440 RMSE-noise-only vs baseline (0.00041 < run-to-run 0.00051); no overflow.
 - **Stream E — projects refinements** (`sprint/tablet-e-projects`, worktree
   `/tmp/opencode/sprint-e`, serve :4012, owns `projects.html` +
   `assets/css/projects.css` ONLY):
