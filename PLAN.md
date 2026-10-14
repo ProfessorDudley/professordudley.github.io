@@ -3,7 +3,7 @@
 Personal portfolio + game-dev hub for Sam Dicken (ProfessorDudley).
 Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 
-## Current state (dev @ `cefe4f2`, tags v0.2–v0.5)
+## Current state (dev @ `810a12f`, tags v0.2–v0.5)
 
 - **Branches:** `master` = legacy launchpad (do not touch without a publish plan);
   `dev` = all current work, currently at `cefe4f2` on top of `v0.5`;
@@ -62,6 +62,35 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
   gone) + custom-domain decision (CNAME vs github.io URL).
 - **Later:** blog (first standalone post triggers it), sprites as gacha
   content, flyout store, SEO pass.
+
+## Tablet sprint — task board (active, orchestrator + 3 streams)
+
+- **Orchestrator (lead agent):** this file is the source of truth. Validate
+  each stream (build + 1440/768 shots vs `/tmp/opencode/baseline/`);
+  merge A→B→C sequentially with rebuild + screenshots per merge; write the
+  final state update for user sign-off. Loop budget: max 3 fix loops per
+  stream, then escalate to the user.
+- **Stream A — landing + nav icons** (`sprint/tablet-a-landing`,
+  worktree `/tmp/opencode/sprint-a`, serve :4011): `_includes/header.html`
+  (inline SimpleIcons itch.io/GitHub/LinkedIn, keep text labels);
+  `assets/css/index.css` (`#gacha-store` hidden ≤768px, hero/cards tuning);
+  nav CSS region in `theme.css` (desktop icon+text, ≤768px icon-only, all
+  pages). Status: launched.
+- **Stream B — projects** (`sprint/tablet-b-projects`, worktree
+  `/tmp/opencode/sprint-b`, serve :4012): `projects.html` +
+  `assets/css/projects.css` only. Filter above grid; pure-CSS collapsed bar
+  (`Filter … expand \/`) expanding to the desktop-identical menu; footer to
+  page bottom left-aligned with grid. `filter.js` untouched. Status: launched.
+- **Stream C — article + global** (`sprint/tablet-c-article`, worktree
+  `/tmp/opencode/sprint-c`, serve :4013): `theme.css` article/padding
+  regions only (disjoint from A's nav block). Meta rail below title via
+  flex `order` (no markup change if possible); tighter rhythm ≤768px; 6rem
+  bottom padding inside the tablet query. Status: launched.
+- **Shared stream rules:** scoped `@media (max-width: 768px)` queries only,
+  existing queries untouched; zero new JS; no new runtime requests (inline
+  SVG only — dev-time fetches fine); unsigned commits; never touch `master`
+  or `PLAN.md`; verify with `/tmp/opencode/shot.py` (CDP full-page) +
+  `bundle exec jekyll build`; stop after 3 unsuccessful fix loops and report.
 
 ## Conventions (binding)
 
