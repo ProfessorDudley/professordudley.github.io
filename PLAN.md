@@ -119,7 +119,7 @@ Compare: `compare -metric RMSE` / `sha256sum` (ImageMagick available).
     count/card change); 1440px sha256-identical to
     `baseline2/projects-1440.png` (bar/SVG hidden on desktop → inert);
     no overflow.
-- Status E (Stream E: update ONLY this line): launched.
+- Status E (Stream E: update ONLY this line): done 1 loop — E1 two-across fluid grid, E2 menu align-self:stretch (561px = bar width), E3 inline SVG .chev down/up pure-CSS swap, E4 title `Filter`; 1440 sha256-identical to baseline2, 768 no overflow (753/753), filter click Godot 4→2 cards; commit pending.
 - **Shared stream rules:** scoped `@media (max-width: 768px)` queries only,
   existing queries untouched; zero new JS (no `.js` files); no new runtime
   requests; unsigned commits; never touch `master`; draft files in `/tmp`

@@ -139,16 +139,15 @@ body.page > footer { display: none; }
   }
   .filter-bar-title { font-weight: 700; }
   .filter-bar-toggle { color: var(--muted); font-size: 0.9rem; white-space: nowrap; }
+  .filter-bar-toggle .chev-down { transform: rotate(90deg); }
+  .filter-bar-toggle .chev-up { transform: rotate(270deg); display: none; }
   /* Collapsed = one line bar only; checked reveals the full desktop menu. */
   .filter-toggle:not(:checked) ~ #filter-menu { display: none; }
-  .filter-toggle:checked + .filter-bar .filter-bar-toggle { font-size: 0; }
-  .filter-toggle:checked + .filter-bar .filter-bar-toggle::after {
-    content: "collapse /\\";
-    font-size: 0.9rem;
-  }
-  #filter-menu { order: -1; width: auto; max-width: 100%; }
+  .filter-toggle:checked + .filter-bar .chev-down { display: none; }
+  .filter-toggle:checked + .filter-bar .chev-up { display: inline; }
+  #filter-menu { order: -1; width: auto; max-width: 100%; align-self: stretch; }
   .projects-main { order: 0; min-width: 0; width: 100%; max-width: 100%; }
-  .projects-main .card-grid { max-width: 100%; }
+  .projects-main .card-grid { max-width: 100%; grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .projects-wrap .col-footer {
     order: 1;
     align-self: start;
