@@ -3,12 +3,18 @@
 Personal portfolio + game-dev hub for Sam Dicken (ProfessorDudley).
 Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 
-## Current state (dev @ `0c3105a`, tags v0.2–v0.5)
+## Current state (dev @ `cefe4f2`, tags v0.2–v0.5)
 
 - **Branches:** `master` = legacy launchpad (do not touch without a publish plan);
-  `dev` = all current work, currently at `0c3105a` on top of `v0.5`;
+  `dev` = all current work, currently at `cefe4f2` on top of `v0.5`;
   `game-prototype` = open, sprite/game exploration. Only `master` deploys
   (workflow triggers on `master` push).
+- **Padding spike (done, squash-merged):** `main` bottom padding `0 → 6rem`
+  on desktop; landing fills viewport (`body.landing` flex column, `main`
+  `display:grid` + `flex:1`, `.page-grid` stretched, `.main-col`
+  `1fr/auto` hero row; `46vh` hero rule removed). Verified pixel-identical
+  content, page == viewport at tall heights, no new overflow. Baselines +
+  CDP helper live in `/tmp/opencode/` (`baseline/`, `shot.py`).
 - **Branches synced:** after user approval, `dev` was force-pushed over
   `origin/dev`; the two old tablet commits (`1f120d1`, `7a20745`) are gone
   from the remote (recoverable via reflog until GC if ever needed).
@@ -40,10 +46,17 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 
 ## Direction
 
-- **Now (mobile sprint):** begin adapting the website for smaller screens,
-  starting with 768px then down to mobile screen sizes. Rules stand:
-  scoped queries in per-page files, zero JS added, no new requests,
-  desktop byte-identical.
+- **Now (tablet sprint, 768px):** graceful degradation. In-between sizes keep
+  visual identity via fluid layout; structural moves happen only at
+  breakpoints. Locked: nav externals icon+text on desktop, icon-only at
+  ≤768px on all pages (inline SimpleIcons, zero new requests); projects
+  filter above grid, pure-CSS collapsed single line (`Filter … expand \/`)
+  expanding to desktop-identical menu (zero-JS rule stands); article rail
+  below title + tighter rhythm; 6rem bottom padding desktop + tablet.
+- **Acceptance (per page):** 768px full-page shot shows the listed change,
+  no horizontal scroll, no overlap/clipping; 1440px re-shot hash-matches
+  baseline except the approved nav region; zero new JS, no new requests,
+  deferred scripts untouched.
 - **Next:** publish pass to `master` (delete slots already done; strip lab
   via `exclude:` on the merge commit; favicon done; mobile floor; `_apps`
   gone) + custom-domain decision (CNAME vs github.io URL).
