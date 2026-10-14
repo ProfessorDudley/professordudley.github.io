@@ -108,7 +108,7 @@ Compare: `compare -metric RMSE` / `sha256sum`.
     expanded menu matches the specified layout; 1440px identical to
     `baseline3/` (projects/article sha256; landing RMSE-noise-only);
     no overflow collapsed or expanded.
-- Status H (Stream H: update ONLY this line): launched.
+- Status H (Stream H: update ONLY this line): done — H1+H2 shipped, verified (390 collapsed/expanded + 1440 identical), ready to merge.
 - **Stream I — landing phone** (`sprint/phone-i-landing`, worktree
   `/tmp/opencode/sprint-i`, serve :4012, owns `assets/css/index.css` ONLY):
   - I1: hero padding → `2rem 0 3rem` at ≤390px.
