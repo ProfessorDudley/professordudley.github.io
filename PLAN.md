@@ -3,7 +3,7 @@
 Personal portfolio + game-dev hub for Sam Dicken (ProfessorDudley).
 Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 
-## Current state (dev @ `3714f53`, tags v0.2–v0.5)
+## Current state (dev @ `cb4a197`, tags v0.2–v0.5)
 
 - **Branches:** `master` = legacy launchpad (do not touch without a publish plan);
   `dev` = all current work; `game-prototype` = open, sprite/game exploration.
@@ -72,8 +72,8 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 
 ## Direction
 
-- **Now:** landing in-between tiers — DONE, merged, verified, awaiting user
-  sign-off (see In-between section). Landing 1440 baseline refreshed.
+- **Now:** landing tier rework (fixed cards + growing side) — ACTIVE (see
+  Tier rework task board). Landing 1440px WILL change (approved).
 - **Next:** publish pass to `master` (strip lab via `exclude:` on the merge
   commit; favicon done; mobile floor; `_apps` gone) + custom-domain decision
   (CNAME vs github.io URL). Note `_config.yml` already points at
@@ -128,6 +128,47 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
   (baseline refreshed); projects/article 1440 identical; 768/390/360
   unchanged. Zero new JS, no new requests. No escalation needed.
 - Below 1380 deliberately unchanged (user inspects the 1100–1380 band later).
+
+## Tier rework — task board (active, orchestrator + 1 stream)
+
+Source of truth for Stream N. Replaces Stream M's numbers (mechanisms kept:
+band-scoped queries, landing-scoped `:nth-child` hiding). Floor arithmetic
+(pad 192 + page gap + main content + side 326): A 1945, B 1532, C 1440,
+D 1097 — thresholds 1950/1560/1440/1100. Priority order when space is tight:
+card minimums → invert minimum → side-col floor → side growth. In tier C the
+side therefore holds ~326 while cards/closer take priority (side grows in
+A/B/D). Tier C bottom is 1440, not 1380: 1380 cannot fit 280/200/326 minimums
+(needs 1440 — shown sum, not opinion).
+
+- **Orchestrator:** validates per-width table + regressions; merges;
+  refreshes landing 1440 baseline; final update for sign-off. Max 3 loops.
+- **Stream N — tier rework** (`sprint/tiers-n`, worktree
+  `/tmp/opencode/sprint-n`, serve :4011, owns `assets/css/index.css` ONLY —
+  rework Stream M's band block in place):
+  - Tier A (≥1950): page-grid `1319px minmax(326px, 1fr)` (main fixed, side
+    grows: 331 at 1950); card-grid `repeat(3, 326px) 260px`; all cards show.
+  - Tier B (1560–1950): page-grid `auto minmax(326px, 1fr)`; card-grid
+    `repeat(2, 326px) minmax(200px, 260px)` (invert takes available up to
+    260, side takes the rest); hide 3rd featured card (keep M's selector).
+  - Tier C (1440–1560): page-grid `auto minmax(326px, 1fr)`; card-grid
+    `repeat(2, minmax(280px, 326px)) minmax(200px, 260px)`; hide 3rd card.
+    Floor is exact at 1440 — verify no rounding overflow at exactly 1440,
+    else report (do not silently retune).
+  - Tier D (1100–1440): page-grid `auto minmax(326px, 1fr)` +
+    `column-gap: 4rem` (narrowed page gap, last resort per spec; placed
+    AFTER the 1100 stack query so it wins ≥1100); card-grid
+    `minmax(280px, 326px) minmax(200px, 260px)` (1 card + closer); hide 2nd
+    AND 3rd featured cards (keep 1st + invert).
+  - Below 1100: stack rule untouched (unique case, later). 768/390 untouched.
+  - Acceptance per width (1950/1700/1560/1500/1440/1300/1200/1100): card
+    widths within [326]/[326]/[326]/[280–326]/[280–326]/[280–326]/[280–326],
+    counts 3/2/2/2/2/1/1 + invert, closer within [260]/[200–260]/[200–260]/
+    [200–260]/[200–260]/[200–260]/[200–260], side-col ≥326 everywhere, no
+    overflow; projects/article 1440 identical; 768/390/360 unchanged.
+- Status N (Stream N: update ONLY this line): launched.
+- **Shared rules:** zero JS; no new requests; no markup; unsigned; never
+  `master`; drafts in `/tmp`; max 3 loops then STOP and report BLOCKED.
+  Do NOT merge/push.
 
 - Git: never sign (repo-local `commit.gpgsign=false` / `tag.gpgsign=false`;
   user signs). Unsigned commits only. Never push `master` without explicit
