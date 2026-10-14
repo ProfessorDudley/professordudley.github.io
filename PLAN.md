@@ -3,7 +3,7 @@
 Personal portfolio + game-dev hub for Sam Dicken (ProfessorDudley).
 Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 
-## Current state (dev @ `8bffbe1`, tags v0.2–v0.5)
+## Current state (dev @ `c1fa704`, tags v0.2–v0.5)
 
 - **Branches:** `master` = legacy launchpad (do not touch without a publish plan);
   `dev` = all current work; `game-prototype` = open, sprite/game exploration.
@@ -68,9 +68,9 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 
 ## Direction
 
-- **Now:** polish round (nav menu, article image) — DONE, merged, verified,
-  awaiting user sign-off (see Polish section). Article 1440 baseline
-  refreshed post-merge.
+- **Now:** landing in-between tiers (1950/1560/1380) — ACTIVE (see
+  In-between task board). Landing 1440px WILL change (approved); everything
+  else must not move.
 - **Next:** publish pass to `master` (strip lab via `exclude:` on the merge
   commit; favicon done; mobile floor; `_apps` gone) + custom-domain decision
   (CNAME vs github.io URL). Note `_config.yml` already points at
@@ -112,6 +112,45 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 - **Follow-up (nav menu):** removed the doubled button bottom border;
   externals row centered with no container top border; tally margin
   `0.45em` → `0.9em`.
+
+## In-between — task board (active, orchestrator + 1 stream)
+
+Source of truth for Stream M. Measured landing geometry (orchestrator sweep
+`/tmp/opencode/sweep.py`, cards only 120–257px at 1180–2048 — 326 never
+occurs): tier budgets assume 27px card gaps, ~261px closer, 108px page gap,
+192px main padding, 326px side-col floor.
+
+- **Orchestrator:** validates (build + landing shots at
+  2000/1900/1600/1500/1440/1400/1380/1300 measuring card widths, counts,
+  side ≥326, no overflow; regressions 768/390/360 + projects/article 1440);
+  merges; refreshes the landing 1440 baseline post-merge (approved change);
+  final state update for sign-off. Max 3 loops, then escalate.
+- **Stream M — landing tiers** (`sprint/inbetween-m`, worktree
+  `/tmp/opencode/sprint-m`, serve :4011, owns `assets/css/index.css` ONLY):
+  - Tier A (≥1950px): `@media (min-width: 1950px)`: page-grid `1fr 326px`
+    (side fixed, main grows); card-grid keeps base 3+invert tracks so cards
+    grow past 326 (327 at 1950 by measurement math — verify by screenshot).
+  - Tier B (1560–1950): band query `(max-width: 1950px) and (min-width:
+    1560px)`: page-grid `906px minmax(326px, 1fr)` (main fixed, side
+    absorbs); card-grid `repeat(2, 326px) 200px`; hide 3rd featured card.
+  - Tier C (1380–1560): band query `(max-width: 1560px) and (min-width:
+    1380px)`: page-grid `minmax(0, 754px) minmax(326px, 1fr)`; card-grid
+    `repeat(2, minmax(0, 280px)) minmax(140px, 1fr)`; hide 3rd featured card.
+  - Card-count hiding: 3rd featured card via `:nth-child` on the landing
+    grid ONLY (scope every new selector under `.main-col` / `body.landing`
+    so the projects grid never matches — first verify what element
+    `project-card.html` renders and the invert card's position, then pick
+    the selector; cite it in the report).
+  - Below 1380: deliberately unchanged (today's squeeze → 1100 stack; user
+    inspects later). Existing 1100/768/390 queries untouched; band queries
+    must not match ≤1100 (min-width bounds) — prove 768/390 shots unchanged.
+  - Acceptance: card widths ≈326 (B), ≈280 (C), ≥327 growing (A); counts
+    3/2/2 + invert; side-col ≥326 everywhere; no overflow any tier;
+    projects/article 1440 identical; 768/390/360 unchanged.
+- Status M (Stream M: update ONLY this line): launched.
+- **Shared rules:** zero JS (no `.js` files); no new requests; no new markup
+  (pure CSS incl. card hiding); unsigned commits; never `master`; drafts in
+  `/tmp`; max 3 loops then STOP and report BLOCKED. Do NOT merge/push.
 
 - Git: never sign (repo-local `commit.gpgsign=false` / `tag.gpgsign=false`;
   user signs). Unsigned commits only. Never push `master` without explicit
