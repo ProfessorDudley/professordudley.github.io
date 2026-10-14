@@ -3,7 +3,7 @@
 Personal portfolio + game-dev hub for Sam Dicken (ProfessorDudley).
 Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 
-## Current state (dev @ `4d570bf` plus footer fix, tags v0.2–v0.5)
+## Current state (dev @ `4379228`, tags v0.2–v0.5)
 
 - **Branches:** `master` = legacy launchpad (do not touch without a publish plan);
   `dev` = all current work; `game-prototype` = open, sprite/game exploration.
@@ -68,16 +68,15 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 
 ## Direction
 
-- **Now:** phone sprint at 390px — DONE, merged, verified, awaiting user
-  sign-off (see Phone sprint section). 360px checked overflow-free.
+- **Now:** nav menu polish (390px) + article image spacing (all sizes) —
+  ACTIVE (see Polish task board). Desktop moves ONLY for the article image
+  (explicitly approved); nav work is ≤390px-scoped.
 - **Next:** publish pass to `master` (strip lab via `exclude:` on the merge
   commit; favicon done; mobile floor; `_apps` gone) + custom-domain decision
   (CNAME vs github.io URL). Note `_config.yml` already points at
   `https://samdicken.me`.
 - **Later:** blog (first standalone post triggers it), sprites as gacha
   content, flyout store, SEO pass.
-
-## Phone sprint — done (390px, merged to `dev`, awaiting user sign-off)
 
 ## Phone sprint — done (390px, merged to `dev`, awaiting user sign-off)
 
@@ -96,6 +95,54 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
   768px `body.landing main` rule by specificity, leaving landing at 6rem
   sides (8px overflow at 360). Fixed with a qualified
   `body.landing main { padding: 2rem 2rem 4rem; }` in the 390 block.
+
+## Polish — task board (active, orchestrator + 2 streams)
+
+Source of truth for Streams K and L. 1440 baselines: `/tmp/opencode/baseline3/`
+(note: Stream L changes article desktop pixels by approval — refresh the
+article 1440 baseline after merging L). Helper: `/tmp/opencode/shot.py`.
+
+- **Orchestrator:** validates each stream (build + 1440/390 shots);
+  merges K→L with rebuild + screenshots per merge; refreshes the article
+  1440 baseline post-merge; final state update for sign-off. Max 3 loops
+  per stream, then escalate.
+- **Stream K — nav menu polish** (`sprint/polish-k-nav`, worktree
+  `/tmp/opencode/sprint-k`, serve :4011, owns the nav 390px block in
+  `assets/css/theme.css` ONLY — no markup, no other regions):
+  - K1: `header .demo-nav.strip` left/right padding → 0 at ≤390px.
+  - K2: `.nav-menu-btn` keeps a bottom border in both states at ≤390px
+    (separates button row from the opened panel).
+  - K3: remove the top borders between the stacked internal nav links
+    (the `li + li` separators H added) at ≤390px.
+  - K4: tally marker (`a::after`) back to inline-with-text at ≤390px
+    (override the absolute corner-dock from the desktop strip rules).
+  - K5: remove the left borders between external icon links at ≤390px.
+  - K6: KEEP the top border on the externals `ul` container.
+  - K7: KEEP the expanded menu's bottom border (verify visible in shots).
+  - Acceptance: 390px collapsed (button row, no wrap) + expanded shots
+    show K1–K7; 1440px identical to `baseline3/` (projects/article sha256,
+    landing noise-only); no overflow either state.
+- Status K (Stream K: update ONLY this line): launched.
+- **Stream L — article image spacing** (`sprint/polish-l-article`, worktree
+  `/tmp/opencode/sprint-l`, serve :4012, owns the `.detail-thumb` rules in
+  `assets/css/theme.css` ONLY — base rule + Stream C's 768px block; no other
+  regions, no markup):
+  - Background: `.detail` is a grid (gap 1.25rem desktop / 0.75rem ≤768px)
+    and text children carry bottom margins (UA 1em desktop / 0.5rem ≤768px),
+    but `.detail-thumb` has none — so image below-spacing trails text
+    spacing at every width.
+  - L1: base `.detail-thumb` gets `margin-bottom: 1em` (matches desktop text
+    bottom margins; grid gap adds equally to both, so totals equalize).
+    APPROVED desktop-visible change.
+  - L2: in the 768px block, `.detail-thumb` gets `margin-bottom: 0.5rem`
+    (matches the 768px text bottom margins from Stream C).
+  - Acceptance: article 390px + 1440px shots show image below-spacing equal
+    to text below-spacing; other pages' 1440px unchanged (selector matches
+    article images only — prove via projects/landing hashes); no overflow.
+- Status L (Stream L: update ONLY this line): launched.
+- **Shared rules:** zero JS (no `.js` files); no new requests; unsigned
+  commits; never `master`; drafts in `/tmp`; each stream edits ONLY its own
+  Status line; max 3 loops then STOP and report BLOCKED. Do NOT merge/push.
 
 - Git: never sign (repo-local `commit.gpgsign=false` / `tag.gpgsign=false`;
   user signs). Unsigned commits only. Never push `master` without explicit
