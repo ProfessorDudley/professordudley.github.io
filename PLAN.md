@@ -133,7 +133,7 @@ Compare: `compare -metric RMSE` / `sha256sum`.
   - Acceptance: 390px projects shows single column, full card content, no
     overflow; filter bar + expanded menu still work (CDP toggle test);
     1440px sha256-identical to `baseline3/projects-1440.png`.
-- Status J (Stream J: update ONLY this line): launched.
+- Status J (Stream J: update ONLY this line): done — 390 single fluid column + 480px floor, no overflow (scrollW 375<390), filter toggle+button CDP-verified (4→2), 1440 sha256-identical.
 - **Shared stream rules:** `@media (max-width: 390px)` queries go AFTER the
   768px blocks (cascade); existing queries untouched; zero new JS (no `.js`
   files); no new runtime requests (inline SVG only); unsigned commits; never
