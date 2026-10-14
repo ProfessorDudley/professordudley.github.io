@@ -97,11 +97,13 @@ body.landing .col-footer { margin-top: auto; }
 }
 
 /* Tier B (1560–1950): 2 fixed 326 cards + closer (takes available up to
-   260); side takes the rest. */
+   260); side takes the rest. fit-content caps main at content-max so real
+   leftover reaches the 1fr side-col (plain auto hogged it); closer fr is
+   inherently capped by the main cap. */
 @media (max-width: 1950px) and (min-width: 1560px) {
-  body.landing .page-grid { grid-template-columns: auto minmax(326px, 1fr); }
+  body.landing .page-grid { grid-template-columns: fit-content(966px) minmax(326px, 1fr); }
   body.landing .main-col .card-grid {
-    grid-template-columns: repeat(2, 326px) minmax(200px, 260px);
+    grid-template-columns: repeat(2, 326px) minmax(200px, 1fr);
   }
   body.landing .main-col .card-grid > .card:nth-child(3) { display: none; }
 }

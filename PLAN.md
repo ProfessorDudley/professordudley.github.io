@@ -58,6 +58,10 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
   earlier block sets (leaks bitten twice: 1950, 1440). The 768/390 rules
   and the projects grid must never match — scope under
   `body.landing`/`.main-col`, verify 768/390 shots on every change.
+- **`rem` is 16px-based, not 18px.** `6rem` = 96px, `1.5rem` = 24px
+  (`--fs: 18px` applies to `body` font-size only). Floor sums that assumed
+  27px card gaps were 3px/gap pessimistic — all tier thresholds still hold
+  with room to spare.
 - **Screenshot tooling** (`/tmp/opencode/shot.py` full-page via Brave CDP,
   `measure.py` computed styles) lives outside the repo and may vanish with
   `/tmp` — regenerable, not precious.
@@ -147,6 +151,10 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
   Boundary-leak pattern re-appeared twice (D→C at 1440): later blocks must
   re-assert every property the earlier block sets. No escalation needed.
 - Below 1100: stack rule untouched (unique case, later).
+- **Follow-up (tier B):** `auto` main track hogged leftover (108px dead
+  space after the closer at 1700) while side sat at 326. Reworked to
+  `fit-content(966px) minmax(326px, 1fr)` + uncapped closer fr — side now
+  grows (331–631 across the band), cards stay 326. Measured, no overflow.
 
 - Git: never sign (repo-local `commit.gpgsign=false` / `tag.gpgsign=false`;
   user signs). Unsigned commits only. Never push `master` without explicit
