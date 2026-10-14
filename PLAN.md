@@ -109,6 +109,9 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
   article +18px by approval (baseline refreshed, hash matches stream
   output). 390px collapsed + expanded hold, no overflow. Zero new JS, no
   new requests. No escalation needed.
+- **Follow-up (nav menu):** removed the doubled button bottom border;
+  externals row centered with no container top border; tally margin
+  `0.45em` → `0.9em`.
 
 - Git: never sign (repo-local `commit.gpgsign=false` / `tag.gpgsign=false`;
   user signs). Unsigned commits only. Never push `master` without explicit

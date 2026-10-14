@@ -457,8 +457,6 @@ header .strip .segs.right a { justify-content: center; }
     cursor: pointer;
     padding: 1rem;
     font-weight: 700;
-    /* K2: bottom border in both states (button row ↔ opened panel). */
-    border-bottom: var(--card-border-w) solid var(--border);
   }
   .menu-icon {
     width: 1.2em;
@@ -499,13 +497,13 @@ header .strip .segs.right a { justify-content: center; }
     position: static;
     top: auto;
     right: auto;
-    margin-left: 0.45em;
+    margin-left: 0.9em;
   }
-  /* External icons last, one row right-aligned. */
+  /* External icons last, one centered row, no container top border. */
   .nav-toggle:checked ~ .segs.right {
     display: flex;
-    justify-content: flex-end;
-    border-top: var(--card-border-w) solid var(--border);
+    justify-content: center;
+    border-top: 0;
   }
   .nav-toggle:checked ~ .segs.right li + li { border-left: 0; }
 }
