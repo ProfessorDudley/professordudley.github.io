@@ -3,7 +3,7 @@
 Personal portfolio + game-dev hub for Sam Dicken (ProfessorDudley).
 Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 
-## Current state (dev @ `f05ef4c`, tags v0.2–v0.5)
+## Current state (dev @ `d61ba27`, tags v0.2–v0.5)
 
 - **Branches:** `master` = legacy launchpad (do not touch without a publish plan);
   `dev` = all current work, currently at `cefe4f2` on top of `v0.5`;
@@ -46,9 +46,8 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 
 ## Direction
 
-- **Now (tablet refinements, 768px):** ACTIVE — polish the 768px layouts
-  (see Tablet refinements task board). Desktop must not move this round
-  (fresh 1440 baselines in `/tmp/opencode/baseline2/`).
+- **Now (tablet refinements, 768px):** DONE — merged, verified, awaiting user
+  sign-off (see Tablet refinements section).
 - **Acceptance (per page):** 768px full-page shot shows the listed change,
   no horizontal scroll, no overlap/clipping; 1440px re-shot hash-matches
   baseline except the approved nav region; zero new JS, no new requests,
@@ -78,54 +77,20 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
   baselines exactly. 768px: all acceptance items hold, no overflow/overlap.
   Zero new JS, no new requests. No stream needed escalation (all ≤2 loops).
 
-## Tablet refinements — task board (active, orchestrator + 2 streams)
+## Tablet refinements — done (merged to `dev`, awaiting user sign-off)
 
-Source of truth for Streams D and E — read this section before starting.
-1440 baselines: `/tmp/opencode/baseline2/` (desktop must stay identical).
-Screenshot helper: `/tmp/opencode/shot.py` (CDP full-page:
-`shot.py URL OUTFILE [--width W --height H --port DBGPORT]`).
-Compare: `compare -metric RMSE` / `sha256sum` (ImageMagick available).
-
-- **Orchestrator (lead agent):** validates each stream (build + 1440/768
-  shots vs `baseline2/`); merges D→E with rebuild + screenshots per merge;
-  writes the final state update for user sign-off. Loop budget: max 3 fix
-  loops per stream, then escalate to the user.
-- **Stream D — landing refinements** (`sprint/tablet-d-landing`, worktree
-  `/tmp/opencode/sprint-d`, serve :4011, owns `assets/css/index.css` ONLY):
-  - D1: restore 6rem side padding on landing `main` at ≤768px (Stream A set
-    `1.5rem 1.25rem 3rem`; bring sides back to 6rem, keep sane top/bottom).
-  - D2: landing card grid 2×2 at ≤768px (3 featured cards + closer; replace
-    the single-column rule; cards may shrink below 326px — fluid columns).
-  - D3: breathing room around the hero (gap/padding above/below within the
-    768px block).
-  - D4: landing footer (`.col-footer`) left-aligned at ≤768px (landing scope
-    only — do not touch the global rule in `theme.css`).
-  - Acceptance: 768px shot shows D1–D4; 1440px sha256-identical to
-    `baseline2/landing-1440.png`; no horizontal overflow, no overlap.
-- Status D (Stream D: update ONLY this line): done (1 loop) — 6rem sides, 2×2 cards, hero padding, footer left at ≤768px; 1440 RMSE-noise-only vs baseline (0.00041 < run-to-run 0.00051); no overflow.
-- **Stream E — projects refinements** (`sprint/tablet-e-projects`, worktree
-  `/tmp/opencode/sprint-e`, serve :4012, owns `projects.html` +
-  `assets/css/projects.css` ONLY):
-  - E1: project card grid two-across at ≤768px (override the fixed 326px
-    tracks within the tablet query; fluid `minmax(0,1fr)` columns).
-  - E2: expanded `#filter-menu` spans the container width (aligns with the
-    filter bar and the grid; currently narrower).
-  - E3: replace the `expand \/` / `collapse /\` text toggles with inline SVG
-    chevrons in the same style as the existing `.chev` (down when collapsed,
-    up when expanded; pure-CSS swap, no JS). Inline SVG only.
-  - E4: filter bar title `Filter …` → `Filter` (drop the ellipsis).
-  - Acceptance: 768px collapsed + expanded shots show E1–E4; filtering still
-    works after the markup change (CDP click-test a filter button, cite
-    count/card change); 1440px sha256-identical to
-    `baseline2/projects-1440.png` (bar/SVG hidden on desktop → inert);
-    no overflow.
-- Status E (Stream E: update ONLY this line): done 1 loop — E1 two-across fluid grid, E2 menu align-self:stretch (561px = bar width), E3 inline SVG .chev down/up pure-CSS swap, E4 title `Filter`; 1440 sha256-identical to baseline2, 768 no overflow (753/753), filter click Godot 4→2 cards; commit pending.
-- **Shared stream rules:** scoped `@media (max-width: 768px)` queries only,
-  existing queries untouched; zero new JS (no `.js` files); no new runtime
-  requests; unsigned commits; never touch `master`; draft files in `/tmp`
-  never the repo; each stream edits ONLY its own Status line in this file;
-  max 3 build-verify-fix loops then STOP and report BLOCKED with evidence.
-  Do NOT merge or push stream branches — orchestrator merges.
+- **Stream D — landing** (`505c0cb`, 1 loop): 6rem sides restored
+  (`2rem 6rem 4rem`), 2×2 cards, hero padding/gap, footer left; `index.css`
+  768 block only.
+- **Stream E — projects** (`1789057`, 1 loop): two-across grid, full-width
+  expanded menu (`align-self:stretch`), SVG chevron toggles (rotated `.chev`,
+  down/up pure-CSS swap), bar title `Filter`; filtering re-proven via CDP.
+- **Orchestrator verification:** merged D→E with rebuild + screenshots per
+  merge. Final 1440px vs `baseline2/`: projects sha256-identical, landing
+  renderer-noise only (≤0.00095, worst pixel 20/255 in empty gutter —
+  invisible; D's CSS is a single ≤768px block, provably inert at 1440).
+  768px: all eight items (D1–D4, E1–E4) hold on merged shots, no
+  overflow/overlap. Zero new JS, no new requests. No escalation needed.
 
 - Git: never sign (repo-local `commit.gpgsign=false` / `tag.gpgsign=false`;
   user signs). Unsigned commits only. Never push `master` without explicit
