@@ -199,6 +199,22 @@ body:has(.article-wrap) > footer { display: none; }
   .article-side { width: auto; }
 }
 
+@media (max-width: 768px) {
+  main { padding-bottom: 6rem; }
+  .article-head { margin-bottom: 1rem; }
+  .article-wrap { flex-direction: column; gap: 1rem; }
+  .article-side { order: -1; }
+  .article-wrap .detail { gap: 0.75rem; }
+  .article-wrap .detail p,
+  .article-wrap .detail h2,
+  .article-wrap .detail h3 { margin-top: 0; margin-bottom: 0.5rem; }
+  .meta-box { padding: 1rem; }
+  .meta-box h2 { margin: 0 0 0.5rem; }
+  .meta-box dl { gap: 0.5rem; }
+  .meta-box .detail-links { margin-top: 0.5rem; flex-wrap: wrap; }
+  .detail > footer { padding: 0.5rem 0; }
+}
+
 .card.invert {
   background: var(--accent);
   border-color: var(--accent);
