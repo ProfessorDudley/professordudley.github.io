@@ -3,36 +3,55 @@
 Personal portfolio + game-dev hub for Sam Dicken (ProfessorDudley).
 Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 
-## Current state (dev @ `b3d3cdf`, tags v0.2–v0.5)
+## Current state (dev @ `199a394`, tags v0.2–v0.5)
 
 - **Branches:** `master` = legacy launchpad (do not touch without a publish plan);
-  `dev` = all current work, currently at `cefe4f2` on top of `v0.5`;
-  `game-prototype` = open, sprite/game exploration. Only `master` deploys
-  (workflow triggers on `master` push).
-- **Padding spike (done, squash-merged):** `main` bottom padding `0 → 6rem`
-  on desktop; landing fills viewport (`body.landing` flex column, `main`
-  `display:grid` + `flex:1`, `.page-grid` stretched, `.main-col`
-  `1fr/auto` hero row; `46vh` hero rule removed). Verified pixel-identical
-  content, page == viewport at tall heights, no new overflow. Baselines +
-  CDP helper live in `/tmp/opencode/` (`baseline/`, `shot.py`).
-- **Branches synced:** after user approval, `dev` was force-pushed over
-  `origin/dev`; the two old tablet commits (`1f120d1`, `7a20745`) are gone
-  from the remote (recoverable via reflog until GC if ever needed).
+  `dev` = all current work; `game-prototype` = open, sprite/game exploration.
+  Only `master` deploys (workflow triggers on `master` push).
 - **Pages:** landing `index.html` (hero, featured cards, Store), `/projects/`
   (collection grid + filter sidebar), project articles (`_layouts/article.html`
   with meta rail), `debug.html` (design lab, never ships).
 - **Collections/content:** `_projects/` (4 real: Tiny Moves, Waiter!,
-  Chaos Daycare, Count Crumble); `_apps/` removed; blog removed from nav
-  (no `_posts` yet — project writeups double as the writing outlet).
+  Chaos Daycare, Count Crumble); blog removed from nav (no `_posts` yet —
+  project writeups double as the writing outlet).
 - **Theme system:** `assets/css/theme.css` (globals) + per-page
   `index.css` / `projects.css` + debug-only `lab.css`. Five accents
   (Yellow/Red/Green/Blue/Purple) cycled from the ticker, persisted +
   pre-painted; borders derive from accent. `game.js` owns wallet, ownership,
   store, visit awards. `filter.js` owns 3-state tech/status/source filters
   + sort. See `docs/` for design notes and the project template.
+- **Portrait tablet (768px) — complete:** store hidden on landing; nav
+  externals icon+text on desktop, icon-only at ≤768px (inline SimpleIcons);
+  landing 2×2 cards with full-bleed images (same bleed as projects), roomy
+  hero, 6rem sides, left footer; projects filter collapses to a one-line
+  `Filter` bar (pure-CSS checkbox toggle, zero JS) above a two-across grid,
+  footer bottom-left; article rail below title with tight rhythm; 6rem main
+  bottom padding + unified `24/0/0/0` left footers everywhere at 768px.
+  Landing fills the viewport (flex column + `1fr` hero row, no `46vh`).
 - **Tools (dev-only, build-excluded):** `tools/aseprite/` (LLM→Aseprite
   pipeline, proven pixel-perfect), `tools/sprite-studio/` (local Ollama app
   on :8571, engine = external `~/tools/aseprite-mcp` clone).
+
+## Remember why
+
+- **No 768px `.card img` override on landing.** The desktop full-bleed
+  (`width:calc(100% + 3rem)` + negative margins, `theme.css`) must apply at
+  all sizes or landing cards inset while projects cards bleed. Do not re-add
+  a landing-only image sizing rule without checking both pages.
+- **Filter collapse is a checkbox hack on purpose.** Zero-JS rule stands;
+  `filter.js` queries `.filter-btn`/`#filter-clear`, so the toggle must only
+  hide/show via CSS and never move those nodes.
+- **Landing 1440px screenshots never hash-match; projects/article do.**
+  Brave full-page captures have renderer noise (AA/dither, worst single
+  pixel ~22/255 in empty areas). Compare landing with RMSE + locate the
+  bbox; investigate only if diffs are structural. Current 1440 reference:
+  `/tmp/opencode/baseline2/`.
+- **Nav icons carry a strut fix** (`.soc` margin-block compensation) so the
+  1.3em glyphs don't grow the desktop nav bar. Touching nav icon sizing
+  requires re-verifying desktop below-nav pixels.
+- **Screenshot tooling** (`/tmp/opencode/shot.py` full-page via Brave CDP,
+  `measure.py` computed styles) lives outside the repo and may vanish with
+  `/tmp` — regenerable, not precious.
 
 ## Goals
 
@@ -46,68 +65,14 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 
 ## Direction
 
-- **Now (landing card-bleed + hero room, 768px):** DONE — merged, verified,
-  awaiting user sign-off (see Landing fixes section).
-- **Acceptance (per page):** 768px full-page shot shows the listed change,
-  no horizontal scroll, no overlap/clipping; 1440px re-shot hash-matches
-  baseline except the approved nav region; zero new JS, no new requests,
-  deferred scripts untouched.
-- **Next:** publish pass to `master` (delete slots already done; strip lab
-  via `exclude:` on the merge commit; favicon done; mobile floor; `_apps`
-  gone) + custom-domain decision (CNAME vs github.io URL).
+- **Now:** portrait tablet signed off. Next structural step is phone sizes
+  (fluid first, breakpoints only for structural moves — same playbook).
+- **Next:** publish pass to `master` (strip lab via `exclude:` on the merge
+  commit; favicon done; mobile floor; `_apps` gone) + custom-domain decision
+  (CNAME vs github.io URL). Note `_config.yml` already points at
+  `https://samdicken.me`.
 - **Later:** blog (first standalone post triggers it), sprites as gacha
   content, flyout store, SEO pass.
-
-## Tablet sprint — done (768px, merged to `dev`, awaiting user sign-off)
-
-- **Stream A — landing + nav icons** (`b7b416a`, 2 loops): inline SimpleIcons
-  in `header.html` (labels kept); `theme.css` nav block (desktop icon+text,
-  ≤768px icon-only all pages; strut fix holds desktop below-nav identical);
-  `index.css` tablet block (store hidden, single column, clamped hero).
-- **Stream B — projects** (`47e72e0`, 1 loop): pure-CSS checkbox collapse
-  (`Filter … expand \/` → desktop-identical menu, live filtering works);
-  footer bottom-left; `projects.html` +2, `projects.css` +59, `filter.js`
-  untouched.
-- **Stream C — article + global** (`2ec5811`, 1 loop): rail below title via
-  `order:-1`, tightened rhythm, 6rem bottom padding in tablet query;
-  `theme.css` +16, `article.html` untouched.
-- **Orchestrator verification:** merged A→B→C with rebuild + screenshots per
-  merge. Final 1440px below-nav vs baselines: projects 0, article 0, landing
-  renderer-noise only (≤0.0002, single-channel ≤4/255); page heights match
-  baselines exactly. 768px: all acceptance items hold, no overflow/overlap.
-  Zero new JS, no new requests. No stream needed escalation (all ≤2 loops).
-
-## Tablet refinements — done (merged to `dev`, awaiting user sign-off)
-
-- **Stream D — landing** (`505c0cb`, 1 loop): 6rem sides restored
-  (`2rem 6rem 4rem`), 2×2 cards, hero padding/gap, footer left; `index.css`
-  768 block only.
-- **Stream E — projects** (`1789057`, 1 loop): two-across grid, full-width
-  expanded menu (`align-self:stretch`), SVG chevron toggles (rotated `.chev`,
-  down/up pure-CSS swap), bar title `Filter`; filtering re-proven via CDP.
-- **Orchestrator verification:** merged D→E with rebuild + screenshots per
-  merge. Final 1440px vs `baseline2/`: projects sha256-identical, landing
-  renderer-noise only (≤0.00095, worst pixel 20/255 in empty gutter —
-  invisible; D's CSS is a single ≤768px block, provably inert at 1440).
-  768px: all eight items (D1–D4, E1–E4) hold on merged shots, no
-  overflow/overlap. Zero new JS, no new requests. No escalation needed.
-
-## Landing fixes — done (merged to `dev`, awaiting user sign-off)
-
-- **Stream F** (`2586af2`, 1 loop): removed the 768px `.card img` override
-  (landing inherits desktop full-bleed, matching projects); hero padding
-  `1.5rem 0 2rem` → `3rem 0 4rem` (tablet-only); follow-ups → `4rem 0 6rem`,
-  then `5rem 0 6rem`.
-- **Footer unification (768px):** measured landing `32/0/0/16`, projects
-  `24/0/0/0`, article `8/0/8/0` — unified all to projects (`24/0/0/0`,
-  left-aligned) via the landing `.col-footer` and article `.detail > footer`
-  tablet rules. Desktop verified unaffected (below-nav noise-only).
-- **Orchestrator verification:** merged with rebuild + screenshots. Final
-  1440px vs `baseline2/`: renderer-noise only (0.001, worst pixel 22/255 in
-  the same empty-gutter spot as last round — invisible; F's CSS is two
-  ≤768px rules, provably inert at 1440). 768px merged shot: full-bleed
-  images, roomier hero, 2×2 intact, footer left, no overflow. Zero new JS,
-  no new requests. No escalation needed.
 
 - Git: never sign (repo-local `commit.gpgsign=false` / `tag.gpgsign=false`;
   user signs). Unsigned commits only. Never push `master` without explicit
