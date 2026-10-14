@@ -131,6 +131,8 @@ body.landing .col-footer { margin-top: auto; }
 
 /* phone (Stream I): 390px single-column cards, compact hero */
 @media (max-width: 390px) {
+  /* qualified to beat the 768px body.landing main rule (0,1,2) */
+  body.landing main { padding: 2rem 2rem 4rem; }
   .hero { padding: 2rem 0 3rem; }
   .card-grid { grid-template-columns: minmax(0, 1fr); }
   .card { min-height: 480px; }
