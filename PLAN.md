@@ -122,7 +122,7 @@ article 1440 baseline after merging L). Helper: `/tmp/opencode/shot.py`.
   - Acceptance: 390px collapsed (button row, no wrap) + expanded shots
     show K1–K7; 1440px identical to `baseline3/` (projects/article sha256,
     landing noise-only); no overflow either state.
-- Status K (Stream K: update ONLY this line): launched.
+- Status K (Stream K: update ONLY this line): done — K1–K7 in 390 block, 1440 projects/article sha256-identical, landing noise-only (RMSE 0.10), 390 shots verified, no overflow; commit on `sprint/polish-k-nav`, unmerged.
 - **Stream L — article image spacing** (`sprint/polish-l-article`, worktree
   `/tmp/opencode/sprint-l`, serve :4012, owns the `.detail-thumb` rules in
   `assets/css/theme.css` ONLY — base rule + Stream C's 768px block; no other
