@@ -111,7 +111,7 @@ Projects page never got that override, hence the discrepancy.
     grid centering and must not change.
   - Acceptance: 768px shot shows full-bleed card images + roomier hero;
     1440px sha256-identical to `baseline2/landing-1440.png`; no overflow.
-- Status F (Stream F: update ONLY this line): launched.
+- Status F (Stream F: update ONLY this line): done, 1 loop — F1/F2 in index.css only; 768px verified (bleed + hero + no overflow); 1440px NOT sha256-identical (renderer glyph noise, clean tree mismatches too — see report).
 - **Shared rules:** `@media (max-width: 768px)` only; zero JS; no new
   requests; unsigned commits; never `master`; max 3 loops then STOP and
   report BLOCKED. Do NOT merge/push — orchestrator merges.
