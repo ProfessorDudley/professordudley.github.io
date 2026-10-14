@@ -96,7 +96,12 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 
 - **Stream F** (`2586af2`, 1 loop): removed the 768px `.card img` override
   (landing inherits desktop full-bleed, matching projects); hero padding
-  `1.5rem 0 2rem` → `3rem 0 4rem` (tablet-only); follow-up → `4rem 0 6rem`.
+  `1.5rem 0 2rem` → `3rem 0 4rem` (tablet-only); follow-ups → `4rem 0 6rem`,
+  then `5rem 0 6rem`.
+- **Footer unification (768px):** measured landing `32/0/0/16`, projects
+  `24/0/0/0`, article `8/0/8/0` — unified all to projects (`24/0/0/0`,
+  left-aligned) via the landing `.col-footer` and article `.detail > footer`
+  tablet rules. Desktop verified unaffected (below-nav noise-only).
 - **Orchestrator verification:** merged with rebuild + screenshots. Final
   1440px vs `baseline2/`: renderer-noise only (0.001, worst pixel 22/255 in
   the same empty-gutter spot as last round — invisible; F's CSS is two
