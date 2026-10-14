@@ -121,7 +121,7 @@ Compare: `compare -metric RMSE` / `sha256sum`.
     (`min-height:~240px`; min-height so copy never clips).
   - Acceptance: 390px landing shows I1–I4, no clipped card content, no
     overflow; 1440px identical to `baseline3/landing-1440.png` (noise-only).
-- Status I (Stream I: update ONLY this line): launched.
+- Status I (Stream I: update ONLY this line): done — 390 block in index.css (hero 2rem 0 3rem, fluid 1fr grid, 480px cards, 240px invert); 1440 zero-px-diff vs baseline3, 390 single-column no-clip; shot /tmp/i-landing-390.png + /tmp/i-landing-1440.png.
 - **Stream J — projects phone** (`sprint/phone-j-projects`, worktree
   `/tmp/opencode/sprint-j`, serve :4013, owns `assets/css/projects.css`
   ONLY — `projects.html` and `filter.js` untouched):
