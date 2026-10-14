@@ -128,3 +128,11 @@ body.landing .col-footer { margin-top: auto; }
   .card { min-height: 0; min-width: 0; }
   body.landing .col-footer { text-align: left; padding: 1.5rem 0 0; }
 }
+
+/* phone (Stream I): 390px single-column cards, compact hero */
+@media (max-width: 390px) {
+  .hero { padding: 2rem 0 3rem; }
+  .card-grid { grid-template-columns: minmax(0, 1fr); }
+  .card { min-height: 480px; }
+  .card.invert { min-height: 240px; }
+}
