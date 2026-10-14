@@ -164,6 +164,22 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
   `clamp(5.25rem, 0.6rem + 6.9vw, 7rem)` (85.5/92.4/99.3/109px): one line,
   text inside box, no page overflow at 1100/1200/1300/1440. (Note: h1 rect
   always equals main-col width — measure text via scrollWidth, not rect.)
+- **Follow-up (C→D border rework):** user rejected band D's 2rem padding
+  and the 1440 transition. Store min-content measured 291px (1fr probe),
+  so the old 326 side floor was a planning choice, not a minimum. New
+  bands: D (1100–1380) and C (1380–1560) both use base 6rem padding,
+  4rem page gap, side floor 300 (291 + 9 buffer); D main =
+  `fit-content(610px)` (326+260+24 — bare auto hogs the leftover again,
+  same lesson as B) so the side grows 300→498 while cards hold 326/260.
+  C floor 1379 = 15+192+64+300+808, so 1380 fits 2×280+200 with margin.
+  Hero override now spans D+C (`clamp(5rem, 1.5rem + 5.6vw, 7rem)`,
+  continuous into the 112px base at 1560). B re-asserts `column-gap:
+  6rem` — C sets 4rem and both bands match at exactly 1560 (would have
+  overflowed by 3px). 1300 was impossible (needs 1376+ even with 4rem
+  main padding + no gap); 1380 is the true floor with 300 side.
+  Verified: 1100/1180/1300/1379/1380/1440/1500/1560/1700/1950 table +
+  hero one-line + no overflow all pass; projects/article 1440
+  identical; 768/390/360 unchanged. Landing 1440 baseline refreshed.
 - **Floor sums must subtract the scrollbar:** body = viewport − ~15px.
   Media queries match the full width (min-1100 true at exactly 1100) but
   content must fit the smaller body — that's what bit band D.

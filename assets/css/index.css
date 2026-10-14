@@ -51,51 +51,62 @@ body.landing .col-footer { margin-top: auto; }
   }
 }
 
-/* landing tiers (Stream N): fixed-card bands. Every selector is scoped
-   under body.landing (.main-col for the card grid) so the projects grid
-   never matches. Ordered D → C → B → A so shared boundaries (1440, 1560,
-   1950) resolve upward. Min-width bounds keep all four clear of ≤1100;
-   the 1100 stack query above and the 768/390 rules below are untouched. */
+/* landing tiers (Stream N + border rework): fixed-card bands. Every
+   selector is scoped under body.landing (.main-col for the card grid) so
+   the projects grid never matches. Ordered D → C → B → A so shared
+   boundaries (1380, 1560, 1950) resolve upward. Min-width bounds keep all
+   four clear of ≤1100; the 1100 stack query above and the 768/390 rules
+   below are untouched.
 
-/* Tier D (1100–1440): 1 card + closer; page gap narrowed to 4rem as the
-   last resort so 280/200/326 minimums fit above the 1100 stack. This
-   block sits AFTER the 1100 stack query so it wins at the shared 1100
-   boundary (higher specificity: 0,2,1 beats 0,1,0). Grid order
-   (index.html): 3 × article.card then the invert closer, so hiding
-   :nth-child(2) and (3) keeps the 1st featured card + invert. */
-@media (max-width: 1440px) and (min-width: 1100px) {
-  /* H1 global sides fix: the base 6rem sides leave only an 893px content
-     column against a 1085px body (viewport minus scrollbar), overflowing by
-     1px. Qualified to beat base (0,0,1); bottom stays 6rem like desktop. */
-  body.landing main { padding: 2rem 2rem 6rem; }
+   Band D+C share one look: base 6rem main padding, 4rem page gap
+   (narrowed as the approved last resort), side floor 300px (the store's
+   measured min-content 291px + 9px buffer — the old 326 floor was a
+   planning choice, not a content minimum). Main is content-sized, so the
+   side takes all leftover growth. Hero override spans both bands (below). */
+
+/* Tier D (1100–1380): 1 card + closer. Main is content-capped at 610px
+   (326 + 260 + 24) — same fit-content technique as tier B, because a bare
+   auto track hogs the leftover — so the side-col absorbs the growth
+   (300 → ~498 across the band); below ~1181 it compresses to fit. Floor
+   check at 1100: 15 (scrollbar) + 192 (6rem padding) + 64 (4rem gap) +
+   300 (side) + 504 (280 + 200 + 24) = 1075. This block sits AFTER the
+   1100 stack query so it wins the shared 1100 boundary (higher
+   specificity: 0,2,1 beats 0,1,0). Hiding :nth-child(2) and (3) keeps the
+   1st featured card + invert closer. */
+@media (max-width: 1380px) and (min-width: 1100px) {
   body.landing .page-grid {
-    grid-template-columns: auto minmax(326px, 1fr);
+    grid-template-columns: fit-content(610px) minmax(300px, 1fr);
     column-gap: 4rem;
   }
   body.landing .main-col .card-grid {
     grid-template-columns: minmax(280px, 326px) minmax(200px, 260px);
   }
-  /* hero name on one line: measured ~5.73px width per px of font, so this
-     clamp tracks main-col width (~15px slack) with nowrap guaranteeing a
-     single line without risking overflow. */
-  body.landing .hero h1 {
-    font-size: clamp(5.25rem, 0.6rem + 6.9vw, 7rem);
-    white-space: nowrap;
-  }
   body.landing .main-col .card-grid > .card:nth-child(2) { display: none; }
   body.landing .main-col .card-grid > .card:nth-child(3) { display: none; }
 }
 
-/* Tier C (1440–1560): 2 cards + closer; side holds ~326 while
-   cards/closer take priority. Floor is exact at 1440 — rounding overflow
-   there is a STOP-and-report, not a silent retune. This block sits after
-   tier D so it wins the shared 1440 boundary outright: column-gap
-   re-asserts the 6rem base (tier D's 4rem must not leak upward) and the
-   2nd card is re-shown (tier D hides it below 1440). */
-@media (max-width: 1560px) and (min-width: 1440px) {
+/* hero name on one line, across D and C (1100–1560): ~5.7px of text per
+   px of font (measured). Tightest fit is 1100 where D's main-col is 529px:
+   85.6px font → ~490px name. Reaches the 7rem cap at ~1571vw, so the curve
+   is continuous into the 112px base size. Keep ≤ ~86px at 1100. */
+@media (max-width: 1560px) and (min-width: 1100px) {
+  body.landing .hero h1 {
+    font-size: clamp(5rem, 1.5rem + 5.6vw, 7rem);
+    white-space: nowrap;
+  }
+}
+
+/* Tier C (1380–1560): 2 cards + closer. This block sits after tier D so
+   it wins the shared 1380 boundary outright: the 2nd card is re-shown
+   (tier D hides it below 1380). Floor is 1379 = 15 + 192 + 64 + 300 +
+   808 (2×280 + 2×24 + 200), so 1380 fits the full 2-card minimum row.
+   The auto main track takes the available space and the card tracks
+   absorb it inside their ranges (measured 280→320 / 200→240 across the
+   band); the side holds its 300 floor throughout C. */
+@media (max-width: 1560px) and (min-width: 1380px) {
   body.landing .page-grid {
-    grid-template-columns: auto minmax(326px, 1fr);
-    column-gap: 6rem;
+    grid-template-columns: auto minmax(300px, 1fr);
+    column-gap: 4rem;
   }
   body.landing .main-col .card-grid {
     grid-template-columns: repeat(2, minmax(280px, 326px)) minmax(200px, 260px);
@@ -112,7 +123,13 @@ body.landing .col-footer { margin-top: auto; }
    leftover reaches the 1fr side-col (plain auto hogged it); closer fr is
    inherently capped by the main cap. */
 @media (max-width: 1950px) and (min-width: 1560px) {
-  body.landing .page-grid { grid-template-columns: fit-content(966px) minmax(326px, 1fr); }
+  /* column-gap re-asserts the 6rem base: tier C also matches at exactly
+     1560 and sets 4rem — without this the 1560 line overflows by 3px
+     (966 + 326 > 1560 − 15 − 192 − 64). */
+  body.landing .page-grid {
+    grid-template-columns: fit-content(966px) minmax(326px, 1fr);
+    column-gap: 6rem;
+  }
   body.landing .main-col .card-grid {
     grid-template-columns: repeat(2, 326px) minmax(200px, 1fr);
   }
