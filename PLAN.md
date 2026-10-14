@@ -156,11 +156,14 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
   `fit-content(966px) minmax(326px, 1fr)` + uncapped closer fr — side now
   grows (331–631 across the band), cards stay 326. Measured, no overflow.
 - **Follow-up (band-D hero):** name wrapped at 1100–1440 (main-col 504–613
-  too narrow for 112px). Measured 5.73px/px → `clamp(5.25rem, 1.25rem +
-  5.8vw, 7rem)` + nowrap: one line at 1100/1200/1300/1440, verified no
-  overflow. Also found+fixed the real 1100 1px overflow: band D never set
-  main padding (my 390-block fix didn't cover it) — added qualified
-  `body.landing main { padding: 2rem 2rem 6rem }`.
+  too narrow for 112px). Measured 5.73px/px → clamp + nowrap, one line at
+  1100/1200/1300/1440, verified no overflow. Also found+fixed the real 1100
+  1px overflow: band D never set main padding (my 390-block fix didn't
+  cover it) — added qualified `body.landing main { padding: 2rem 2rem 6rem }`.
+- **Follow-up (band-D hero II):** bumped bigger —
+  `clamp(5.25rem, 0.6rem + 6.9vw, 7rem)` (85.5/92.4/99.3/109px): one line,
+  text inside box, no page overflow at 1100/1200/1300/1440. (Note: h1 rect
+  always equals main-col width — measure text via scrollWidth, not rect.)
 - **Floor sums must subtract the scrollbar:** body = viewport − ~15px.
   Media queries match the full width (min-1100 true at exactly 1100) but
   content must fit the smaller body — that's what bit band D.
