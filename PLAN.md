@@ -75,17 +75,24 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
   (inline SimpleIcons itch.io/GitHub/LinkedIn, keep text labels);
   `assets/css/index.css` (`#gacha-store` hidden ≤768px, hero/cards tuning);
   nav CSS region in `theme.css` (desktop icon+text, ≤768px icon-only, all
-  pages). Status: launched.
+  pages). Status: running (ses_ec5cb602cffe20sgwBp9lkfVUY).
 - **Stream B — projects** (`sprint/tablet-b-projects`, worktree
   `/tmp/opencode/sprint-b`, serve :4012): `projects.html` +
   `assets/css/projects.css` only. Filter above grid; pure-CSS collapsed bar
   (`Filter … expand \/`) expanding to the desktop-identical menu; footer to
-  page bottom left-aligned with grid. `filter.js` untouched. Status: launched.
+  page bottom left-aligned with grid. `filter.js` untouched. Status: VALIDATED
+  (`47e72e0`, 1 loop). 1440px sha256-identical to baseline; 768px collapsed
+  bar + expanded desktop-identical menu verified, live filtering works
+  (Godot → 2 of 4); only `projects.html` (+2) + `projects.css` (+59) touched.
+  Note: hidden checkbox is in-flow 1px (invisible, harmless).
 - **Stream C — article + global** (`sprint/tablet-c-article`, worktree
   `/tmp/opencode/sprint-c`, serve :4013): `theme.css` article/padding
   regions only (disjoint from A's nav block). Meta rail below title via
   flex `order` (no markup change if possible); tighter rhythm ≤768px; 6rem
-  bottom padding inside the tablet query. Status: launched.
+  bottom padding inside the tablet query. Status: VALIDATED (`2ec5811`,
+  1 loop). 1440px sha256-identical to baseline; 768px order is
+  title → lede → Details → thumbnail → body → footer, tight rhythm, no
+  overflow; `article.html` untouched, `theme.css` +16 only.
 - **Shared stream rules:** scoped `@media (max-width: 768px)` queries only,
   existing queries untouched; zero new JS; no new runtime requests (inline
   SVG only — dev-time fetches fine); unsigned commits; never touch `master`
