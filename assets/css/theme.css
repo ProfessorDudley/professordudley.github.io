@@ -165,7 +165,7 @@ h1 { font-size: 2.5rem; margin: 0 0 0.5rem; }
   border-radius: var(--card-radius);
 }
 .detail-lede { font-size: 1.25rem; line-height: 1.5; color: var(--muted); margin: 0; }
-.detail-thumb { width: 100%; display: block; border: var(--card-border-w) solid var(--border); }
+.detail-thumb { width: 100%; display: block; border: var(--card-border-w) solid var(--border); margin-bottom: 1em; }
 .detail-links { display: flex; gap: 0.75rem; flex-wrap: wrap; margin: 0; }
 .incoming { color: var(--muted); font-style: italic; }
 
@@ -208,6 +208,7 @@ body:has(.article-wrap) > footer { display: none; }
   .article-wrap .detail p,
   .article-wrap .detail h2,
   .article-wrap .detail h3 { margin-top: 0; margin-bottom: 0.5rem; }
+  .detail-thumb { margin-bottom: 0.5rem; }
   .meta-box { padding: 1rem; }
   .meta-box h2 { margin: 0 0 0.5rem; }
   .meta-box dl { gap: 0.5rem; }

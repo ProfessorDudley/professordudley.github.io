@@ -139,7 +139,7 @@ article 1440 baseline after merging L). Helper: `/tmp/opencode/shot.py`.
   - Acceptance: article 390px + 1440px shots show image below-spacing equal
     to text below-spacing; other pages' 1440px unchanged (selector matches
     article images only — prove via projects/landing hashes); no overflow.
-- Status L (Stream L: update ONLY this line): launched.
+- Status L (Stream L: update ONLY this line): done — L1+L2 in theme.css, verified 1440/390 spacing equal, projects sha256-identical, landing noise-only, no overflow; ready to merge.
 - **Shared rules:** zero JS (no `.js` files); no new requests; unsigned
   commits; never `master`; drafts in `/tmp`; each stream edits ONLY its own
   Status line; max 3 loops then STOP and report BLOCKED. Do NOT merge/push.
