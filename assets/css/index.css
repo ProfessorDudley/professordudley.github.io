@@ -51,41 +51,70 @@ body.landing .col-footer { margin-top: auto; }
   }
 }
 
-/* in-between tiers (Stream M): fixed-card landing bands. Every selector
-   is scoped under body.landing (.main-col for the card grid) so the
-   projects grid never matches. Ordered C → B → A so a shared boundary
-   resolves upward. Min-width bounds keep all three clear of ≤1100. */
+/* landing tiers (Stream N): fixed-card bands. Every selector is scoped
+   under body.landing (.main-col for the card grid) so the projects grid
+   never matches. Ordered D → C → B → A so shared boundaries (1440, 1560,
+   1950) resolve upward. Min-width bounds keep all four clear of ≤1100;
+   the 1100 stack query above and the 768/390 rules below are untouched. */
 
-/* Tier C (1380–1560): main capped at 754, cards ≈280 + slim closer. */
-@media (max-width: 1560px) and (min-width: 1380px) {
-  body.landing .page-grid { grid-template-columns: minmax(0, 754px) minmax(326px, 1fr); }
-  body.landing .main-col .card-grid {
-    grid-template-columns: repeat(2, minmax(0, 280px)) minmax(140px, 1fr);
+/* Tier D (1100–1440): 1 card + closer; page gap narrowed to 4rem as the
+   last resort so 280/200/326 minimums fit above the 1100 stack. This
+   block sits AFTER the 1100 stack query so it wins at the shared 1100
+   boundary (higher specificity: 0,2,1 beats 0,1,0). Grid order
+   (index.html): 3 × article.card then the invert closer, so hiding
+   :nth-child(2) and (3) keeps the 1st featured card + invert. */
+@media (max-width: 1440px) and (min-width: 1100px) {
+  body.landing .page-grid {
+    grid-template-columns: auto minmax(326px, 1fr);
+    column-gap: 4rem;
   }
+  body.landing .main-col .card-grid {
+    grid-template-columns: minmax(280px, 326px) minmax(200px, 260px);
+  }
+  body.landing .main-col .card-grid > .card:nth-child(2) { display: none; }
+  body.landing .main-col .card-grid > .card:nth-child(3) { display: none; }
+}
+
+/* Tier C (1440–1560): 2 cards + closer; side holds ~326 while
+   cards/closer take priority. Floor is exact at 1440 — rounding overflow
+   there is a STOP-and-report, not a silent retune. This block sits after
+   tier D so it wins the shared 1440 boundary outright: column-gap
+   re-asserts the 6rem base (tier D's 4rem must not leak upward) and the
+   2nd card is re-shown (tier D hides it below 1440). */
+@media (max-width: 1560px) and (min-width: 1440px) {
+  body.landing .page-grid {
+    grid-template-columns: auto minmax(326px, 1fr);
+    column-gap: 6rem;
+  }
+  body.landing .main-col .card-grid {
+    grid-template-columns: repeat(2, minmax(280px, 326px)) minmax(200px, 260px);
+  }
+  body.landing .main-col .card-grid > .card:nth-child(2) { display: flex; }
   /* landing grid order (index.html): 3 × article.card then the invert
      closer (project-card.html root is article.card), so the 3rd featured
      card is :nth-child(3); the invert 4th child is untouched. */
   body.landing .main-col .card-grid > .card:nth-child(3) { display: none; }
 }
 
-/* Tier B (1560–1950): main fixed 906, cards fixed 326 + 200 closer. */
+/* Tier B (1560–1950): 2 fixed 326 cards + closer (takes available up to
+   260); side takes the rest. */
 @media (max-width: 1950px) and (min-width: 1560px) {
-  body.landing .page-grid { grid-template-columns: 906px minmax(326px, 1fr); }
+  body.landing .page-grid { grid-template-columns: auto minmax(326px, 1fr); }
   body.landing .main-col .card-grid {
-    grid-template-columns: repeat(2, 326px) 200px;
+    grid-template-columns: repeat(2, 326px) minmax(200px, 260px);
   }
   body.landing .main-col .card-grid > .card:nth-child(3) { display: none; }
 }
 
-/* Tier A (≥1950): side fixed 326, main grows; base 3+invert tracks stand,
-   so cards grow past 326 with the viewport. The card-grid + display rules
-   re-assert the base so the tier-B rules below lose at the shared 1950
-   boundary, where both queries match and this later block wins
-   (display:flex is .card's own display, theme.css). */
+/* Tier A (≥1950): main fixed 1319, side grows (331 at 1950); 3 fixed 326
+   cards + 260 closer, all cards show. The display rule re-asserts the
+   base (display:flex is .card's own display, theme.css) so the hiding
+   rules above lose at the shared 1950 boundary, where both queries match
+   and this later block wins. */
 @media (min-width: 1950px) {
-  body.landing .page-grid { grid-template-columns: 1fr 326px; }
+  body.landing .page-grid { grid-template-columns: 1319px minmax(326px, 1fr); }
   body.landing .main-col .card-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(0, 0.8fr);
+    grid-template-columns: repeat(3, 326px) 260px;
   }
   body.landing .main-col .card-grid > .card:nth-child(3) { display: flex; }
 }
