@@ -121,7 +121,7 @@ body.landing .col-footer { margin-top: auto; }
   #gacha-store { display: none; }
   body.landing main { padding: 2rem 6rem 4rem; }
   .page-grid { grid-template-columns: 1fr; gap: 2rem; }
-  .hero { gap: 1.25rem; padding: 3rem 0 4rem; }
+  .hero { gap: 1.25rem; padding: 4rem 0 6rem; }
   .hero h1 { font-size: clamp(2.5rem, 12vw, 4rem); }
   .hero-bio { max-width: 100%; }
   .card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }

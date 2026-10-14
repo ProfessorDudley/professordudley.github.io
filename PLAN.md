@@ -96,7 +96,7 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 
 - **Stream F** (`2586af2`, 1 loop): removed the 768px `.card img` override
   (landing inherits desktop full-bleed, matching projects); hero padding
-  `1.5rem 0 2rem` → `3rem 0 4rem` (tablet-only).
+  `1.5rem 0 2rem` → `3rem 0 4rem` (tablet-only); follow-up → `4rem 0 6rem`.
 - **Orchestrator verification:** merged with rebuild + screenshots. Final
   1440px vs `baseline2/`: renderer-noise only (0.001, worst pixel 22/255 in
   the same empty-gutter spot as last round — invisible; F's CSS is two
