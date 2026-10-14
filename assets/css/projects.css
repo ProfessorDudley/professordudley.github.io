@@ -156,3 +156,11 @@ body.page > footer { display: none; }
     max-width: 100%;
   }
 }
+
+/* Phone: single fluid column (explicit viewport query — the 326px fixed
+   container tracks overflow the ~326px content width once borders count).
+   Re-assert the desktop 480px card floor so copy never clips. */
+@media (max-width: 390px) {
+  .projects-main .card-grid { grid-template-columns: minmax(0, 1fr); }
+  .projects-main .card { min-height: 480px; }
+}
