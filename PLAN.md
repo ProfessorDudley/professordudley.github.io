@@ -147,7 +147,7 @@ occurs): tier budgets assume 27px card gaps, ~261px closer, 108px page gap,
   - Acceptance: card widths ≈326 (B), ≈280 (C), ≥327 growing (A); counts
     3/2/2 + invert; side-col ≥326 everywhere; no overflow any tier;
     projects/article 1440 identical; 768/390/360 unchanged.
-- Status M (Stream M: update ONLY this line): launched.
+- Status M (Stream M: update ONLY this line): done, 2 loops — tiers A/B/C in index.css verified (see stream report); commit pending orchestrator merge.
 - **Shared rules:** zero JS (no `.js` files); no new requests; no new markup
   (pure CSS incl. card hiding); unsigned commits; never `master`; drafts in
   `/tmp`; max 3 loops then STOP and report BLOCKED. Do NOT merge/push.
