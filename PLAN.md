@@ -3,7 +3,7 @@
 Personal portfolio + game-dev hub for Sam Dicken (ProfessorDudley).
 Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 
-## Current state (dev @ `3743723`, tags v0.2–v0.5)
+## Current state (dev @ `d3dff80`, tags v0.2–v0.5)
 
 - **Branches:** `master` = legacy launchpad (do not touch without a publish plan);
   `dev` = all current work; `game-prototype` = open, sprite/game exploration.
@@ -45,14 +45,14 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
   Brave full-page captures have renderer noise (AA/dither, worst single
   pixel ~22/255 in empty areas). Compare landing with RMSE + locate the
   bbox; investigate only if diffs are structural. Current 1440 reference:
-  `/tmp/opencode/baseline2/`.
+  `/tmp/opencode/baseline3/`.
 - **Nav icons carry a strut fix** (`.soc` margin-block compensation) so the
   1.3em glyphs don't grow the desktop nav bar. Touching nav icon sizing
   requires re-verifying desktop below-nav pixels.
 - **Phone 390px overrides must match landing selector specificity.**
   Bare `main` loses to the 768px `body.landing main` rule — landing-scoped
   overrides need the qualified selector (caused an 8px overflow at 360).
-- **Landing tiers are band-scoped with min-width bounds** (1950/1560/1440
+- **Landing tiers are band-scoped with min-width bounds** (1950/1560/1380
   with tier D down to 1100): bands ordered D→C→B→A so shared boundaries
   resolve upward, and every later block must re-assert every property the
   earlier block sets (leaks bitten twice: 1950, 1440). The 768/390 rules
@@ -63,8 +63,9 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
   27px card gaps were 3px/gap pessimistic — all tier thresholds still hold
   with room to spare.
 - **Screenshot tooling** (`/tmp/opencode/shot.py` full-page via Brave CDP,
-  `measure.py` computed styles) lives outside the repo and may vanish with
-  `/tmp` — regenerable, not precious.
+  `sweep4000.py` per-width computed-style sweep, `storemin.py` min/max
+  content probe; older `sweep.py`/`measure.py` variants) lives outside the
+  repo and may vanish with `/tmp` — regenerable, not precious.
 
 ## Goals
 
@@ -79,7 +80,9 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 ## Direction
 
 - **Now:** landing tier rework — DONE, merged, verified, awaiting user
-  sign-off (see Tier rework section). Landing 1440 baseline refreshed.
+  sign-off incl. the C→D border rework (1380 border, 6rem padding
+  restored, side floor 300) — see Tier rework section + open decision.
+  Landing 1440 baseline refreshed.
 - **Next:** publish pass to `master` (strip lab via `exclude:` on the merge
   commit; favicon done; mobile floor; `_apps` gone) + custom-domain decision
   (CNAME vs github.io URL). Note `_config.yml` already points at
@@ -164,7 +167,7 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
   `clamp(5.25rem, 0.6rem + 6.9vw, 7rem)` (85.5/92.4/99.3/109px): one line,
   text inside box, no page overflow at 1100/1200/1300/1440. (Note: h1 rect
   always equals main-col width — measure text via scrollWidth, not rect.)
-- **Follow-up (C→D border rework):** user rejected band D's 2rem padding
+- **Follow-up (C→D border rework)** (`3743723`): user rejected band D's 2rem padding
   and the 1440 transition. Store min-content measured 291px (1fr probe),
   so the old 326 side floor was a planning choice, not a minimum. New
   bands: D (1100–1380) and C (1380–1560) both use base 6rem padding,
@@ -180,6 +183,9 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
   Verified: 1100/1180/1300/1379/1380/1440/1500/1560/1700/1950 table +
   hero one-line + no overflow all pass; projects/article 1440
   identical; 768/390/360 unchanged. Landing 1440 baseline refreshed.
+  **Open decision (user):** keep side floor 300 or restore 326 — the
+  latter means raising the C→D border 1380→1410 (one number in the side
+  floor sum + C floor sum, then re-sweep).
 - **Floor sums must subtract the scrollbar:** body = viewport − ~15px.
   Media queries match the full width (min-1100 true at exactly 1100) but
   content must fit the smaller body — that's what bit band D.
