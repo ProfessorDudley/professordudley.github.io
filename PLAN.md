@@ -3,7 +3,7 @@
 Personal portfolio + game-dev hub for Sam Dicken (ProfessorDudley).
 Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 
-## Current state (dev @ `ca3301f`, tags v0.2–v0.5)
+## Current state (dev @ `7dbf228`, tags v0.2–v0.5)
 
 - **Branches:** `master` = legacy launchpad (do not touch without a publish plan);
   `dev` = all current work; `game-prototype` = open, sprite/game exploration.
@@ -286,3 +286,13 @@ otherwise.
   - Note: measured with base 6rem main padding (Stream PS not in this branch);
     2-across holds with room at every width, so the 4rem change only adds
     margin. No JS touched, `.filter-btn`/`#filter-clear` nodes unmoved.
+- **Orchestrator validation (Q+R merged as `0374a59` + `7dbf228`; R merge
+  had a PLAN.md adjacent-anchor conflict, resolved keeping both reports):**
+  rebuilt + extended sweep 1440/1200/1100/1000/900/820/768/390/360, zero
+  overflow on all 3 pages. Landing tablet 2×326 + 676 invert (295/613 at
+  820, in range); band D at 1200 untouched (326+260); projects 2-across
+  fluid 435→269; article ≤1100 still rail-below (PS's job). 1440/768/390
+  hash diffs vs ref localized EXACTLY to wallet coin widgets
+  (`0`→`10` visit awards in the shared Brave profile — bbox + crop
+  verified); article hashes identical. R's CDP toggle proof stands on
+  byte-identical CSS. PS still in flight; full re-sweep after PS lands.
