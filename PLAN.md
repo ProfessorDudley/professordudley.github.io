@@ -81,11 +81,10 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 
 ## Direction
 
-- **Now:** tablet rework (≤1100) — DONE, merged, validated, awaiting
-  user sign-off (see Tablet rework section + final validation). One open
-  observation for sign-off: landing keeps 96px sides at ≤768 (its own
-  `index.css` rule beats the shared 4rem rule by specificity) while
-  everything else ≤1100 is 64px — align it or keep the frozen 768 look?
+- **Now:** follow-up amendments — IN PROGRESS (see Follow-up section).
+  Streams T+U spawned after PLAN update. Prior tablet rework: merged +
+  validated; sign-off carried into these amendments (768-padding question
+  answered: align to 4rem).
 - **Next:** publish pass to `master` (strip lab via `exclude:` on the merge
   commit; favicon done; mobile floor; `_apps` gone) + custom-domain decision
   (CNAME vs github.io URL). Note `_config.yml` already points at
@@ -341,3 +340,45 @@ otherwise.
   (projects-768 collapse, article-768 +26px); article-1440/390
   hash-identical. Zero new JS, no new requests, unsigned commits, `dev`
   pushed. Awaiting user sign-off.
+
+## Follow-up amendments — in progress (orchestrated)
+
+Scope (user, Oct 15): landing padding aligned to 4rem (settles the
+768-96px sign-off question); invert max-height ~300px; article rail same
+width as the main article; NEW global card-grid policy — where cards
+can't hold 280–326, force single column, 326 max, centered.
+
+- **Single-col breakpoint math:** 2-col needs content ≥ 2×280+24 (gap) =
+  584 → body ≥ 712 → viewport ≥ 727 (scrollbar 15 + 4rem pad 128). So the
+  single-col range is 391–726 (the 390 block owns ≤390). 727–768 stays
+  2-col; 769+ already fits (min content 626). Desktop bands verified
+  no-squish (tier floors hold, projects container math fits). A shared
+  bare `.card-grid` rule would lose on specificity (0,1,0 vs 0,2,0+), so
+  the policy is implemented per-page, qualified, in `index.css` +
+  `projects.css` — same pattern, no duplication of intent.
+- **Assumptions (flagged for sign-off):** invert 300 cap applies to
+  full-width-below contexts only (769–1100 + 391–726 single-col), NOT the
+  727–768 2×2 cell (capping there would misalign the row); article rail
+  capped at 44rem (`.detail` max-width) in the ≤1100 stacked layout only,
+  desktop 326 rail untouched.
+- **Stream T — landing** (branch `sprint/followup-landing`, `index.css`
+  only): 768 padding 6rem→4rem (390's 2rem block later, untouched);
+  invert `max-height: 300px` in full-width contexts, content must not
+  clip (scrollHeight check + visual); single-col
+  `minmax(0,326px)` + centered for 391–726, placed after the 768 block.
+- **Stream U — projects + article** (branch
+  `sprint/followup-projects-article`, `projects.css` + the one-line
+  theme.css rail rule): projects single-col 391–726 (later than the
+  1100-block, 390 intact); `.article-side { max-width: 44rem }` in the
+  ≤1100 block.
+- **Stream contract:** as tablet rework (PLAN first, branch from `dev`,
+  ≤3 loops then stop+report, PLAN update, unsigned, push + SHA, no
+  `master`, no new JS/requests, build + screenshots not reasoning).
+- **Acceptance (orchestrator):** boundary sweep 727/726, 391/390, 768/769
+  + standard 1440/1100/900/820/768/390/360: zero overflow; single
+  326-centered col at 726/700/500 (x-centering measured); 2-col intact
+  727+; invert H ≤300 with no clipped content; rail width == detail width
+  ±2px at 900/768; filter toggle re-proven at 700; 1440 desktop
+  identical (coin-noise aside); 390 intact.
+- **Stream T report:** _(pending)_
+- **Stream U report:** _(pending)_
