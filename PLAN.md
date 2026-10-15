@@ -3,7 +3,7 @@
 Personal portfolio + game-dev hub for Sam Dicken (ProfessorDudley).
 Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 
-## Current state (dev @ `b15b978`, tags v0.2–v0.5)
+## Current state (dev @ `b72d3bc`, tags v0.2–v0.5)
 
 - **Branches:** `master` = legacy launchpad (do not touch without a publish plan);
   `dev` = all current work; `game-prototype` = open, sprite/game exploration.
@@ -81,8 +81,8 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 
 ## Direction
 
-- **Now:** round-6 nav sides — IN PROGRESS (see Round 6 section).
-  Stream Z spawned after PLAN update. Queued next: ticker blanking.
+- **Now:** round-6 nav sides — DONE, merged, validated, awaiting
+  user sign-off (see Round 6 section). Queued next: ticker blanking.
 - **Next:** publish pass to `master` (strip lab via `exclude:` on the merge
   commit; favicon done; mobile floor; `_apps` gone) + custom-domain decision
   (CNAME vs github.io URL). Note `_config.yml` already points at
@@ -721,3 +721,11 @@ tablet or desktop.
     `docSW == bodyW`, including expanded menus.
   - `theme.css` +12/−0 (4 rules + comments); no HTML/JS/requests;
     unsigned. Branch pushed with this report.
+- **Orchestrator final validation (Z merged as `b72d3bc`, clean merge):**
+  rebuilt `dev`, re-ran the 6-state matrix on :4000 — all borders at
+  expected widths (0 in the 4 removed states; 2px kept in
+  700/768-collapsed, endcaps pixel-verified). Sweep 9 widths × 3 pages,
+  ZERO overflow. Toggle cycles re-proven on merged code (externals
+  pixel-unmoved). Desktop nav band (y 37–93) byte-identical across
+  1440/1100/769 × 3 pages vs round-5 baseline (only known coin digits +
+  AA shimmer outside it, as in rounds 4–5). Unsigned; `dev` pushed.
