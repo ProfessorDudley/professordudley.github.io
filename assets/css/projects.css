@@ -157,6 +157,14 @@ body.page > footer { display: none; }
   }
 }
 
+/* Global card-grid policy (391–726): content < 584px can't hold 2×280,
+   so force a single 326-centered column. Projects-qualified (a bare
+   .card-grid rule would lose on specificity); placed after the 1100
+   block so it wins in range; the 390 block (later) owns ≤390. */
+@media (max-width: 726px) and (min-width: 391px) {
+  .projects-main .card-grid { grid-template-columns: minmax(0, 326px); justify-content: center; }
+}
+
 /* Phone: single fluid column (explicit viewport query — the 326px fixed
    container tracks overflow the ~326px content width once borders count).
    Re-assert the desktop 480px card floor so copy never clips. */

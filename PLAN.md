@@ -381,4 +381,24 @@ can't hold 280–326, force single column, 326 max, centered.
   ±2px at 900/768; filter toggle re-proven at 700; 1440 desktop
   identical (coin-noise aside); 390 intact.
 - **Stream T report:** _(pending)_
-- **Stream U report:** _(pending)_
+- **Stream U report:** DONE (1 loop, branch `sprint/followup-projects-article`):
+  `projects.css` + one-line `theme.css` rail rule, as spec'd.
+  - U-1 projects single-col 391–726: new
+    `@media (max-width: 726px) and (min-width: 391px)` placed after the
+    1100-block, `.projects-main .card-grid { grid-template-columns:
+    minmax(0, 326px); justify-content: center; }`. Measured 726/700/500:
+    1 col, 326px, x-centering off +0.5px (rounding); 391: 248px
+    (minmax shrink, centered, off 0.0). 727 keeps 2×280; 769+ unchanged.
+    390 block (later) still owns ≤390: 390 = 311 fluid 1fr, 360 = 281.
+  - U-2 article rail: `.article-side` in the ≤1100 block gains
+    `max-width: 44rem` (desktop 326 rail untouched). Measured rail ==
+    detail width diff 0px at 900 (704/704) and 768 (625/625).
+  - U-3 filter toggle re-proven via CDP click at 700: collapsed 50px bar /
+    menu none → expanded block 410px with all 9 `.filter-btn`s →
+    recollapsed. Checkbox-hack nodes unmoved, zero JS.
+  - U-4 desktop/390 identity: article-1440 + article-390 sha256-identical
+    to ref; projects-1440 + projects-390 differ ONLY in a 43×14 bbox at
+    (17,10) — coin-widget visit awards (`10` vs `5`, shared-profile
+    artifact, crop-verified). Zero overflow at
+    1440/1100/900/820/769/768/727/726/700/500/391/390/360. No new
+    JS/requests.
