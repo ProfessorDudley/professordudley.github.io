@@ -81,8 +81,8 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 
 ## Direction
 
-- **Now:** round-4 navbar nits — DONE, merged, validated, awaiting
-  user sign-off (see Round 4 section).
+- **Now:** round-5 nav borders — IN PROGRESS (see Round 5 section).
+  Stream Y spawned after PLAN update. Queued next: ticker blanking.
 - **Next:** publish pass to `master` (strip lab via `exclude:` on the merge
   commit; favicon done; mobile floor; `_apps` gone) + custom-domain decision
   (CNAME vs github.io URL). Note `_config.yml` already points at
@@ -571,6 +571,50 @@ externals to a second row — keep button + externals on one line
     pixels. Below-nav unchanged.
   - X-5 overflow: zero at 360/390/500/700/768/900/1100 all pages
     collapsed (docSW==bodyW), plus expanded menus at 390/700 all pages.
+
+## Round 5 (nav borders) — in progress (orchestrated)
+
+User corrections (Oct 15, with screenshots): (1) icon-only bar cell
+borders don't connect; (2) expanded menu panel border must span the
+whole container like mobile; (3) keep desktop endcaps to every width
+until mobile takes over.
+
+- **Root causes (measured, not reasoned):** (a) `.demo-nav ul
+  { align-items: center }` leaks into `.strip .segs` grid — `li`s don't
+  stretch, so externals ticks span only 93% of row height (scan:
+  internals ticks 100%, icon ticks/endcap 93% @1000). Hiding the labels
+  shrank externals `li` content and exposed it. (b) Tally inset by the
+  nav's own 32px padding (700-expanded tally [32..653] vs nav [0..685]);
+  mobile spans full width only because K1 zeroes strip padding at 390.
+  (c) Menu button is a `label`, not an `li` — the desktop first-cell
+  endcap rule never applied to it, so the hamburger bar has no left
+  endcap.
+- **Stream Y** (branch `sprint/r5-nav-borders`, `theme.css` only):
+  (1) `.strip .segs { align-items: stretch; }` — all cell ticks connect
+  full row height, every mode; (2) `header
+  .demo-nav:has(.nav-toggle:checked) { padding-left: 0; padding-right: 0;
+  }` in the 768 block — expanded panel spans the container like mobile
+  (`:has` precedent exists, line 195; K1 stays for 390-collapsed);
+  (3) `.nav-menu-btn { border-left: var(--card-border-w) solid
+  var(--border); }` in the 768 block — desktop endcap parity, collapsed
+  and expanded. 769–1100 icon bar keeps desktop padding (parity per
+  correction 3); no HTML changes.
+- **Stream contract:** as before (≤3 loops, PLAN update, unsigned, push
+  + SHA, build + screenshots).
+- **Acceptance (orchestrator):** tick-continuity scan 100% at
+  1000/700-collapsed/390-collapsed; expanded tally L/R == nav L/R at
+  700 + 390 (container-span); endcap ticks at bar edges all hamburger
+  states; 1440 below-nav may change ONLY in tick pixels (else fail);
+  toggle re-proven; zero overflow incl. expanded.
+- **Stream Y report:** _(pending)_
+
+## Queued (user, Oct 15 — schedule after round 5)
+
+- **Ticker blanking:** wherever `#gacha-store` is hidden (landing Q
+  block 769–1100, 768, 390), also hide `.ticker .wallet` + `.ticker
+  .theme-cycle` (coins/skins UI is dead without the store) but keep the
+  `.ticker` bar itself rendering blank. Scope under `body.landing`;
+  CSS-hide only, never move the nodes (`game.js` queries them).
     `bundle exec jekyll build` clean. Zero new JS, no new requests.
   - Probes/shots: `/tmp/opencode/probe-x.py`, `/tmp/opencode/r4x/` (pre+post bars, dev-vs-post 1440/769).
 - **Orchestrator final validation (X merged as `33e13c4`, clean):**
