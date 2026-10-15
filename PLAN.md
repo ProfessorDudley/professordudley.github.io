@@ -257,4 +257,20 @@ otherwise.
   PS→Q→R with rebuild + sweep per merge. User signs off when done.
 - **Stream PS report:** _(pending)_
 - **Stream Q report:** _(pending)_
-- **Stream R report:** _(pending)_
+- **Stream R report:** DONE (1 loop, branch `sprint/tablet-projects`): one-line
+  breakpoint change `@media (max-width: 768px)` → `(max-width: 1100px)` in
+  `projects.css`; no copied block, no other selectors touched.
+  - Overflow: zero at 1100/1000/900/820/768/390/360 (docSW==bodyW all widths).
+  - Grid: 2-across fluid at 1100 (435px)/1000 (385)/900 (335)/820 (295)/768
+    (269) — media fluid tracks beat container fixed tracks by source order;
+    single fluid column at 390 (311)/360 (281) — 390 block still wins (later).
+  - Toggle re-proven via CDP clicks at 900 + 1000: collapsed one-line bar
+    (50px, menu `display:none`), click → menu `display:block` 410px tall with
+    all 9 `.filter-btn`s, click → collapsed again. Orders bar −2/menu −1/
+    main 0/footer 1; footer top sits below grid bottom (1332 vs 1308 @900).
+  - Desktop intact: 1440 shot sha256-identical to ref (`ac48bbea…`);
+    1200 keeps sidebar pattern (326px cards, no overflow); 390 shot
+    sha256-identical to ref (`3241bb9d…`).
+  - Note: measured with base 6rem main padding (Stream PS not in this branch);
+    2-across holds with room at every width, so the 4rem change only adds
+    margin. No JS touched, `.filter-btn`/`#filter-clear` nodes unmoved.

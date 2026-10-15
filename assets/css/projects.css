@@ -103,7 +103,7 @@ body.page > footer { display: none; }
 .filter-toggle,
 .filter-bar { display: none; }
 
-@media (max-width: 768px) {
+@media (max-width: 1100px) {
   .projects-wrap { flex-direction: column; min-width: 0; max-width: 100%; }
   /* Dissolve the rail so the bar/menu can sit above the grid
      while the footer drops below it. */
