@@ -3,7 +3,7 @@
 Personal portfolio + game-dev hub for Sam Dicken (ProfessorDudley).
 Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 
-## Current state (dev @ `803b03c`, tags v0.2–v0.5)
+## Current state (dev @ `33e13c4`, tags v0.2–v0.5)
 
 - **Branches:** `master` = legacy launchpad (do not touch without a publish plan);
   `dev` = all current work; `game-prototype` = open, sprite/game exploration.
@@ -81,8 +81,8 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 
 ## Direction
 
-- **Now:** round-4 navbar nits — IN PROGRESS (see Round 4 section).
-  Stream X spawned after PLAN update.
+- **Now:** round-4 navbar nits — DONE, merged, validated, awaiting
+  user sign-off (see Round 4 section).
 - **Next:** publish pass to `master` (strip lab via `exclude:` on the merge
   commit; favicon done; mobile floor; `_apps` gone) + custom-domain decision
   (CNAME vs github.io URL). Note `_config.yml` already points at
@@ -573,3 +573,10 @@ externals to a second row — keep button + externals on one line
     collapsed (docSW==bodyW), plus expanded menus at 390/700 all pages.
     `bundle exec jekyll build` clean. Zero new JS, no new requests.
   - Probes/shots: `/tmp/opencode/probe-x.py`, `/tmp/opencode/r4x/` (pre+post bars, dev-vs-post 1440/769).
+- **Orchestrator final validation (X merged as `33e13c4`, clean):**
+  rebuilt + 10-width × 3-page sweep, ZERO overflow. Spacer 0px collapsed
+  / 2px expanded @700 (measured on merged code); 8/8 nav probes pass
+  (`probe3.py`) — incl. 390 one-line bar (btn 109px, ext same row) and
+  unmoved externals through toggle cycles. 1440 diffs are the known
+  coin-artifact signature only (identical totals); article SAME. 390-bar
+  screenshot verified. Zero new JS/requests, unsigned, `dev` pushed.
