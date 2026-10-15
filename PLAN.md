@@ -3,7 +3,7 @@
 Personal portfolio + game-dev hub for Sam Dicken (ProfessorDudley).
 Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 
-## Current state (dev @ `d3dff80`, tags v0.2–v0.5)
+## Current state (dev @ `2f1d626`, tags v0.2–v0.5)
 
 - **Branches:** `master` = legacy launchpad (do not touch without a publish plan);
   `dev` = all current work; `game-prototype` = open, sprite/game exploration.
@@ -44,8 +44,9 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 - **Landing 1440px screenshots never hash-match; projects/article do.**
   Brave full-page captures have renderer noise (AA/dither, worst single
   pixel ~22/255 in empty areas). Compare landing with RMSE + locate the
-  bbox; investigate only if diffs are structural. Current 1440 reference:
-  `/tmp/opencode/baseline3/`.
+  bbox; investigate only if diffs are structural. Reference captures lived
+  in `/tmp/opencode/baseline3/` — lost when /tmp was cleaned (Oct 2026);
+  re-shoot the 1440 set before the next visual comparison.
 - **Nav icons carry a strut fix** (`.soc` margin-block compensation) so the
   1.3em glyphs don't grow the desktop nav bar. Touching nav icon sizing
   requires re-verifying desktop below-nav pixels.
@@ -55,17 +56,18 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 - **Landing tiers are band-scoped with min-width bounds** (1950/1560/1380
   with tier D down to 1100): bands ordered D→C→B→A so shared boundaries
   resolve upward, and every later block must re-assert every property the
-  earlier block sets (leaks bitten twice: 1950, 1440). The 768/390 rules
+  earlier block sets (leaks bitten at 1950 and the old 1440 C→D boundary,
+  now 1380 after the border rework). The 768/390 rules
   and the projects grid must never match — scope under
   `body.landing`/`.main-col`, verify 768/390 shots on every change.
 - **`rem` is 16px-based, not 18px.** `6rem` = 96px, `1.5rem` = 24px
   (`--fs: 18px` applies to `body` font-size only). Floor sums that assumed
   27px card gaps were 3px/gap pessimistic — all tier thresholds still hold
   with room to spare.
-- **Screenshot tooling** (`/tmp/opencode/shot.py` full-page via Brave CDP,
-  `sweep4000.py` per-width computed-style sweep, `storemin.py` min/max
-  content probe; older `sweep.py`/`measure.py` variants) lives outside the
-  repo and may vanish with `/tmp` — regenerable, not precious.
+- **Screenshot tooling** (`shot.py` full-page via Brave CDP, `sweep4000.py`
+  per-width computed-style sweep, `storemin.py` min/max content probe) lived
+  in `/tmp/opencode/` — wiped with /tmp (Oct 2026), rewrite from scratch
+  when visual verification is next needed; regenerable, not precious.
 
 ## Goals
 
