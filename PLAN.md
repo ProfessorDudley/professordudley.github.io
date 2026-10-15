@@ -692,4 +692,32 @@ tablet or desktop.
   expanded: same 0/0 with tally still container-span; 700/768
   collapsed UNCHANGED (bl/br 2px); 769+/1440 ticks intact incl.
   below-nav pixels; toggle re-proven; zero overflow incl. expanded.
-- **Stream Z report:** _(pending)_
+- **Stream Z report:** DONE (executed directly in `wt-z` after the
+  subagent died on rate limit before its first edit — same spec, same
+  branch, 1 loop used). Four scoped rules only:
+  - 768 block: `.nav-toggle:checked ~ .nav-menu-btn { border-left: 0 }`
+    + `.nav-toggle:checked ~ .segs.right li:last-child { border-right: 0 }`
+    (expanded-only; collapsed tablet keeps both endcaps).
+  - 390 block (unconditional): `.nav-menu-btn { border-left: 0 }` +
+    `.strip .segs.right li:last-child { border-right: 0 }` (mobile bar
+    has no side ticks in either state).
+  - Nothing structural; checkbox-hack, spacer rule, tally-top, strip
+    bottom, desktop cells untouched.
+
+  **Per-item (all measured on @4020, CDP):**
+  - 390 collapsed+expanded: button bl 0px, last-cell br 0px; pixel
+    scan of both bar edges = 0.0 border coverage (pre-state: 2.0).
+  - 700/768 expanded: same 0/0; tally still container-span (700:
+    [0..685]==nav; 768: [0..753]==nav).
+  - 700/768 collapsed UNCHANGED: 2px endcaps both sides (pixel cov
+    0.667/0.50 = exact 2px-solid-in-window; pre/post identical).
+  - Desktop 1440/1100/769 × 3 pages: nav band rows (y 37–93) have
+    ZERO changed pixels vs dev; only diffs are the known coin-widget
+    digits (x 18–59) and article AA shimmer (28px) — both pre-existing
+    shared-profile artifacts.
+  - Toggle cycles ×2 at 700/768/390: expand/collapse clean, externals
+    pixel-unmoved every cycle.
+  - Zero overflow: sweep 360–1100 × 3 pages on :4020, every
+    `docSW == bodyW`, including expanded menus.
+  - `theme.css` +12/−0 (4 rules + comments); no HTML/JS/requests;
+    unsigned. Branch pushed with this report.

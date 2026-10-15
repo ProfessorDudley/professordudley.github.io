@@ -465,6 +465,13 @@ header .strip .segs.right a { justify-content: center; }
   /* Expanded panel spans the whole container like mobile (K1 does this at
      390; this covers 391–768). Collapsed keeps the desktop 2rem padding. */
   header .demo-nav:has(.nav-toggle:checked) { padding-left: 0; padding-right: 0; }
+
+  /* round-6: when the menu is open, the row keeps its full span but the
+     endcap stubs would read as stray side ticks (the panel's own top border
+     is the visible frame). Remove them expanded-only — the collapsed bar
+     keeps both endcaps (its container frame is the strip's bottom). */
+  .nav-toggle:checked ~ .nav-menu-btn { border-left: 0; }
+  .nav-toggle:checked ~ .segs.right li:last-child { border-right: 0; }
   .menu-icon {
     width: 1.2em;
     height: 1.2em;
@@ -517,6 +524,13 @@ header .strip .segs.right a { justify-content: center; }
 
   /* K1: strip side padding → 0 so the button row spans full width. */
   header .demo-nav.strip { padding-left: 0; padding-right: 0; }
+
+  /* round-6: at mobile the bar sits flush with the container edges, so the
+     endcap ticks at x=0 and x=right read as an extra boxed border — remove
+     them unconditionally (collapsed and expanded; same reasoning as the
+     expanded-only removal in the 768 block). Tablet/desktop keep theirs. */
+  .nav-menu-btn { border-left: 0; }
+  .strip .segs.right li:last-child { border-right: 0; }
 
   /* Visually hidden but focusable: label click + keyboard both toggle. */
   .nav-toggle {
