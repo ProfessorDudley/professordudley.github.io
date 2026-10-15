@@ -469,4 +469,33 @@ the bar, only internals collapse.
   desktop identical incl. below-nav pixels; 390 keeps padding/strip
   behavior; zero overflow 360–1100.
 - **Stream V report:** _(pending)_
-- **Stream W report:** _(pending)_
+- **Stream W report:** DONE (1 loop, branch `sprint/r3-nav-menu`):
+  `theme.css` + one `header.html` aria attribute, as spec'd. New
+  `@media (max-width: 768px)` collapse block before the 390 block;
+  390 keeps main padding, K1 zero-strip, full-width button, swap, K4.
+  - W-1 behavior: externals never collapse (hiding narrowed to
+    `.tally.segs`, spacer stays); expanded panel internals-only
+    full-width below the bar; `.segs.right` expanded rules deleted;
+    `flex-wrap` moved to 768; K4 hoisted so the marker is inline at
+    391–767 too; `aria-controls` narrowed to `nav-internal`. One
+    judgment call beyond the letter of the spec: expanded tally gets
+    `order: 5` so spacer+externals keep row 1 and the bar is
+    pixel-unmoved between states (without it flex-wrap pushes
+    externals to row 3 when expanded).
+  - W-2 states: 768/700/500/391 btn flex 109px + tally none + ext grid
+    in-bar (same y as btn); 390/360 btn full-width (375/345) + ext
+    visible on wrapped row; 769 btn none + tally grid (desktop bar);
+    1440 desktop bar intact.
+  - W-3 clicks at 700 + 390: expand internals-only (tally flex 110px
+    tall below the bar), externals pixel-identical (bar-crop diff is
+    ONLY the 22×17 hamburger→X bbox); second click recollapses.
+  - W-4 focus-visible: genuine keyboard Tab to toggle matches
+    `:focus-visible`, button outline `2px solid` (programmatic focus
+    does not match — headless modality, not a bug).
+  - W-5 desktop: projects/article-1440 sha256-identical to ref;
+    landing-1440 differs only in a 50×49 breathing-dot glow bbox
+    (animation phase, crop-verified, below-nav pixels unchanged).
+  - W-6 overflow: zero at 1100/1000/900/820/769/768/727/726/700/500/
+    391/390/360 all pages collapsed, plus expanded menu at 700+390 on
+    all 3 pages. 390 padding 32px / 768 landing 64px preserved.
+  - Zero new JS/requests. No loops remaining needed.
