@@ -767,4 +767,19 @@ open vs closed): the navstrip must read the SAME in both states.
   tally still container-span; 1100/1440 desktop nav band byte-identical;
   390 untouched (row + panel identical to round 6); toggle re-proven; zero
   overflow incl. expanded; sweep 360–1100 × 3.
-- **Status:** merged-branch pending, awaiting validation + sign-off.
+- **Status:** DONE (direct, 768 block only, +5/−0 lines beyond comments):
+  - `header .demo-nav { padding-left: 0; padding-right: 0; }` (768 block,
+    both states — supersedes the collapsed-keeps-2rem line).
+  - `.nav-menu-btn { border-left: 0 }` and
+    `.strip .segs.right li:last-child { border-right: 0 }` (768 block,
+    both states — replaces the checked-only pair from round 6).
+  - `.strip .spacer { border-left: 0 }` (768 block, both states — was the
+    collapsed-only rule; now consistent, also drops 390's open-only
+    stragglers).
+- **Validation (wt-r7 @4021, CDP):** 700 & 768 — open and closed rows are
+  pixel-identical outside the button glyph (row-diff max x = 37, all inside
+  the 0–143 button cell). 390 open/closed also consistent; external-icon
+  dividers intact (2px); panel spans container at all three widths. Desktop
+  1440/1100/1000/769 × 3 pages: nav-band (y37-93) byte-identical to round-5
+  baseline (0 changed px). Zero overflow all pages 360–1100. Only
+  whole-page deltas are the known coin-widget digits + AA shimmer.
