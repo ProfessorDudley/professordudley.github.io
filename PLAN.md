@@ -3,7 +3,7 @@
 Personal portfolio + game-dev hub for Sam Dicken (ProfessorDudley).
 Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 
-## Current state (dev @ `d2734d2`, tags v0.2–v0.5)
+## Current state (dev @ `803b03c`, tags v0.2–v0.5)
 
 - **Branches:** `master` = legacy launchpad (do not touch without a publish plan);
   `dev` = all current work; `game-prototype` = open, sprite/game exploration.
@@ -81,8 +81,8 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 
 ## Direction
 
-- **Now:** round-3 amendments — IN PROGRESS (see Round 3 section).
-  Streams V+W spawned after PLAN update.
+- **Now:** round-3 amendments — DONE, merged, validated, awaiting
+  user sign-off (see Round 3 section).
 - **Next:** publish pass to `master` (strip lab via `exclude:` on the merge
   commit; favicon done; mobile floor; `_apps` gone) + custom-domain decision
   (CNAME vs github.io URL). Note `_config.yml` already points at
@@ -516,3 +516,16 @@ the bar, only internals collapse.
     391/390/360 all pages collapsed, plus expanded menu at 700+390 on
     all 3 pages. 390 padding 32px / 768 landing 64px preserved.
   - Zero new JS/requests. No loops remaining needed.
+- **Orchestrator final validation (V+W merged as `0c27339` + `803b03c`;
+  W merge needed the usual PLAN anchor splice, both reports kept):**
+  rebuilt + 13-width × 3-page sweep, ZERO overflow everywhere. Projects
+  cards 326.0 at 1100/1000/900/820 (was 467/417/367), 301 @769/768,
+  280 @727; single-col below intact. 8/8 nav probes pass
+  (`/tmp/opencode/probe3.py`): desktop bar @769+/1440 (btn 0, tally
+  grid); hamburger + hidden tally + in-bar externals @768/700/391;
+  full-width button + wrapped externals @390; clicks at 700+390 expand
+  internals-only with externals pixel-unmoved (extTop identical),
+  no overflow while expanded, recollapse clean. Spot-check projects-700:
+  target look. 1440 diffs coin-only; article-1440 SAME; 390 +50px page
+  height on all pages is the intended second nav row (probe-measured).
+  Zero new JS/requests, unsigned, `dev` pushed. Awaiting sign-off.
