@@ -3,7 +3,7 @@
 Personal portfolio + game-dev hub for Sam Dicken (ProfessorDudley).
 Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 
-## Current state (dev @ `bfb9c56`, tags v0.2–v0.5)
+## Current state (dev @ `f662c5a`, tags v0.2–v0.5)
 
 - **Branches:** `master` = legacy launchpad (do not touch without a publish plan);
   `dev` = all current work; `game-prototype` = open, sprite/game exploration.
@@ -81,8 +81,9 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 
 ## Direction
 
-- **Now:** round-7 nav open/close consistency — IN PROGRESS (see
-  Round 7 section). Queued next: ticker blanking.
+- **Now:** round-7 nav open/close consistency — DONE, merged, validated,
+  awaiting user sign-off (see Round 7 section). Queued next: ticker
+  blanking.
 - **Next:** publish pass to `master` (strip lab via `exclude:` on the merge
   commit; favicon done; mobile floor; `_apps` gone) + custom-domain decision
   (CNAME vs github.io URL). Note `_config.yml` already points at
@@ -783,3 +784,10 @@ open vs closed): the navstrip must read the SAME in both states.
   1440/1100/1000/769 × 3 pages: nav-band (y37-93) byte-identical to round-5
   baseline (0 changed px). Zero overflow all pages 360–1100. Only
   whole-page deltas are the known coin-widget digits + AA shimmer.
+- **Orchestrator final validation (r7 merged as `f662c5a`, clean merge):**
+  rebuilt `dev`; 700/768/390 open+closed border/geometry all at expected
+  widths (flush, 0px endcaps/divider both states); row-diff confined to the
+  button glyph (max x 37) at 700 & 768; desktop nav band (y37-93)
+  byte-identical across 1440/1100/1000/769 × 3 pages; canonical sweep
+  8 widths × 3 pages `ovf no`. Unsigned; `dev` pushed.
+  Awaiting sign-off; ticker blanking still queued.
