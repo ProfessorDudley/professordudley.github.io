@@ -424,10 +424,83 @@ header .strip .segs.right a { justify-content: center; }
 .nav-toggle,
 .nav-menu-btn { display: none; }
 
+/* ---- round-3 W: collapsible nav from tablet-portrait down ---- */
+/* Externals never collapse: only internals hide; the spacer stays to
+   right-align the icons in the bar. The expanded panel is internals-only,
+   full width below the bar (order keeps it after spacer + externals so the
+   bar never shifts between states). The 390 block below refines this. */
+@media (max-width: 768px) {
+  header .demo-nav { flex-wrap: wrap; }
+
+  /* Visually hidden but focusable: label click + keyboard both toggle. */
+  .nav-toggle {
+    display: block;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: 0;
+    opacity: 0;
+    clip-path: inset(50%);
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .nav-toggle:focus-visible + .nav-menu-btn {
+    outline: 2px solid var(--accent);
+    outline-offset: -2px;
+  }
+  .nav-menu-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    width: auto;
+    cursor: pointer;
+    padding: 1rem;
+    font-weight: 700;
+  }
+  .menu-icon {
+    width: 1.2em;
+    height: 1.2em;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    flex: none;
+  }
+  /* Hamburger/X swap, same pattern as the filter chevrons. */
+  .nav-menu-btn .icon-close { display: none; }
+  .nav-toggle:checked + .nav-menu-btn .icon-open { display: none; }
+  .nav-toggle:checked + .nav-menu-btn .icon-close { display: inline; }
+
+  /* Collapsed: internals hidden; externals + spacer stay in the bar. */
+  .nav-toggle:not(:checked) ~ .tally.segs { display: none; }
+
+  /* Expanded panel: internals only, vertical stack, full width. */
+  .nav-toggle:checked ~ .tally.segs {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    order: 5;
+    border-top: var(--card-border-w) solid var(--border);
+  }
+  .nav-toggle:checked ~ .tally.segs li + li { border-top: 0; }
+
+  /* Stacked internals lose their vertical dividers. */
+  header .strip .tally.segs li:first-child,
+  header .strip .tally.segs li + li { border-left: 0; border-right: 0; }
+
+  /* K4 (hoisted from the 390 block): tally marker inline with text
+     whenever the dropdown shows. */
+  header .strip .tally a::after {
+    position: static;
+    top: auto;
+    right: auto;
+    margin-left: 0.9em;
+  }
+}
+
 @media (max-width: 390px) {
   main { padding: 2rem 2rem 6rem; }
-
-  header .demo-nav { flex-wrap: wrap; }
 
   /* K1: strip side padding → 0 so the button row spans full width. */
   header .demo-nav.strip { padding-left: 0; padding-right: 0; }
@@ -471,18 +544,15 @@ header .strip .segs.right a { justify-content: center; }
   .nav-toggle:checked + .nav-menu-btn .icon-open { display: none; }
   .nav-toggle:checked + .nav-menu-btn .icon-close { display: inline; }
 
-  /* Collapsed: button row only. */
-  .nav-toggle:not(:checked) ~ .segs,
-  .nav-toggle:not(:checked) ~ .spacer { display: none; }
+  /* Collapsed: internals hidden; externals + spacer stay in the bar. */
+  .nav-toggle:not(:checked) ~ .tally.segs { display: none; }
 
-  /* Expanded panel: vertical divider borders become horizontal rules. */
-  header .strip .segs:not(.right) li:first-child,
-  header .strip .segs.right li:first-child,
-  header .strip .segs li + li,
-  header .strip .segs.right li:last-child { border-left: 0; border-right: 0; }
+  /* Stacked internals lose their vertical dividers (externals keep
+     their bar dividers); the wrapped spacer loses its stray edge tick. */
+  header .strip .tally.segs li:first-child,
+  header .strip .tally.segs li + li { border-left: 0; border-right: 0; }
+  header .demo-nav.strip .spacer { border-left: 0; }
 
-  .nav-toggle:checked ~ .spacer { display: none; }
-  .nav-toggle:checked ~ .segs { width: 100%; }
   /* Internal links first, vertical stack. */
   .nav-toggle:checked ~ .tally.segs {
     display: flex;
@@ -498,11 +568,4 @@ header .strip .segs.right a { justify-content: center; }
     right: auto;
     margin-left: 0.9em;
   }
-  /* External icons last, one centered row, no container top border. */
-  .nav-toggle:checked ~ .segs.right {
-    display: flex;
-    justify-content: center;
-    border-top: 0;
-  }
-  .nav-toggle:checked ~ .segs.right li + li { border-left: 0; }
 }
