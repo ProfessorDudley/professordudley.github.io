@@ -81,10 +81,11 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 
 ## Direction
 
-- **Now:** landing tier rework — DONE, merged, verified, awaiting user
-  sign-off incl. the C→D border rework (1380 border, 6rem padding
-  restored, side floor 300) — see Tier rework section + open decision.
-  Landing 1440 baseline refreshed.
+- **Now:** tablet rework (≤1100) — IN PROGRESS, see Tablet rework section.
+  Tooling rebuilt, 15 reference shots taken, 3 scope questions with user,
+  streams spawn after answers. Prior tier rework: merged + verified, no
+  explicit sign-off; its open side-floor decision (300 vs 326) is subsumed
+  by this rework — the padding change re-opens the floor math anyway.
 - **Next:** publish pass to `master` (strip lab via `exclude:` on the merge
   commit; favicon done; mobile floor; `_apps` gone) + custom-domain decision
   (CNAME vs github.io URL). Note `_config.yml` already points at
@@ -201,3 +202,59 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
   asked; never bundle them silently under agent messages.
 - Performance budget: deferred scripts only, no render-blocking additions,
   no new network requests without discussion.
+
+## Tablet rework (≤1100) — in progress (orchestrated)
+
+Goal: ≤1100 matches the mobile (768/390) patterns by *moving* breakpoints,
+not duplicating rules — one rule, one breakpoint, no tablet-vs-mobile
+conflicts. Desktop >1100 stays byte-identical unless a scope answer says
+otherwise.
+
+- **Tooling rebuilt (Oct 2026):** `/tmp/opencode/shot.py` (full-page PNG +
+  JSON metrics via Brave CDP :9333), `/tmp/opencode/sweep.py` (widths ×
+  pages table). Brave flags for containers: `--no-sandbox
+  --disable-dev-shm-usage --no-zygote --remote-allow-origins=*`. (Prior
+  scripts were wiped with /tmp; these are rewrites, not recoveries.)
+  Lesson: a fresh tab defaults to 780px wide — set
+  `Emulation.setDeviceMetricsOverride` BEFORE navigate; `/json/close`
+  returns non-JSON, tolerate it.
+- **Reference set (pre-change):** `/tmp/opencode/tablet-rework/ref/`,
+  15 shots: landing/projects/article × 1440/1100/900/768/390. Baseline
+  sweep (bodyW/docSW/ovf/cards): landing 1440 [300,300,hidden,220] no-ovf;
+  landing 1100 [293,hidden,hidden,213] no-ovf; landing 900
+  [163,163,163,131] — the 3-across crush this rework fixes; projects
+  1100/900 326-cards no-ovf; all widths no overflow. Spot-checked
+  landing-900 + projects-1100 renders.
+- **900px 3-across? No.** 3×280 + 2×24 gap = 888px needed; content is 693
+  (6rem pad) or 757 (4rem pad) at body 885. 2×326+24 = 676 fits viewports
+  ≥ ~819 with 4rem padding — hence 2-across + full-width invert.
+- **Scope decisions (user, Oct 15):** Q1 padding 6rem→4rem applies ≤1100
+  ONLY — desktop tiers untouched, no floor-math ripple. Q2 landing ≤1100
+  hides the overflowing 3rd card (3-across proven unfit): 2 cards +
+  full-width invert below. Q3 hero padding matches 768: `5rem 0 6rem`.
+- **Stream PS — shared theme.css** (branch `sprint/tablet-shared`):
+  main side padding per Q1; nav externals icon-only from 1100 down
+  (restructure the 768 `soc-label` rule upward, single breakpoint);
+  article meta rail to top ≤1100 (`order:-1` + 768 rhythm, moved not
+  copied). `theme.css` only.
+- **Stream Q — landing** (branch `sprint/tablet-landing`): ≤1100 hide
+  store, single column, invert `grid-column: 1/-1` below cards, cards
+  2-across `minmax(280px,326px)` (3rd card per Q2), col-footer visible at
+  content bottom, hero padding per Q3. `index.css` only. Must win the
+  exact-1100 boundary vs band D (stack-query precedent).
+- **Stream R — projects** (branch `sprint/tablet-projects`): filter
+  collapse block 768→1100 (breakpoint change, not a copy), reconcile with
+  container queries by measurement, 390 single-col intact, 2-across fluid
+  grid, footer bottom. `projects.css` only.
+- **Stream contract:** read PLAN.md first; branch from `dev`; ≤3 agent
+  loops, then stop + report; update PLAN.md on completion; unsigned
+  commits; push branch + report SHA; never touch `master`; no new JS, no
+  new requests; verify by build + screenshots/measurements, not reasoning.
+- **Acceptance (orchestrator):** no overflow at
+  1100/1000/900/820/768/390/360 all pages; filter toggle + nav toggle
+  re-proven via CDP clicks; desktop 1440 identical (projects/article hash,
+  landing noise-only); desktop below-nav pixels unchanged; merge order
+  PS→Q→R with rebuild + sweep per merge. User signs off when done.
+- **Stream PS report:** _(pending)_
+- **Stream Q report:** _(pending)_
+- **Stream R report:** _(pending)_
