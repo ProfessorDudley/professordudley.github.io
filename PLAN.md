@@ -468,5 +468,22 @@ the bar, only internals collapse.
   expand internals-only at 700 + 390 (externals unmoved); 769+/1440
   desktop identical incl. below-nav pixels; 390 keeps padding/strip
   behavior; zero overflow 360–1100.
-- **Stream V report:** _(pending)_
+- **Stream V report:** DONE (1 loop, branch `sprint/r3-projects-cap`,
+  `projects.css` only): one-line change in the ≤1100 block —
+  `.projects-main .card-grid` `repeat(2, minmax(0,1fr))` →
+  `repeat(2, minmax(280px,326px))` + `justify-content: center` (landing-Q pattern).
+  - V-1 card cap: 326.0px at 1100/1000/900/820, 300.5 at 768, 280.0 at 727 —
+    all ≤326.5. 820 1px-slack case holds (677 content vs 676 need, no overflow).
+  - V-2 symmetry: card-row insets within grid exact — 140.5/140.5 at 1100,
+    40.5/40.5 at 900 (±0px).
+  - V-3 columns: 2-col intact ≥727 (727 = 2×280 exact fit); single-col wins
+    below via the later 726 rule (726/700/500 = 1×326, 391 = 248 shrink);
+    390 block owns ≤390 (311 fluid); container queries untouched, still lose
+    by source order; desktop >1100 untouched (1440/1200 = 2×326 container tracks).
+  - V-4 toggle re-proven via CDP click at 900: collapsed 50px bar/menu none →
+    expanded block with 9 `.filter-btn`s → recollapsed. Nodes unmoved, zero JS.
+  - V-5 identity: 1440 shot sha256-identical to ref (`ac48bbea…`); 390 shot
+    sha256-identical to ref (`3241bb9d…`). Zero overflow at
+    1440/1200/1100/1000/900/820/768/727/726/700/500/391/390/360. Spot-checked
+    900/1100 renders (2×326 centered, Filter bar, bottom footer). No new JS/requests.
 - **Stream W report:** _(pending)_
