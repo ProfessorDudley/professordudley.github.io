@@ -3,7 +3,7 @@
 Personal portfolio + game-dev hub for Sam Dicken (ProfessorDudley).
 Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 
-## Current state (dev @ `33e13c4`, tags v0.2–v0.5)
+## Current state (dev @ `b15b978`, tags v0.2–v0.5)
 
 - **Branches:** `master` = legacy launchpad (do not touch without a publish plan);
   `dev` = all current work; `game-prototype` = open, sprite/game exploration.
@@ -81,8 +81,8 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 
 ## Direction
 
-- **Now:** round-5 nav borders — IN PROGRESS (see Round 5 section).
-  Stream Y spawned after PLAN update. Queued next: ticker blanking.
+- **Now:** round-5 nav borders — DONE, merged, validated, awaiting
+  user sign-off (see Round 5 section). Queued next: ticker blanking.
 - **Next:** publish pass to `master` (strip lab via `exclude:` on the merge
   commit; favicon done; mobile floor; `_apps` gone) + custom-domain decision
   (CNAME vs github.io URL). Note `_config.yml` already points at
@@ -652,3 +652,12 @@ until mobile takes over.
   unmoved externals through toggle cycles. 1440 diffs are the known
   coin-artifact signature only (identical totals); article SAME. 390-bar
   screenshot verified. Zero new JS/requests, unsigned, `dev` pushed.
+- **Orchestrator final validation (Y merged as `b15b978`, clean):**
+  rebuilt + 10-width × 3-page sweep, ZERO overflow. Tick scan @1000:
+  all 7 dividers span 100% (was 93% on 4 icon ticks). Expanded tally ==
+  nav rect exactly @700 ([0..685]) and @390 ([0..375]); button endcap
+  2px. 8/8 nav probes pass on merged code. Desktop: nav band rows
+  37–95 zero changed pixels outside coin boxes (the fix is nav-pixel
+  clean); landing remainder is coin + 53px hero AA shimmer (known
+  noise); article SAME. Zero new JS/requests, unsigned, `dev` pushed
+  next. Awaiting sign-off; ticker blanking queued.
