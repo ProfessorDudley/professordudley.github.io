@@ -3,7 +3,7 @@
 Personal portfolio + game-dev hub for Sam Dicken (ProfessorDudley).
 Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 
-## Current state (dev @ `fc614ca`, tags v0.2–v0.5)
+## Current state (dev @ `d2734d2`, tags v0.2–v0.5)
 
 - **Branches:** `master` = legacy launchpad (do not touch without a publish plan);
   `dev` = all current work; `game-prototype` = open, sprite/game exploration.
@@ -81,10 +81,11 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 
 ## Direction
 
-- **Now:** follow-up amendments — IN PROGRESS (see Follow-up section).
-  Streams T+U spawned after PLAN update. Prior tablet rework: merged +
-  validated; sign-off carried into these amendments (768-padding question
-  answered: align to 4rem).
+- **Now:** follow-up amendments — DONE, merged, validated, awaiting
+  user sign-off (see Follow-up section). Flag for sign-off: in the new
+  391–726 single-col range all 3 landing cards show (nothing overflows
+  horizontally when stacked) — consistent with 768/390 showing all, but
+  call it out against Q2's hide rule.
 - **Next:** publish pass to `master` (strip lab via `exclude:` on the merge
   commit; favicon done; mobile floor; `_apps` gone) + custom-domain decision
   (CNAME vs github.io URL). Note `_config.yml` already points at
@@ -422,3 +423,17 @@ can't hold 280–326, force single column, 326 max, centered.
     artifact, crop-verified). Zero overflow at
     1440/1100/900/820/769/768/727/726/700/500/391/390/360. No new
     JS/requests.
+- **Orchestrator final validation (T+U merged as `d2734d2` + `3ca4b7f`;
+  T merge needed the usual PLAN anchor splice, both reports kept):**
+  rebuilt + 15-width × 3-page sweep, ZERO overflow everywhere, with exact
+  handoffs — 727 = 2×280 both pages, 726 = single 326, 391 = 248
+  shrink, 390 = phone rules; landing-768 now 64px sides with 2×301 cards
+  (the old 269 squish gone via the padding alignment). 17/17 probes pass
+  (`/tmp/opencode/probe2.py`): invert H 159–274 across 1100→391 with
+  scrollHeight==clientHeight (zero clipping); single-col x-centering off
+  0.0; rail == detail 704/704 @900 and 625/625 @768; filter toggle at
+  700; hero one line @1100. Spot-check landing-500: single 326 stack,
+  short invert, icon nav, footer bottom. 1440/390 diffs coin-only;
+  article-1440/390 hash-identical; landing-768 −85px page height is
+  intended wider-measure reflow. Zero new JS/requests, unsigned, `dev`
+  pushed. Awaiting sign-off (incl. the 3-cards-in-single-col flag).
