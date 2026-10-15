@@ -256,5 +256,17 @@ otherwise.
   landing noise-only); desktop below-nav pixels unchanged; merge order
   PS→Q→R with rebuild + sweep per merge. User signs off when done.
 - **Stream PS report:** _(pending)_
-- **Stream Q report:** _(pending)_
+- **Stream Q report:** done in 1 loop (`index.css` only, branch `sprint/tablet-landing`).
+  New `(max-width:1100px) and (min-width:769px)` block placed after the tiers with
+  `body.landing`-scoped selectors: single-column page-grid (gap 2rem, 768 pattern),
+  store hidden, footer bottom-left, cards `repeat(2, minmax(280px,326px))`, 3rd card
+  hidden, invert `grid-column:1/-1`, hero `5rem 0 6rem`. Old bare max-1100 stack
+  query removed (superseded). Min-769 bound keeps 768/390 fully under their own
+  rules. Band-D re-asserts: 2nd card re-shown (`display:flex`, 0,5,1 tie won by
+  later order), tracks/columns/gap replaced — wins exact-1100. Measured: zero
+  overflow at 1100/1000/900/820/768/390; cards 326/326/326/294.5/269(768 2×2
+  intact)/311; invert full-width below (676/676/613); hero nowrap 85.6px one line
+  at 1100; store `display:none`, footer visible. Landing 1440 pixel-identical to
+  ref (rmse 0.000); 768/390 diffs are sub-pixel hero-AA noise in ~50px bboxes,
+  verified non-structural via crops. Zero new JS, no new requests.
 - **Stream R report:** _(pending)_
