@@ -3,7 +3,7 @@
 Personal portfolio + game-dev hub for Sam Dicken (ProfessorDudley).
 Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 
-## Current state (dev @ `7dbf228`, tags v0.2–v0.5)
+## Current state (dev @ `fc614ca`, tags v0.2–v0.5)
 
 - **Branches:** `master` = legacy launchpad (do not touch without a publish plan);
   `dev` = all current work; `game-prototype` = open, sprite/game exploration.
@@ -81,11 +81,11 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 
 ## Direction
 
-- **Now:** tablet rework (≤1100) — IN PROGRESS, see Tablet rework section.
-  Tooling rebuilt, 15 reference shots taken, 3 scope questions with user,
-  streams spawn after answers. Prior tier rework: merged + verified, no
-  explicit sign-off; its open side-floor decision (300 vs 326) is subsumed
-  by this rework — the padding change re-opens the floor math anyway.
+- **Now:** tablet rework (≤1100) — DONE, merged, validated, awaiting
+  user sign-off (see Tablet rework section + final validation). One open
+  observation for sign-off: landing keeps 96px sides at ≤768 (its own
+  `index.css` rule beats the shared 4rem rule by specificity) while
+  everything else ≤1100 is 64px — align it or keep the frozen 768 look?
 - **Next:** publish pass to `master` (strip lab via `exclude:` on the merge
   commit; favicon done; mobile floor; `_apps` gone) + custom-domain decision
   (CNAME vs github.io URL). Note `_config.yml` already points at
@@ -323,4 +323,21 @@ otherwise.
   hash diffs vs ref localized EXACTLY to wallet coin widgets
   (`0`→`10` visit awards in the shared Brave profile — bbox + crop
   verified); article hashes identical. R's CDP toggle proof stands on
-  byte-identical CSS. PS still in flight; full re-sweep after PS lands.
+  byte-identical CSS. PS merged (fc614ca); final validation below.
+- **Orchestrator final validation (all streams in):** rebuilt + 9-width ×
+  3-page sweep, ZERO overflow everywhere — incl. projects-900 (885/885),
+  confirming PS-5's predicted R-collapse fix on merged code. Padding 96
+  @≥1200 → 64 @1100–820 (all pages) → 96 landing-only @768 → 32 @390/360.
+  Landing 2×326 + 676 invert at 1100/1000/900/820; hero one line at 1100
+  (screenshot); band D @1200 untouched. 6/6 behavioral probes pass
+  (`/tmp/opencode/probe.py`): filter collapses (50px bar, menu none) +
+  expands (block, 9 btns) at 900; nav labels 1px @1000 / 50px @1440;
+  article rail order -1 with sideTop<detailTop @900, order 0 row @1440.
+  Spot-checks: projects-900 (Filter bar + 2×2 + bottom footer + icon
+  nav), article-900 (Details rail on top), landing-1100 (target look),
+  article-768 (clean reflow, +26px benign from wider measure).
+  1440/768/390 diffs vs ref are coin-widget-only (`0`→`10`
+  shared-profile artifact, bbox+crop verified) except intended reflows
+  (projects-768 collapse, article-768 +26px); article-1440/390
+  hash-identical. Zero new JS, no new requests, unsigned commits, `dev`
+  pushed. Awaiting user sign-off.
