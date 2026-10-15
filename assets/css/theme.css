@@ -457,21 +457,15 @@ header .strip .segs.right a { justify-content: center; }
     cursor: pointer;
     padding: 1rem;
     font-weight: 700;
-    /* desktop first-cell endcap parity: the button is a label, not an li,
-       so the strip endcap rule never applied — restore the left edge tick
-       in every hamburger state, collapsed and expanded. */
-    border-left: var(--card-border-w) solid var(--border);
   }
-  /* Expanded panel spans the whole container like mobile (K1 does this at
-     390; this covers 391–768). Collapsed keeps the desktop 2rem padding. */
-  header .demo-nav:has(.nav-toggle:checked) { padding-left: 0; padding-right: 0; }
-
-  /* round-6: when the menu is open, the row keeps its full span but the
-     endcap stubs would read as stray side ticks (the panel's own top border
-     is the visible frame). Remove them expanded-only — the collapsed bar
-     keeps both endcaps (its container frame is the strip's bottom). */
-  .nav-toggle:checked ~ .nav-menu-btn { border-left: 0; }
-  .nav-toggle:checked ~ .segs.right li:last-child { border-right: 0; }
+  /* round-7: the row must read identically when open and closed, so in the
+     hamburger range (<=768) it is flush, frameless, and unshifted in BOTH
+     states — the look the 390 block already shipped. The expanded panel
+     below keeps its own top + bottom borders as its frame; desktop
+     (769–1100 icon bar) keeps its endcap frame; only this block changes. */
+  header .demo-nav { padding-left: 0; padding-right: 0; }
+  .nav-menu-btn { border-left: 0; }
+  .strip .segs.right li:last-child { border-right: 0; }
   .menu-icon {
     width: 1.2em;
     height: 1.2em;
@@ -487,12 +481,11 @@ header .strip .segs.right a { justify-content: center; }
   .nav-toggle:checked + .nav-menu-btn .icon-close { display: inline; }
 
   /* Collapsed: internals hidden; externals + spacer stay in the bar.
-     The spacer keeps its flex slot (right-aligns icons) but loses its
-     left border, which would otherwise render as a stray tick. Scoped
-     to collapsed-only so the expanded bar keeps its divider; applies
-     at 390 too (later block refines, never re-adds the tick). */
+     The spacer keeps its flex slot (right-aligns icons) but has no left
+     border in either state — round 7: the row stays frameless open and
+     closed (matches 390; the 390 block no longer restates it). */
   .nav-toggle:not(:checked) ~ .tally.segs { display: none; }
-  .nav-toggle:not(:checked) ~ .spacer { border-left: 0; }
+  .strip .spacer { border-left: 0; }
 
   /* Expanded panel: internals only, vertical stack, full width. */
   .nav-toggle:checked ~ .tally.segs {
