@@ -606,7 +606,35 @@ until mobile takes over.
   700 + 390 (container-span); endcap ticks at bar edges all hamburger
   states; 1440 below-nav may change ONLY in tick pixels (else fail);
   toggle re-proven; zero overflow incl. expanded.
-- **Stream Y report:** _(pending)_
+- **Stream Y report:** DONE (1 loop, branch `sprint/r5-nav-borders`,
+  `theme.css` only, +10/−2): the three spec'd rules, nothing else —
+  `.strip .segs` gains `align-items: stretch`; 768 block gains
+  `.nav-menu-btn { border-left: ... }` + `header
+  .demo-nav:has(.nav-toggle:checked) { padding: 0 sides }`. K1, the 1100
+  icon-only rule, strut fix, and checkbox nodes untouched
+  (diff-verified). Pre/post refs + metrics: `/tmp/opencode/r5y-pre/`,
+  `/tmp/opencode/r5y-post/` (probe scripts `probe5y.py`/`probe5y-b.py`).
+  - Y-1 tick continuity: icon `li` ratios 0.926 → 1.000 at 1000,
+    700-collapsed, and 390-collapsed (internals already 1.0); computed
+    `align-items: center` → `stretch`; collapsed 700/390 padding stays
+    32px/0px (desktop parity + K1 intact).
+  - Y-2 container-span: 700-expanded tally [0..685] == nav [0..685]
+    (was [32..653]); 768-expanded [0..753] == nav; 390-expanded
+    unchanged [0..375]. Toggle re-proven via CDP clicks (expand +
+    recollapse) at 700/768/390.
+  - Y-3 endcaps: `btnBL` 0px → 2px collapsed AND expanded at 700/768/390;
+    right-edge `li:last-child br` 2px intact; collapsed spacer tick still
+    0px, expanded divider still 2px (bar crops visually clean).
+  - Y-4 desktop: article-1440 sha256-identical pre/post; landing +
+    projects 1440 diffs are coin-widget digits ONLY (`10`→`15` ticker +
+    store wallet, known shared-profile artifact, crop-verified) — zero
+    nav-band pixels (labels visible at 1440, already full-height); 769 =
+    btn none + tally grid + 32px pad.
+  - Y-5 overflow: zero at 360/390/500/700/768/900/1000/1100 all pages
+    collapsed, plus expanded menus at 390/700. Zero new JS/requests.
+  - Note: one self-caught editing mishap (dropped + restored the 768
+    toggle/button rules mid-edit); final diff re-verified rule-identical
+    before measuring.
 
 ## Queued (user, Oct 15 — schedule after round 5)
 
