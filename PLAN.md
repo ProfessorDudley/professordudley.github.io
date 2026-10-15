@@ -81,11 +81,8 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 
 ## Direction
 
-- **Now:** follow-up amendments — DONE, merged, validated, awaiting
-  user sign-off (see Follow-up section). Flag for sign-off: in the new
-  391–726 single-col range all 3 landing cards show (nothing overflows
-  horizontally when stacked) — consistent with 768/390 showing all, but
-  call it out against Q2's hide rule.
+- **Now:** round-3 amendments — IN PROGRESS (see Round 3 section).
+  Streams V+W spawned after PLAN update.
 - **Next:** publish pass to `master` (strip lab via `exclude:` on the merge
   commit; favicon done; mobile floor; `_apps` gone) + custom-domain decision
   (CNAME vs github.io URL). Note `_config.yml` already points at
@@ -437,3 +434,39 @@ can't hold 280–326, force single column, 326 max, centered.
   article-1440/390 hash-identical; landing-768 −85px page height is
   intended wider-measure reflow. Zero new JS/requests, unsigned, `dev`
   pushed. Awaiting sign-off (incl. the 3-cards-in-single-col flag).
+
+## Round 3 amendments — in progress (orchestrated)
+
+Scope (user, Oct 15): projects cards capped 326-centered near ≤1100;
+hamburger menu switches at ~768 (not ~390); externals always visible in
+the bar, only internals collapse.
+
+- **Stream V — projects cap** (branch `sprint/r3-projects-cap`,
+  `projects.css` only): 1100-block grid `repeat(2, minmax(0,1fr))` →
+  `repeat(2, minmax(280px,326px))` + `justify-content: center` (landing-Q
+  pattern). Fit: 769 content 611 ≥ 584 min-sum; 727 exact-fit 584;
+  820 has 1px slack (677 vs 676) — floors absorb it, no overflow. 726
+  single-col rule (later) still wins below; container queries still lose
+  by order; desktop >1100 untouched.
+- **Stream W — nav menu** (branch `sprint/r3-nav-menu`, `theme.css` +
+  one `header.html` aria attribute): SPLIT the 390 collapse block —
+  phone-only stays (main padding, K1 zero strip, full-width button
+  styling, hamburger swap), collapse mechanism moves to a new 768 block
+  placed before the 390 block so 390 refines it. Behavior change:
+  externals never collapse (collapsed-hiding selector narrows to
+  `.tally.segs`; spacer stays to right-align icons); expanded panel is
+  internals-only vertical dropdown; drop the `.segs.right` expanded
+  rules; `flex-wrap` moves up to 768; `aria-controls` narrows to
+  `nav-internal`. Desktop >768 byte-identical.
+- **Stream contract:** as before (PLAN first, branch from `dev`, ≤3 loops
+  then stop+report, PLAN update, unsigned, push + SHA, no `master`, no
+  new JS/requests, build + screenshots not reasoning).
+- **Acceptance (orchestrator):** projects cards ≤326.5px at
+  1100/1000/900/820/768/727 with symmetric L/R grid margins ±2px; 2-col
+  ≥727, single <727; filter toggle re-proven; hamburger visible +
+  internals hidden + externals visible at 768/700/500/391; CDP clicks
+  expand internals-only at 700 + 390 (externals unmoved); 769+/1440
+  desktop identical incl. below-nav pixels; 390 keeps padding/strip
+  behavior; zero overflow 360–1100.
+- **Stream V report:** _(pending)_
+- **Stream W report:** _(pending)_
