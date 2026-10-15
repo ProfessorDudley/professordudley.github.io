@@ -471,8 +471,13 @@ header .strip .segs.right a { justify-content: center; }
   .nav-toggle:checked + .nav-menu-btn .icon-open { display: none; }
   .nav-toggle:checked + .nav-menu-btn .icon-close { display: inline; }
 
-  /* Collapsed: internals hidden; externals + spacer stay in the bar. */
+  /* Collapsed: internals hidden; externals + spacer stay in the bar.
+     The spacer keeps its flex slot (right-aligns icons) but loses its
+     left border, which would otherwise render as a stray tick. Scoped
+     to collapsed-only so the expanded bar keeps its divider; applies
+     at 390 too (later block refines, never re-adds the tick). */
   .nav-toggle:not(:checked) ~ .tally.segs { display: none; }
+  .nav-toggle:not(:checked) ~ .spacer { border-left: 0; }
 
   /* Expanded panel: internals only, vertical stack, full width. */
   .nav-toggle:checked ~ .tally.segs {
@@ -525,7 +530,7 @@ header .strip .segs.right a { justify-content: center; }
     display: inline-flex;
     align-items: center;
     gap: 0.5em;
-    width: 100%;
+    width: auto;
     cursor: pointer;
     padding: 1rem;
     font-weight: 700;
@@ -548,10 +553,10 @@ header .strip .segs.right a { justify-content: center; }
   .nav-toggle:not(:checked) ~ .tally.segs { display: none; }
 
   /* Stacked internals lose their vertical dividers (externals keep
-     their bar dividers); the wrapped spacer loses its stray edge tick. */
+     their bar dividers). The collapsed spacer tick is already handled
+     by the collapsed-scoped rule in the 768 block above. */
   header .strip .tally.segs li:first-child,
   header .strip .tally.segs li + li { border-left: 0; border-right: 0; }
-  header .demo-nav.strip .spacer { border-left: 0; }
 
   /* Internal links first, vertical stack. */
   .nav-toggle:checked ~ .tally.segs {

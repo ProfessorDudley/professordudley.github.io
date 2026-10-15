@@ -549,4 +549,27 @@ externals to a second row — keep button + externals on one line
   (same top, measured); expanded bar keeps spacer divider +
   internals-only dropdown; toggle re-proven at 390; 769+/1440 identical;
   zero overflow incl. expanded menus.
-- **Stream X report:** _(pending)_
+- **Stream X report:** DONE (2 loops, branch `sprint/r4-nav-nits`,
+  `theme.css` only): collapsed-scoped `.nav-toggle:not(:checked) ~ .spacer
+  { border-left: 0; }` added in the 768 block (covers 391–768 + 390, spec
+  (0,3,0) beats base (0,2,0)); 390's always-on `.spacer { border-left: 0 }`
+  deleted (expanded bar keeps its divider everywhere now); 390
+  `.nav-menu-btn` `width: 100%` → `auto` (one-line bar).
+  - X-1 spacer tick: collapsed spacerBLW 0px at 700/500/390 all pages;
+    expanded 2px (divider kept) at 700 + 390 all pages. Bar-crop diff
+    pre/post at 700/500 is EXACTLY a 2px strip (x141–143, y37–91, the
+    tick), page height identical; post crops visually clean.
+  - X-2 one-row at 390: btn top 37 == ext top 37, btn 108.5px + spacer
+    98px + ext 169px = 375 body; pre-shot had wrapped 2nd nav row
+    (pageH 2597 → 2547, −50px). Post bar crop: Menu + 3 icons, one row.
+  - X-3 toggle re-proven via CDP clicks at 390 + 700 on all 3 pages:
+    expand → tally flex 110px below bar, externals pixel-unmoved
+    (extTop identical), recollapse clean. Internals-only dropdown intact.
+  - X-4 desktop: article-1440/769 sha256-identical to dev; landing +
+    projects 1440/769 diffs are coin-widget (x17–59/y10–23, known
+    shared-profile artifact) + breathing-dot glow only — zero nav-bar
+    pixels. Below-nav unchanged.
+  - X-5 overflow: zero at 360/390/500/700/768/900/1100 all pages
+    collapsed (docSW==bodyW), plus expanded menus at 390/700 all pages.
+    `bundle exec jekyll build` clean. Zero new JS, no new requests.
+  - Probes/shots: `/tmp/opencode/probe-x.py`, `/tmp/opencode/r4x/` (pre+post bars, dev-vs-post 1440/769).
