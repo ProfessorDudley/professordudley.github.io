@@ -380,5 +380,25 @@ can't hold 280–326, force single column, 326 max, centered.
   727+; invert H ≤300 with no clipped content; rail width == detail width
   ±2px at 900/768; filter toggle re-proven at 700; 1440 desktop
   identical (coin-noise aside); 390 intact.
-- **Stream T report:** _(pending)_
+- **Stream T report:** DONE (2 loops, branch `sprint/followup-landing`,
+  `index.css` only): 768 `body.landing main` padding 6rem→4rem sides; new
+  391–726 single-col block (`minmax(0,326px)` + centered, after the 768
+  block); invert `max-height: 300px` in the 769–1100 tablet block and the
+  new single-col range only — plus `min-height: 0` in the tablet block,
+  required because base `.card { min-height: 480px }` (theme.css) beats
+  max-height per spec and left the invert at 480 (found loop 1 at 900:
+  h=480 with maxH=300 computed). 727–768 2×2 cell uncapped as specified.
+  - Padding: 768 = 64px sides (was 96); 390/360 = 32px unchanged; 1440 = 96px.
+  - Invert: h=159 @1100/1000/900/800, 186 @769, 213 @726/700/600/500,
+    274 @391 — all ≤300 with scrollHeight==clientHeight (zero clipping);
+    visually checked at 900 (2×326 + short full-width closer) and 500
+    (single stack, short closer). 768/727 2×2 invert uncapped (410/426).
+  - Single-col: 326-centered @726/700/600/500 (card center within 0.5px of
+    content center), full-bleed 248 @391; 2-col intact @727 (280) / 750
+    (291.5) / 768 (300.5) / 769+ (301→326). Boundary 726/727 and 768/769
+    both clean; 390 block owns ≤390 (pad 32, fluid 311, invert 240).
+  - Desktop: 1440 shot pixel-identical to ref (diff bbox None). 390 diff is
+    AA shimmer in one 64×63 status-pill crop (verified non-structural).
+  - Overflow: zero at 360/390/391/500/600/700/726/727/750/768/769/800/820/
+    900/1000/1100/1440. `bundle exec jekyll build` clean. Zero JS, no new requests.
 - **Stream U report:** _(pending)_

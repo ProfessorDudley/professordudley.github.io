@@ -166,7 +166,7 @@ body.landing .col-footer { margin-top: auto; }
   }
   body.landing .main-col .card-grid > .card:nth-child(2) { display: flex; }
   body.landing .main-col .card-grid > .card:nth-child(3) { display: none; }
-  body.landing .main-col .card-grid > .card.invert { grid-column: 1 / -1; }
+  body.landing .main-col .card-grid > .card.invert { grid-column: 1 / -1; min-height: 0; max-height: 300px; }
   body.landing .hero { padding: 5rem 0 6rem; }
   body.landing .col-footer { text-align: left; padding: 1.5rem 0 0; }
 }
@@ -239,7 +239,7 @@ body.landing .col-footer { margin-top: auto; }
 /* tablet refinements (Stream D): landing ≤768px — roomy sides, 2×2 cards */
 @media (max-width: 768px) {
   #gacha-store { display: none; }
-  body.landing main { padding: 2rem 6rem 4rem; }
+  body.landing main { padding: 2rem 4rem 4rem; }
   .page-grid { grid-template-columns: 1fr; gap: 2rem; }
   .hero { gap: 1.25rem; padding: 5rem 0 6rem; }
   .hero h1 { font-size: clamp(2.5rem, 12vw, 4rem); }
@@ -247,6 +247,19 @@ body.landing .col-footer { margin-top: auto; }
   .card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .card { min-height: 0; min-width: 0; }
   body.landing .col-footer { text-align: left; padding: 1.5rem 0 0; }
+}
+
+/* single-column (Stream T): 391–726 — 2-col needs content ≥ 584px
+   (2×280 + 24 gap) → body ≥ 712 → viewport ≥ 727, so below 727 the
+   cards go single 326-centered. Placed after the 768 block so it wins
+   in range (higher specificity too); the 390 block below keeps owning
+   ≤390. Invert is full-width here, so the 300px cap applies. */
+@media (max-width: 726px) and (min-width: 391px) {
+  body.landing .main-col .card-grid {
+    grid-template-columns: minmax(0, 326px);
+    justify-content: center;
+  }
+  body.landing .main-col .card-grid > .card.invert { max-height: 300px; }
 }
 
 /* phone (Stream I): 390px single-column cards, compact hero */
