@@ -29,9 +29,8 @@ body.landing main {
 
 .main-col { grid-template-rows: minmax(0, 1fr) auto; }
 
-@media (max-width: 1100px) {
-  .page-grid { grid-template-columns: 1fr; }
-}
+/* (the old max-1100 stack query lived here; superseded by the Stream Q
+   tablet block after the tiers, which must win exact-1100 vs band D) */
 
 
 /* landing: footer lives docked in the store column instead */
@@ -147,6 +146,29 @@ body.landing .col-footer { margin-top: auto; }
     grid-template-columns: repeat(3, 326px) 260px;
   }
   body.landing .main-col .card-grid > .card:nth-child(3) { display: flex; }
+}
+
+/* tablet (Stream Q): 769–1100 single-column landing — same pattern as the
+   768 rules below (store hidden, footer bottom-left, roomy hero), cards
+   2-across with the full-width invert closer beneath. Bounded below by
+   min-width:769px so the 768/390 rules keep full control there (leak
+   would crush 768: 2×280+24 > its 561px content). Placed after the tiers
+   with body.landing-scoped selectors so it wins the exact-1100 boundary
+   vs band D (equal-or-higher specificity + later order; band D's
+   min-width:1100 still matches at exactly 1100). Every property band D
+   sets is re-asserted: 2nd card re-shown (D hides it), grid tracks and
+   page columns replaced, gap reset to the 768 2rem. */
+@media (max-width: 1100px) and (min-width: 769px) {
+  body.landing .page-grid { grid-template-columns: 1fr; gap: 2rem; }
+  body.landing #gacha-store { display: none; }
+  body.landing .main-col .card-grid {
+    grid-template-columns: repeat(2, minmax(280px, 326px));
+  }
+  body.landing .main-col .card-grid > .card:nth-child(2) { display: flex; }
+  body.landing .main-col .card-grid > .card:nth-child(3) { display: none; }
+  body.landing .main-col .card-grid > .card.invert { grid-column: 1 / -1; }
+  body.landing .hero { padding: 5rem 0 6rem; }
+  body.landing .col-footer { text-align: left; padding: 1.5rem 0 0; }
 }
 
 /* store: in-flow right column, wallet + theme + buy grid */
