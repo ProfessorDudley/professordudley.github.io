@@ -81,8 +81,8 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 
 ## Direction
 
-- **Now:** round-3 amendments — DONE, merged, validated, awaiting
-  user sign-off (see Round 3 section).
+- **Now:** round-4 navbar nits — IN PROGRESS (see Round 4 section).
+  Stream X spawned after PLAN update.
 - **Next:** publish pass to `master` (strip lab via `exclude:` on the merge
   commit; favicon done; mobile floor; `_apps` gone) + custom-domain decision
   (CNAME vs github.io URL). Note `_config.yml` already points at
@@ -529,3 +529,24 @@ the bar, only internals collapse.
   target look. 1440 diffs coin-only; article-1440 SAME; 390 +50px page
   height on all pages is the intended second nav row (probe-measured).
   Zero new JS/requests, unsigned, `dev` pushed. Awaiting sign-off.
+
+## Round 4 (navbar nits) — in progress (orchestrated)
+
+Scope (user, Oct 15): (1) when internals are collapsed, the spacer's
+left border is a stray tick — remove it in the collapsed state (note:
+the 390 block already zeroes it always; the 391–768 collapsed bar still
+shows it; scope the fix to collapsed-only so the expanded bar keeps its
+divider); (2) at 390 the menu button goes full-width and pushes
+externals to a second row — keep button + externals on one line
+(button auto-width; ~109 + spacer + ~169px fits 375px).
+
+- **Stream X** (branch `sprint/r4-nav-nits`, `theme.css` only).
+- **Stream contract:** as before (PLAN first, branch from `dev`, ≤3 loops
+  then stop+report, PLAN update, unsigned, push + SHA, no `master`, no
+  new JS/requests, build + screenshots not reasoning).
+- **Acceptance (orchestrator):** collapsed bar at 700/500/390 shows no
+  spacer tick (crop-verified); button + externals share one row at 390
+  (same top, measured); expanded bar keeps spacer divider +
+  internals-only dropdown; toggle re-proven at 390; 769+/1440 identical;
+  zero overflow incl. expanded menus.
+- **Stream X report:** _(pending)_
