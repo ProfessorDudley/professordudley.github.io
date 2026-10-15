@@ -3,7 +3,7 @@
 Personal portfolio + game-dev hub for Sam Dicken (ProfessorDudley).
 Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 
-## Current state (dev @ `b72d3bc`, tags v0.2–v0.5)
+## Current state (dev @ `bfb9c56`, tags v0.2–v0.5)
 
 - **Branches:** `master` = legacy launchpad (do not touch without a publish plan);
   `dev` = all current work; `game-prototype` = open, sprite/game exploration.
@@ -81,8 +81,8 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 
 ## Direction
 
-- **Now:** round-6 nav sides — DONE, merged, validated, awaiting
-  user sign-off (see Round 6 section). Queued next: ticker blanking.
+- **Now:** round-7 nav open/close consistency — IN PROGRESS (see
+  Round 7 section). Queued next: ticker blanking.
 - **Next:** publish pass to `master` (strip lab via `exclude:` on the merge
   commit; favicon done; mobile floor; `_apps` gone) + custom-domain decision
   (CNAME vs github.io URL). Note `_config.yml` already points at
@@ -729,3 +729,42 @@ tablet or desktop.
   pixel-unmoved). Desktop nav band (y 37–93) byte-identical across
   1440/1100/769 × 3 pages vs round-5 baseline (only known coin digits +
   AA shimmer outside it, as in rounds 4–5). Unsigned; `dev` pushed.
+
+## Round 7 (nav open/close consistency) — in progress (direct)
+
+User correction (Oct 15, 2 screenshots of the projects bar at ~768,
+open vs closed): the navstrip must read the SAME in both states.
+
+- **Measured deltas (dev `bfb9c56`, :4000 @700):** collapsed = 32px side
+  padding → button ends at x=32 with a 2px left endcap, spacer 0px
+  divider, last external right at x=653 with a 2px right endcap (64px of
+  inset frame). Expanded = button at x=0 (0px, flush), spacer 2px divider
+  (appears on open), last icon ends flush at x=685 (0px). So the two rows
+  differ in: the 32px left/right shift, the two endcaps (closed only), and
+  a divider tick that appears only when open (spacer, expanded).
+- **Target (390-already-there):** one consistent, flush, frameless,
+  unshifted row in BOTH states. The panel below keeps its own top +
+  bottom borders as its frame (unchanged). Only the 768 block's bar-row
+  rules change; 1100 icon-only, 390, desktop, and the expanded panel's
+  own borders are untouched.
+- **Changes (theme.css, 768 block, +7/-0):**
+  1. `header .demo-nav:has(.nav-toggle:not(:checked)) { padding-left: 0; padding-right: 0; }`
+     — closed row now also flush (was the 32px inset).
+  2. `.nav-toggle:not(:checked) ~ .nav-menu-btn { border-left: 0; }`
+     — closed button tick removed.
+  3. `.nav-toggle:not(:checked) ~ .segs.right li:last-child { border-right: 0; }`
+     — closed end cap removed.
+  4. `.nav-toggle:checked ~ .spacer { border-left: 0; }`
+     — open divider removed (spacer already 0px collapsed).
+- **Scope note:** these flip the "collapsed keeps endcaps" line from round
+  6 in favor of the user's explicit "consistent open/closed" instruction;
+  round-6 is preserved by the 390 + expanded-only rules which the 4 rules
+  above do not disturb. If the user wants the endcaps back when closed,
+  the single lever is rule 1 (restore the 2×32px padding) — noted here.
+- **Acceptance (orchestrator):** 700 & 768 — collapsed and expanded rows
+  share: button x, elil right, and every border width (all 0) with ZERO
+  delta; bar crop identical open vs closed except button icon X vs hamburger;
+  tally still container-span; 1100/1440 desktop nav band byte-identical;
+  390 untouched (row + panel identical to round 6); toggle re-proven; zero
+  overflow incl. expanded; sweep 360–1100 × 3.
+- **Status:** merged-branch pending, awaiting validation + sign-off.
