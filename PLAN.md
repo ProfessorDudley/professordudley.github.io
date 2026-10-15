@@ -81,8 +81,8 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 
 ## Direction
 
-- **Now:** round-5 nav borders — DONE, merged, validated, awaiting
-  user sign-off (see Round 5 section). Queued next: ticker blanking.
+- **Now:** round-6 nav sides — IN PROGRESS (see Round 6 section).
+  Stream Z spawned after PLAN update. Queued next: ticker blanking.
 - **Next:** publish pass to `master` (strip lab via `exclude:` on the merge
   commit; favicon done; mobile floor; `_apps` gone) + custom-domain decision
   (CNAME vs github.io URL). Note `_config.yml` already points at
@@ -659,5 +659,37 @@ until mobile takes over.
   2px. 8/8 nav probes pass on merged code. Desktop: nav band rows
   37–95 zero changed pixels outside coin boxes (the fix is nav-pixel
   clean); landing remainder is coin + 53px hero AA shimmer (known
-  noise); article SAME. Zero new JS/requests, unsigned, `dev` pushed
-  next. Awaiting sign-off; ticker blanking queued.
+  noise); article SAME. Zero new JS/requests, unsigned, `dev` pushed.
+  Round-5 sign-off carried into round 6 below.
+
+## Round 6 (nav side ticks) — in progress (orchestrated)
+
+User corrections (Oct 15, with screenshots): (1) mobile (390) collapsed
+bar reads as a bordered box — remove its left/right ticks; (2) tablet
+expanded: remove the menu-row side ticks; (3) tablet collapsed endcaps
+must REMAIN — so all removals are strictly scoped (expanded-only via
+`:checked ~`, mobile-only via the 390 block), never touching collapsed
+tablet or desktop.
+
+- **Measured ground truth (current dev):** nav outer bl/br are 0
+  everywhere (lines 44–52); the verticals are all cell-level — button
+  `border-left` (round-5 endcap) + last-cell `border-right` (rule 346).
+  390-collapsed bar = [btn|spacer|ext] with ticks at x=0 and x≈373;
+  700-expanded = same row ticks (row-height only) + full-span tally-top
+  and strip-bottom. So the fixes: 390 block gets unconditional
+  `.nav-menu-btn { border-left: 0 }` +
+  `.strip .segs.right li:last-child { border-right: 0 }`; 768 block gets
+  `.nav-toggle:checked ~ .nav-menu-btn { border-left: 0 }` and
+  `.nav-toggle:checked ~ .segs.right li:last-child { border-right: 0 }`
+  (0,5,1 beats rule-346's 0,4,1; verified by computed style, not
+  reasoning). Spacer divider, tally-top, strip-bottom, desktop ticks all
+  untouched.
+- **Stream Z** (branch `sprint/r6-nav-sides`, `theme.css` only).
+- **Stream contract:** as before (≤3 loops, PLAN update, unsigned, push
+  + SHA, build + screenshots).
+- **Acceptance (orchestrator):** 390 collapsed+expanded: button bl 0 +
+  lastcell br 0 (measured), bar crop shows no side ticks; 700/768
+  expanded: same 0/0 with tally still container-span; 700/768
+  collapsed UNCHANGED (bl/br 2px); 769+/1440 ticks intact incl.
+  below-nav pixels; toggle re-proven; zero overflow incl. expanded.
+- **Stream Z report:** _(pending)_
