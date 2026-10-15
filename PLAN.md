@@ -255,7 +255,35 @@ otherwise.
   re-proven via CDP clicks; desktop 1440 identical (projects/article hash,
   landing noise-only); desktop below-nav pixels unchanged; merge order
   PS→Q→R with rebuild + sweep per merge. User signs off when done.
-- **Stream PS report:** _(pending)_
+- **Stream PS report:** PASS with one known interaction (see PS-5). Branch
+  `sprint/tablet-shared`, `theme.css` only (8+/9-): new ≤1100 `main`
+  `2rem 4rem 6rem` rule; soc icon-only breakpoint 768→1100 (single rule,
+  strut untouched); article 768 rhythm + `order:-1` moved into the ≤1100
+  block (768 block left with `padding-bottom` only). 2 loops used.
+  - PS-1 padding: 1440 = 96px all pages; 1100/1000/900/820 = 64px
+    (projects/article; landing-768 keeps 96 via its own `index.css` rule —
+    Stream Q's lane); 390/360 = 32px unchanged.
+  - PS-2 desktop 1440 byte-identical: landing/projects/article sha256 match
+    ref (landing diff-pixels 0 — better than noise-only bar). Strut fix
+    untouched; below-nav pixels identical by hash.
+  - PS-3 nav: labels 50.25px visible at 1440, 1px clipped icon-only at
+    1100/1000/900/820/768; hamburger appears at 390 (button `flex`) and
+    expands internals on click (none/false → flex/true).
+  - PS-4 article: 1440 row/order-0; 1100→390 column/order-(-1) with 768
+    rhythm; shots visually clean, rail on top below lede.
+  - PS-5 KNOWN INTERACTION for orchestrator/R: projects-900 now overflows
+    (docSW 941 > body 885; A/B tested pre 885/885 → post 941/885). Cause:
+    wider content keeps the container-query grid at 2×326 in row layout
+    while the rail squeezes to 177px (676+24+177=877 > 757). Pre-existing
+    layout, exposed by Q1 padding — Stream R's ≤1100 filter collapse
+    removes the rail at 900 and should resolve it; re-sweep after R.
+    1000/1100/820/768/390/360 projects have no overflow.
+  - PS-6 toggles: filter bar flex + menu none at 768; bar click expands
+    (block/true); filter button press filters 4→2 cards. Zero new JS/requests.
+  - PS-7 768/390 vs ref: all 390 identical; landing-768 diffs are
+    capture noise only (breathe-animation/ticker — re-shoot moves the
+    bbox, ps-vs-ps also differs); projects/article-768 height deltas are
+    intended Q1/rhythm reflow.
 - **Stream Q report:** done in 1 loop (`index.css` only, branch `sprint/tablet-landing`).
   New `(max-width:1100px) and (min-width:769px)` block placed after the tiers with
   `body.landing`-scoped selectors: single-column page-grid (gap 2rem, 768 pattern),
