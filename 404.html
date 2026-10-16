@@ -6,10 +6,19 @@ sitemap: false
 ---
 <style>
 /* 404-only: pin the footer to the viewport bottom and space stacked CTAs.
-   Inline so no other page is affected. */
+   Inline so no other page is affected. The footer sits outside <main>, so
+   mirror main's responsive side padding (theme.css) to keep its edges
+   aligned with the content column above. */
 body { display: flex; flex-direction: column; min-height: 100dvh; }
-main { flex: 1 0 auto; width: 100%; padding-bottom: 6rem; }
+main { flex: 1 0 auto; width: 100%; }
+body > footer { padding-left: 6rem; padding-right: 6rem; }
 .not-found-ctas .btn { margin-bottom: 0.75rem; }
+@media (max-width: 1100px) {
+  body > footer { padding-left: 4rem; padding-right: 4rem; }
+}
+@media (max-width: 390px) {
+  body > footer { padding-left: 2rem; padding-right: 2rem; }
+}
 </style>
 <div class="page-preface">
 <h1>404 — Out of bounds</h1>
