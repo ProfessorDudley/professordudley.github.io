@@ -3,11 +3,16 @@
 Personal portfolio + game-dev hub for Sam Dicken (ProfessorDudley).
 Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 
-## Current state (dev @ `54ffaec`, tags v0.2–v0.7)
+## Current state (dev published to `master` @ `7a06760`, live)
 
-- **Branches:** `master` = legacy launchpad (do not touch without a publish plan);
-  `dev` = all current work; `game-prototype` = open, sprite/game exploration.
+- **Branches:** `master` = live site (published `7a06760`, includes CNAME +
+  lab-strip); `dev` = all current work (lab exclusion reverted so
+  `/debug.html` still previews locally); `game-prototype` = open.
   Only `master` deploys (workflow triggers on `master` push).
+  Publish convention: merge `dev` → `master` with `--no-ff --no-commit`,
+  add `debug.html` + `assets/css/lab.css` + `assets/js/lab.js` to
+  `exclude:`, commit the merge, verify the `master` build has no lab
+  output, push `master`, then ff `dev` and revert the lab excludes there.
 - **Pages:** landing `index.html` (hero, featured cards, Store), `/projects/`
   (collection grid + filter sidebar), project articles (`_layouts/article.html`
   with meta rail), `debug.html` (design lab, never ships).

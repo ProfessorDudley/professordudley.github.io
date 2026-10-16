@@ -31,17 +31,14 @@ github_username:  ProfessorDudley
 # Exclude from processing.
 # `docs/` is dev-only design notes and must never publish,
 # even if it accidentally reaches master.
-# debug.html + lab.* are dev-only theme tooling: stripped on the
-# publish merge only, kept on dev for future theme work.
+# NOTE: the publish merge to master adds debug.html + lab.* here;
+# keep them buildable on dev for future theme work.
 exclude:
   - docs/
   - design-state.json
   - tools/
   - PLAN.md
   - AGENTS.md
-  - debug.html
-  - assets/css/lab.css
-  - assets/js/lab.js
   - .sass-cache/
   - .jekyll-cache/
   - gemfiles/
