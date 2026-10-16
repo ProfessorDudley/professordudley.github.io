@@ -1,0 +1,72 @@
+---
+layout: page
+title: Projects
+permalink: /projects/
+styles: [projects]
+---
+<div class="page-preface">
+<h1>Projects</h1>
+<p class="hero-bio">Games, tools, and experiments — each one finished enough to show.</p>
+</div>
+<div class="projects-wrap">
+  <div class="projects-main">
+    <div class="card-grid">
+      {% assign ordered = site.projects | sort: "date" | reverse %}
+      {% for project in ordered %}
+        {% include project-card.html project=project %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="side-col">
+  <input type="checkbox" id="filter-toggle" class="filter-toggle" aria-controls="filter-menu">
+  <label for="filter-toggle" class="filter-bar"><span class="filter-bar-title">Filter</span><span class="filter-bar-toggle" aria-hidden="true"><svg class="chev chev-down" viewBox="0 0 8 12"><path d="M1 1l5 5-5 5"/></svg><svg class="chev chev-up" viewBox="0 0 8 12"><path d="M1 1l5 5-5 5"/></svg></span></label>
+  <aside id="filter-menu" aria-label="Filter projects">
+    <div class="filter-head">
+      <h2>Filter</h2>
+      <button type="button" class="btn btn-ghost" id="filter-clear">Clear</button>
+    </div>
+    {% assign techs = "" | split: "," %}
+    {% for project in site.projects %}
+      {% for t in project.tech %}
+        {% unless techs contains t %}
+          {% assign techs = techs | push: t %}
+        {% endunless %}
+      {% endfor %}
+    {% endfor %}
+    <h3>Tech</h3>
+    <div id="filter-tech">
+      {% for t in techs %}
+      <button type="button" class="filter-btn" data-group="tech" data-filter="{{ t | downcase }}" aria-pressed="false">{{ t }}</button>
+      {% endfor %}
+    </div>
+    {% assign statuses = "" | split: "," %}
+    {% for project in site.projects %}
+      {% assign s = project.status | default: "finished" %}
+      {% unless statuses contains s %}
+        {% assign statuses = statuses | push: s %}
+      {% endunless %}
+    {% endfor %}
+    <h3>Status</h3>
+    <div id="filter-status">
+      {% for s in statuses %}
+      <button type="button" class="filter-btn" data-group="status" data-filter="{{ s | downcase }}" aria-pressed="false">{{ s | capitalize }}</button>
+      {% endfor %}
+    </div>
+    <h3>Code</h3>
+    <div id="filter-source">
+      <button type="button" class="filter-btn" data-group="source" data-filter="yes" aria-pressed="false">Has source code</button>
+    </div>
+    <h3>Order</h3>
+    <div id="filter-sort">
+      <button type="button" class="filter-btn" data-sort="new" aria-pressed="true">Newest</button>
+      <button type="button" class="filter-btn" data-sort="old" aria-pressed="false">Oldest</button>
+      <button type="button" class="filter-btn" data-sort="az" aria-pressed="false">A–Z</button>
+    </div>
+    <p class="filter-count" id="filter-count"></p>
+  </aside>
+  <footer class="col-footer">{% include footer.html %}</footer>
+  </div>
+</div>
+
+<script src="/assets/js/filter.js" defer></script>

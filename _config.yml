@@ -31,8 +31,17 @@ github_username:  ProfessorDudley
 # Exclude from processing.
 # `docs/` is dev-only design notes and must never publish,
 # even if it accidentally reaches master.
+# debug.html + lab.* are dev-only theme tooling: stripped on the
+# publish merge only, kept on dev for future theme work.
 exclude:
   - docs/
+  - design-state.json
+  - tools/
+  - PLAN.md
+  - AGENTS.md
+  - debug.html
+  - assets/css/lab.css
+  - assets/js/lab.js
   - .sass-cache/
   - .jekyll-cache/
   - gemfiles/
@@ -45,9 +54,17 @@ exclude:
   - vendor/ruby/
 
 collections:
-  apps:
+  projects:
     output: true
-    permalink: :path
+    permalink: /projects/:slug/
+
+defaults:
+  - scope:
+      path: ""
+      type: projects
+    values:
+      layout: article
+      writeup: true
 
 plugins:
   - jekyll-feed

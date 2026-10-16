@@ -1,0 +1,224 @@
+---
+layout: default
+title: Debug
+styles: [lab]
+---
+<section>
+  <h1>Sam Dicken</h1>
+  <p class="subtitle">Building tiny games and tools — currently prototyping this site.</p>
+</section>
+
+<section>
+  <h2>Project card</h2>
+  <div class="study-row">
+  <div>
+  <p class="subtitle">A — current (tech docked with buttons)</p>
+  {% assign waiter = site.projects | where: "title", "Waiter!" | first %}
+  {% include project-card.html project=waiter %}
+  </div>
+  <div>
+  <p class="subtitle">B — tech with 0 bottom margin</p>
+  <article class="card">
+    <img src="https://img.itch.zone/aW1hZ2UvMjgyMjUzMS8xNjg2MTgxMi5wbmc=/347x500/hCDttZ.png" alt="Screenshot from the game Waiter" loading="lazy">
+    <h2>Waiter!</h2>
+    <p class="fixed-lines">Serve copious amounts of food to one customer in this hectic two button game.</p>
+    <p class="tech flat-tech">Godot · C#</p>
+    <p class="card-ctas">
+    <a class="btn btn-primary" href="https://professordudley.itch.io/waiter">View on Itch</a>
+    <a class="btn btn-ghost" href="/projects/waiter/">Read <svg class="chev" viewBox="0 0 8 12" aria-hidden="true"><path d="M1 1l5 5-5 5"/></svg></a>
+    </p>
+  </article>
+  </div>
+  <div>
+  <p class="subtitle">C — tech under title</p>
+  <article class="card">
+    <img src="https://img.itch.zone/aW1hZ2UvMjgyMjUzMS8xNjg2MTgxMi5wbmc=/347x500/hCDttZ.png" alt="Screenshot from the game Waiter" loading="lazy">
+    <h2>Waiter!</h2>
+    <p class="tech static-tech">Godot · C#</p>
+    <p>Serve copious amounts of food to one customer in this hectic two button game.</p>
+    <p class="card-ctas">
+    <a class="btn btn-primary" href="https://professordudley.itch.io/waiter">View on Itch</a>
+    <a class="btn btn-ghost" href="/projects/waiter/">Read <svg class="chev" viewBox="0 0 8 12" aria-hidden="true"><path d="M1 1l5 5-5 5"/></svg></a>
+    </p>
+  </article>
+  </div>
+  <div>
+  <p class="subtitle">D — tech above title</p>
+  <article class="card">
+    <img src="https://img.itch.zone/aW1hZ2UvMjgyMjUzMS8xNjg2MTgxMi5wbmc=/347x500/hCDttZ.png" alt="Screenshot from the game Waiter" loading="lazy">
+    <p class="tech tech-lead">Godot · C#</p>
+    <h2>Waiter!</h2>
+    <p>Serve copious amounts of food to one customer in this hectic two button game.</p>
+    <p class="card-ctas">
+    <a class="btn btn-primary" href="https://professordudley.itch.io/waiter">View on Itch</a>
+    <a class="btn btn-ghost" href="/projects/waiter/">Read <svg class="chev" viewBox="0 0 8 12" aria-hidden="true"><path d="M1 1l5 5-5 5"/></svg></a>
+    </p>
+  </article>
+  </div>
+  </div>
+</section>
+
+<section>
+  <h2>Body copy</h2>
+  <p>Software developer from the North East of England focused on game development. Experienced working on commercial and hobby projects, applying strong engineering principles to interactive software and games.</p>
+  <p>
+    <a class="btn btn-primary" href="#">Primary</a>
+    <a class="btn btn-secondary" href="#">Secondary</a>
+    <a class="btn btn-ghost" href="#">Ghost link &rarr;</a>
+  </p>
+</section>
+
+<section>
+  <h2>Navigation studies</h2>
+  <p class="subtitle">Static demos — the real bar will be sticky. Hover the external links.</p>
+
+  <p class="subtitle">A — Tally lights + chyron hover + meter hairline</p>
+  <nav class="demo-nav meter tally chyron" aria-label="Demo A">
+    <ul>
+      <li><a href="#" aria-current="page">Home</a></li>
+      <li><a href="#">Projects</a></li>
+      <li><a href="#">Blog</a></li>
+    </ul>
+    <ul>
+      <li><a href="#">Itch</a></li>
+      <li><a href="#">GitHub</a></li>
+      <li><a href="#">LinkedIn</a></li>
+    </ul>
+  </nav>
+
+  <p class="subtitle">B — LIVE bug + signal bars</p>
+  <nav class="demo-nav" aria-label="Demo B">
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Projects</a></li>
+      <li><a href="#">Blog</a></li>
+    </ul>
+    <ul class="externals">
+      <li><span class="live-bug"><span class="dot" aria-hidden="true"></span>LIVE</span></li>
+      <li><span class="signal" aria-hidden="true"><i></i><i></i><i></i><i class="dim"></i></span></li>
+      <li><a href="#">Itch</a></li>
+      <li><a href="#">GitHub</a></li>
+      <li><a href="#">LinkedIn</a></li>
+    </ul>
+  </nav>
+
+  <p class="subtitle">C — Timecode</p>
+  <nav class="demo-nav chyron" aria-label="Demo C">
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Projects</a></li>
+      <li><a href="#">Blog</a></li>
+    </ul>
+    <ul>
+      <li><span class="timecode" id="timecode">--:--:-- UTC</span></li>
+      <li><a href="#">Itch</a></li>
+      <li><a href="#">GitHub</a></li>
+      <li><a href="#">LinkedIn</a></li>
+    </ul>
+  </nav>
+
+  <p class="subtitle">D — Boxed tally left, plain text right</p>
+  <nav class="demo-nav strip" aria-label="Demo D">
+    <ul class="tally segs">
+      <li><a href="#" aria-current="page">Landing</a></li>
+      <li><a href="#">Projects</a></li>
+      <li><a href="#">Blog</a></li>
+    </ul>
+    <span class="spacer" aria-hidden="true"></span>
+    <ul class="segs right">
+      <li><a href="#">Itch.io</a></li>
+      <li><a href="#">Github</a></li>
+      <li><a href="#">Linkedin</a></li>
+    </ul>
+  </nav>
+</section>
+
+<section>
+  <h2>Status studies</h2>
+  <p class="subtitle">All three variants, stacked. Dots pulse in sync.</p>
+  <div class="status-cols">
+    <div>
+      <h3>Bold</h3>
+      <div class="status-stack">
+        <p class="nowline"><span>Now Building:</span> <span class="status quiet"><span>tiny games and tools</span><span class="dot" aria-hidden="true"></span></span></p>
+        <p class="nowline"><span>Now Building:</span> <span class="status framed"><span>tiny games and tools</span><span class="dot" aria-hidden="true"></span></span></p>
+        <p class="nowline"><span>Now Building:</span> <span class="status"><span>tiny games and tools</span><span class="dot" aria-hidden="true"></span></span></p>
+      </div>
+    </div>
+    <div class="soft">
+      <h3>Regular</h3>
+      <div class="status-stack">
+        <p class="nowline"><span>Now Building:</span> <span class="status quiet"><span>tiny games and tools</span><span class="dot" aria-hidden="true"></span></span></p>
+        <p class="nowline"><span>Now Building:</span> <span class="status framed"><span>tiny games and tools</span><span class="dot" aria-hidden="true"></span></span></p>
+        <p class="nowline"><span>Now Building:</span> <span class="status"><span>tiny games and tools</span><span class="dot" aria-hidden="true"></span></span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Theme button studies</h2>
+  <p class="subtitle">Live buttons — all cycle the theme. Fixed width, SVG chevrons (no font dependency).</p>
+  <p class="subtitle">A — Boxed</p>
+  <p><button class="theme-cycle tbtn-a" type="button"><svg class="chev" viewBox="0 0 8 12" aria-hidden="true"><path d="M7 1 2 6l5 5"/></svg><span class="theme-name">Yellow</span><svg class="chev" viewBox="0 0 8 12" aria-hidden="true"><path d="M1 1l5 5-5 5"/></svg></button></p>
+  <p class="subtitle">B — Solid</p>
+  <p><button class="theme-cycle tbtn-b" type="button"><svg class="chev" viewBox="0 0 8 12" aria-hidden="true"><path d="M7 1 2 6l5 5"/></svg><span class="theme-name">Yellow</span><svg class="chev" viewBox="0 0 8 12" aria-hidden="true"><path d="M1 1l5 5-5 5"/></svg></button></p>
+  <p class="subtitle">C — Minimal</p>
+  <p><button class="theme-cycle tbtn-c" type="button"><svg class="chev" viewBox="0 0 8 12" aria-hidden="true"><path d="M7 1 2 6l5 5"/></svg><span class="theme-name">Yellow</span><svg class="chev" viewBox="0 0 8 12" aria-hidden="true"><path d="M1 1l5 5-5 5"/></svg></button></p>
+</section>
+
+<section>
+  <h2>Wallet debug</h2>
+  <p class="subtitle">Unstyled faucet — not part of the site.</p>
+  <p><button id="coin-debug" type="button">+10 coins (debug)</button></p>
+  <p><button id="storage-clear" type="button">Clear wallet + skins (debug)</button></p>
+</section>
+
+<section id="scheme-panel" aria-label="Colour scheme controls">
+  <h2>Colour scheme</h2>
+  <p class="subtitle">Tick to lock approved colours. Regenerate only changes unticked ones, keeping contrast for text on surfaces.</p>
+  <div class="swatches" id="swatches"></div>
+  <p>
+    <button class="btn btn-primary" id="regen" type="button">Regenerate unlocked</button>
+  </p>
+</section>
+
+<aside id="design-menu" aria-label="Design controls">
+  <div class="menu-body">
+    <div class="menu-cols">
+      <div class="menu-col">
+        <h2 id="edit-title">Background</h2>
+        <p id="bg-value">hsl(0 0% 3%)</p>
+        <label>H <input id="bg-h" type="range" min="0" max="360" step="1" value="0"> <output id="bg-h-val">0</output></label>
+        <label>S <input id="bg-s" type="range" min="0" max="100" step="1" value="0"> <output id="bg-s-val">0%</output></label>
+        <label>L <input id="bg-l" type="range" min="0" max="100" step="1" value="3"> <output id="bg-l-val">3%</output></label>
+        <div class="row">
+          <button id="bg-copy" type="button">Copy CSS</button>
+          <button id="bg-download" type="button">Save JSON</button>
+          <button id="bg-reset" type="button">Reset</button>
+        </div>
+        <pre id="bg-css"></pre>
+      </div>
+      <div class="menu-col">
+        <h2>Type &amp; cards</h2>
+        <label>Font
+          <select id="font-sel">
+            <option value="atkinson">Atkinson Hyperlegible</option>
+            <option value="system">System UI</option>
+            <option value="serif">Georgia Serif</option>
+            <option value="mono">Monospace</option>
+          </select>
+          <output></output>
+        </label>
+        <label>Size <input id="font-size" type="number" min="12" max="24" step="1" value="18"> <output>px</output></label>
+        <label>Radius <input id="card-radius" type="range" min="0" max="24" step="1" value="0"> <output id="card-radius-val">0px</output></label>
+        <label>Border <input id="card-borderw" type="range" min="0" max="8" step="1" value="2"> <output id="card-borderw-val">2px</output></label>
+      </div>
+    </div>
+  </div>
+  <div class="menu-foot">
+    <button id="menu-toggle" type="button">Minimize</button>
+  </div>
+</aside>
+
+<script src="/assets/js/lab.js" defer></script>

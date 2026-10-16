@@ -1,0 +1,273 @@
+/* Index (landing) layout: two-column grid, hero, store, docked footer. */
+
+.page-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 6rem;
+  align-items: stretch;
+}
+
+.side-col { display: flex; flex-direction: column; }
+
+.main-col { display: grid; gap: 2.5rem; }
+
+/* landing fills the viewport exactly; the hero row absorbs leftover
+   space so added chrome (e.g. main bottom padding) never tips the
+   page into a scroll. min-height (not height) lets small screens
+   still grow naturally. */
+body.landing {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+body.landing main {
+  flex: 1;
+  display: grid; /* stretch .page-grid to full height so the 1fr hero row sees the slack */
+}
+
+.main-col { grid-template-rows: minmax(0, 1fr) auto; }
+
+/* (the old max-1100 stack query lived here; superseded by the Stream Q
+   tablet block after the tiers, which must win exact-1100 vs band D) */
+
+
+/* landing: footer lives docked in the store column instead */
+body.landing > footer { display: none; }
+body.landing .col-footer { margin-top: auto; }
+
+.hero { display: grid; align-content: center; gap: 1.5rem; }
+
+@media (max-width: 700px) {
+  .hero { min-height: auto; }
+}
+
+/* landing row: three project cards take the width, archive closer stays slim */
+@media (min-width: 900px) {
+  .card-grid:has(> .card.invert) {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(0, 0.8fr);
+  }
+}
+
+/* landing tiers (Stream N + border rework): fixed-card bands. Every
+   selector is scoped under body.landing (.main-col for the card grid) so
+   the projects grid never matches. Ordered D → C → B → A so shared
+   boundaries (1380, 1560, 1950) resolve upward. Min-width bounds keep all
+   four clear of ≤1100; the 1100 stack query above and the 768/390 rules
+   below are untouched.
+
+   Band D+C share one look: base 6rem main padding, 4rem page gap
+   (narrowed as the approved last resort), side floor 300px (the store's
+   measured min-content 291px + 9px buffer — the old 326 floor was a
+   planning choice, not a content minimum). Main is content-sized, so the
+   side takes all leftover growth. Hero override spans both bands (below). */
+
+/* Tier D (1100–1380): 1 card + closer. Main is content-capped at 610px
+   (326 + 260 + 24) — same fit-content technique as tier B, because a bare
+   auto track hogs the leftover — so the side-col absorbs the growth
+   (300 → ~498 across the band); below ~1181 it compresses to fit. Floor
+   check at 1100: 15 (scrollbar) + 192 (6rem padding) + 64 (4rem gap) +
+   300 (side) + 504 (280 + 200 + 24) = 1075. This block sits AFTER the
+   1100 stack query so it wins the shared 1100 boundary (higher
+   specificity: 0,2,1 beats 0,1,0). Hiding :nth-child(2) and (3) keeps the
+   1st featured card + invert closer. */
+@media (max-width: 1380px) and (min-width: 1100px) {
+  body.landing .page-grid {
+    grid-template-columns: fit-content(610px) minmax(300px, 1fr);
+    column-gap: 4rem;
+  }
+  body.landing .main-col .card-grid {
+    grid-template-columns: minmax(280px, 326px) minmax(200px, 260px);
+  }
+  body.landing .main-col .card-grid > .card:nth-child(2) { display: none; }
+  body.landing .main-col .card-grid > .card:nth-child(3) { display: none; }
+}
+
+/* hero name on one line, across D and C (1100–1560): ~5.7px of text per
+   px of font (measured). Tightest fit is 1100 where D's main-col is 529px:
+   85.6px font → ~490px name. Reaches the 7rem cap at ~1571vw, so the curve
+   is continuous into the 112px base size. Keep ≤ ~86px at 1100. */
+@media (max-width: 1560px) and (min-width: 1100px) {
+  body.landing .hero h1 {
+    font-size: clamp(5rem, 1.5rem + 5.6vw, 7rem);
+    white-space: nowrap;
+  }
+}
+
+/* Tier C (1380–1560): 2 cards + closer. This block sits after tier D so
+   it wins the shared 1380 boundary outright: the 2nd card is re-shown
+   (tier D hides it below 1380). Floor is 1379 = 15 + 192 + 64 + 300 +
+   808 (2×280 + 2×24 + 200), so 1380 fits the full 2-card minimum row.
+   The auto main track takes the available space and the card tracks
+   absorb it inside their ranges (measured 280→320 / 200→240 across the
+   band); the side holds its 300 floor throughout C. */
+@media (max-width: 1560px) and (min-width: 1380px) {
+  body.landing .page-grid {
+    grid-template-columns: auto minmax(300px, 1fr);
+    column-gap: 4rem;
+  }
+  body.landing .main-col .card-grid {
+    grid-template-columns: repeat(2, minmax(280px, 326px)) minmax(200px, 260px);
+  }
+  body.landing .main-col .card-grid > .card:nth-child(2) { display: flex; }
+  /* landing grid order (index.html): 3 × article.card then the invert
+     closer (project-card.html root is article.card), so the 3rd featured
+     card is :nth-child(3); the invert 4th child is untouched. */
+  body.landing .main-col .card-grid > .card:nth-child(3) { display: none; }
+}
+
+/* Tier B (1560–1950): 2 fixed 326 cards + closer (takes available up to
+   260); side takes the rest. fit-content caps main at content-max so real
+   leftover reaches the 1fr side-col (plain auto hogged it); closer fr is
+   inherently capped by the main cap. */
+@media (max-width: 1950px) and (min-width: 1560px) {
+  /* column-gap re-asserts the 6rem base: tier C also matches at exactly
+     1560 and sets 4rem — without this the 1560 line overflows by 3px
+     (966 + 326 > 1560 − 15 − 192 − 64). */
+  body.landing .page-grid {
+    grid-template-columns: fit-content(966px) minmax(326px, 1fr);
+    column-gap: 6rem;
+  }
+  body.landing .main-col .card-grid {
+    grid-template-columns: repeat(2, 326px) minmax(200px, 1fr);
+  }
+  body.landing .main-col .card-grid > .card:nth-child(3) { display: none; }
+}
+
+/* Tier A (≥1950): main fixed 1319, side grows (331 at 1950); 3 fixed 326
+   cards + 260 closer, all cards show. The display rule re-asserts the
+   base (display:flex is .card's own display, theme.css) so the hiding
+   rules above lose at the shared 1950 boundary, where both queries match
+   and this later block wins. */
+@media (min-width: 1950px) {
+  body.landing .page-grid { grid-template-columns: 1319px minmax(326px, 1fr); }
+  body.landing .main-col .card-grid {
+    grid-template-columns: repeat(3, 326px) 260px;
+  }
+  body.landing .main-col .card-grid > .card:nth-child(3) { display: flex; }
+}
+
+/* tablet (Stream Q): 769–1100 single-column landing — same pattern as the
+   768 rules below (store hidden, footer bottom-left, roomy hero), cards
+   2-across with the full-width invert closer beneath. Bounded below by
+   min-width:769px so the 768/390 rules keep full control there (leak
+   would crush 768: 2×280+24 > its 561px content). Placed after the tiers
+   with body.landing-scoped selectors so it wins the exact-1100 boundary
+   vs band D (equal-or-higher specificity + later order; band D's
+   min-width:1100 still matches at exactly 1100). Every property band D
+   sets is re-asserted: 2nd card re-shown (D hides it), grid tracks and
+   page columns replaced, gap reset to the 768 2rem. */
+@media (max-width: 1100px) and (min-width: 769px) {
+  body.landing .page-grid { grid-template-columns: 1fr; gap: 2rem; }
+  body.landing #gacha-store { display: none; }
+  body.landing .main-col .card-grid {
+    grid-template-columns: repeat(2, minmax(280px, 326px));
+  }
+  body.landing .main-col .card-grid > .card:nth-child(2) { display: flex; }
+  body.landing .main-col .card-grid > .card:nth-child(3) { display: none; }
+  body.landing .main-col .card-grid > .card.invert { grid-column: 1 / -1; min-height: 0; max-height: 300px; }
+  body.landing .hero { padding: 5rem 0 6rem; }
+  body.landing .col-footer { text-align: left; padding: 1.5rem 0 0; }
+}
+
+/* store: in-flow right column, wallet + theme + buy grid */
+#gacha-store {
+  background: var(--surface);
+  border: 2px solid var(--muted);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+#gacha-store h2 { margin: 0; font-size: 1.25rem; }
+
+.store-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 1rem;
+}
+
+.store-head .wallet { color: var(--muted); }
+
+#store-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem 1rem;
+}
+
+.store-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.store-row .buy-btn { flex: 1; }
+
+.store-row.owned { opacity: 0.45; }
+
+.store-row.owned .buy-btn {
+  text-decoration: line-through;
+  cursor: not-allowed;
+}
+
+.buy-btn {
+  /* Hardcoded per-accent colours: intentionally NOT theme-reactive, so each
+     button always shows its own accent. Update these if accents change. */
+  background: var(--buy-bg);
+  color: #14100a;
+  border: 0;
+  padding: 0.4rem 0.8rem;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: var(--card-radius);
+}
+
+.cost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.cost img { image-rendering: pixelated; }
+
+.hero h1 { font-size: clamp(3.5rem, 10vw, 7rem); margin: 0; color: var(--accent); font-weight: 700; }
+
+/* tablet refinements (Stream D): landing ≤768px — roomy sides, 2×2 cards */
+@media (max-width: 768px) {
+  #gacha-store { display: none; }
+  body.landing main { padding: 2rem 4rem 4rem; }
+  .page-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .hero { gap: 1.25rem; padding: 5rem 0 6rem; }
+  .hero h1 { font-size: clamp(2.5rem, 12vw, 4rem); }
+  .hero-bio { max-width: 100%; }
+  .card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .card { min-height: 0; min-width: 0; }
+  body.landing .col-footer { text-align: left; padding: 1.5rem 0 0; }
+}
+
+/* single-column (Stream T): 391–726 — 2-col needs content ≥ 584px
+   (2×280 + 24 gap) → body ≥ 712 → viewport ≥ 727, so below 727 the
+   cards go single 326-centered. Placed after the 768 block so it wins
+   in range (higher specificity too); the 390 block below keeps owning
+   ≤390. Invert is full-width here, so the 300px cap applies. */
+@media (max-width: 726px) and (min-width: 391px) {
+  body.landing .main-col .card-grid {
+    grid-template-columns: minmax(0, 326px);
+    justify-content: center;
+  }
+  body.landing .main-col .card-grid > .card.invert { max-height: 300px; }
+}
+
+/* phone (Stream I): 390px single-column cards, compact hero */
+@media (max-width: 390px) {
+  /* qualified to beat the 768px body.landing main rule (0,1,2) */
+  body.landing main { padding: 2rem 2rem 4rem; }
+  .hero { padding: 2rem 0 3rem; }
+  .card-grid { grid-template-columns: minmax(0, 1fr); }
+  .card { min-height: 480px; }
+  .card.invert { min-height: 240px; }
+}

@@ -1,0 +1,31 @@
+{% assign p = include.project %}
+<article class="card" data-tech="{{ p.tech | join: ',' | downcase }}" data-status="{{ p.status | default: 'finished' | downcase }}" data-source="{% if p.links.github %}yes{% else %}no{% endif %}" data-date="{{ p.date | date: '%Y-%m-%d' }}" data-title="{{ p.title | downcase }}">
+  {%- if p.thumbnail -%}
+  <img src="{{ p.thumbnail }}" alt="{{ p.thumbnail_alt | default: p.title }}" loading="lazy">
+  {%- endif -%}
+  <h2>{{ p.title }}</h2>
+  <p class="card-summary">{{ p.summary }}</p>
+  {%- if p.tech -%}
+  <p class="tech">{{ p.tech | join: " · " }}</p>
+  {%- endif -%}
+  {%- if p.links.itch -%}
+    {% assign primary_url = p.links.itch %}
+    {% assign primary_label = "View on Itch" %}
+  {%- elsif p.links.demo -%}
+    {% assign primary_url = p.links.demo %}
+    {% assign primary_label = "Live demo" %}
+  {%- elsif p.links.github -%}
+    {% assign primary_url = p.links.github %}
+    {% assign primary_label = "View source" %}
+  {%- endif -%}
+  {%- if p.writeup != false and p.url -%}
+  <p class="card-ctas">
+    <a class="btn btn-primary" href="{{ primary_url }}">{{ primary_label }}</a>
+    <a class="btn btn-ghost" href="{{ p.url }}">Read <svg class="chev" viewBox="0 0 8 12" aria-hidden="true"><path d="M1 1l5 5-5 5"/></svg></a>
+  </p>
+  {%- elsif primary_url -%}
+  <p class="card-ctas">
+    <a class="btn btn-primary" href="{{ primary_url }}">{{ primary_label }}</a>
+  </p>
+  {%- endif -%}
+</article>

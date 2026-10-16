@@ -1,0 +1,28 @@
+---
+layout: notfound
+title: "Page not found | Sam Dicken"
+permalink: /404.html
+sitemap: false
+---
+<style>
+/* 404-only: main is a vertical flexbox holding the preface (top) and the
+   footer (bottom) via space-between. Footer sits INSIDE main so it inherits
+   the content column; its padding mirrors the article detail footer
+   (theme.css `.detail > footer`, base + ≤1100px). Main padding itself is
+   untouched theme.css. Inline so no other page is affected. */
+body.not-found { display: flex; flex-direction: column; min-height: 100dvh; }
+.not-found-main { flex: 1 0 auto; display: flex; flex-direction: column; justify-content: space-between; margin: 0; }
+.not-found-main > footer { padding: 1rem 0; }
+.not-found-ctas .btn { margin-bottom: 0.75rem; }
+@media (max-width: 1100px) {
+  .not-found-main > footer { padding: 1.5rem 0 0; }
+}
+</style>
+<div class="page-preface">
+<h1>404 — Out of bounds</h1>
+<p class="hero-bio">This page doesn't exist (yet). The level geometry ends here — head back to safety.</p>
+<p class="not-found-ctas">
+<a class="btn btn-primary" href="/">Back home</a>
+<a class="btn btn-secondary" href="/projects/">Browse projects</a>
+</p>
+</div>

@@ -1,0 +1,51 @@
+---
+layout: default
+---
+<header class="article-head">
+  <h1>{{ page.title }}</h1>
+  {%- if page.summary -%}
+  <p class="detail-lede">{{ page.summary }}</p>
+  {%- endif -%}
+</header>
+<div class="article-wrap">
+<article class="detail">
+  {%- if page.thumbnail -%}
+  <img class="detail-thumb" src="{{ page.thumbnail }}" alt="{{ page.thumbnail_alt | default: page.title }}">
+  {%- endif -%}
+  {{ content }}
+  {%- assign body = content | strip -%}
+  {%- if body == "" -%}
+  <p class="incoming">Full writeup incoming — Tier 1 listing for now.</p>
+  {%- endif -%}
+  <footer>{% include footer.html %}</footer>
+</article>
+<div class="article-side">
+<aside class="meta-box" aria-label="Details">
+  <h2>Details</h2>
+  <dl>
+    {%- if page.status -%}
+    <div><dt>Status</dt><dd><span class="badge">{{ page.status }}</span></dd></div>
+    {%- endif -%}
+    {%- if page.date -%}
+    <div><dt>Date</dt><dd><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %Y" }}</time></dd></div>
+    {%- endif -%}
+    {%- if page.tech -%}
+    <div><dt>Tech</dt><dd>{{ page.tech | join: " · " }}</dd></div>
+    {%- endif -%}
+  </dl>
+  {%- if page.links -%}
+  <div class="detail-links">
+    {%- if page.links.itch -%}
+    <a class="btn btn-primary" href="{{ page.links.itch }}">View on Itch</a>
+    {%- endif -%}
+    {%- if page.links.github -%}
+    <a class="btn btn-secondary" href="{{ page.links.github }}">Source</a>
+    {%- endif -%}
+    {%- if page.links.demo -%}
+    <a class="btn btn-secondary" href="{{ page.links.demo }}">Live demo</a>
+    {%- endif -%}
+  </div>
+  {%- endif -%}
+</aside>
+</div>
+</div>

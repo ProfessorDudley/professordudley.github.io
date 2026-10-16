@@ -8,17 +8,19 @@
 	{%- include head.html -%}
 </head>
 
-<body>
+<body class="page">
 	<header>
 		{%- include header.html -%}
 	</header>
 
-	<main id="app">
+	<main id="content" class="page-main">
 		{{ content }}
 	</main>
 	<footer>
 		{%- include footer.html -%}
 	</footer>
+
+	<script src="/assets/js/game.js" defer></script>
 
 </body>
 

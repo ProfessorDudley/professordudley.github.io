@@ -6,8 +6,11 @@
     @import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap');
     </style>
 
-<link rel="stylesheet" href="/assets/css/layout.css" type="text/css">
 <link rel="stylesheet" href="/assets/css/theme.css" type="text/css">
+<link rel="icon" href="/media/images/coin.png" type="image/png">
+{%- for s in page.styles -%}
+<link rel="stylesheet" href="/assets/css/{{ s }}.css" type="text/css">
+{%- endfor -%}
 
 {%- if page.append_head -%}
 <link rel="stylesheet" href="style.css" type="text/css">
@@ -15,4 +18,14 @@
 {%- endif -%}
 
 <title>{{ page.title }}</title>
+
+<script>
+/* Theme pre-paint: applies the saved accent before first render so the
+   deferred game.js never flashes the default. Mirrors game.js apply(). */
+try {
+  var t = JSON.parse(localStorage.getItem("site-theme-css"));
+  if (t && t.accent) document.documentElement.style.setProperty("--accent", t.accent);
+  if (t && t.border) document.documentElement.style.setProperty("--border", t.border);
+} catch (e) { /* private mode or nothing saved: defaults stand */ }
+</script>
 

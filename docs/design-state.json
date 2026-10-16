@@ -1,0 +1,54 @@
+{
+  "scheme": {
+    "bg": {
+      "h": 0,
+      "s": 0,
+      "l": 3
+    },
+    "surface": {
+      "h": 0,
+      "s": 0,
+      "l": 7
+    },
+    "text": {
+      "h": 0,
+      "s": 6,
+      "l": 93
+    },
+    "muted": {
+      "h": 217,
+      "s": 18,
+      "l": 60
+    },
+    "accent": {
+      "h": 35,
+      "s": 78,
+      "l": 67
+    },
+    "on-accent": {
+      "h": 35,
+      "s": 15,
+      "l": 10
+    },
+    "border": {
+      "h": 35,
+      "s": 54,
+      "l": 41
+    }
+  },
+  "ui": {
+    "font": "atkinson",
+    "fs": 18,
+    "radius": 0,
+    "borderW": 4
+  },
+  "locks": {
+    "bg": true,
+    "surface": false,
+    "text": true,
+    "muted": true,
+    "accent": true,
+    "on-accent": false,
+    "border": true
+  }
+}

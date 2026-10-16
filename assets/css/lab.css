@@ -1,0 +1,268 @@
+/* Lab (debug page only). Loaded AFTER theme.css on debug.html: additions,
+   overrides and studies. Nothing here may be required by live pages. */
+
+/* A: boxed ticker-style button */
+.tbtn-a {
+  width: 14ch;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  border: 2px solid var(--border);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  color: var(--text);
+  padding: 0.3rem 0.5rem;
+}
+
+
+/* C: minimal text with chevrons */
+.tbtn-c {
+  width: 14ch;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  color: var(--accent);
+}
+
+.live-bug .dot { width: 0.6em; height: 0.6em; }
+
+/* status studies: all-muted vs accent-frame vs all-accent */
+.status-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 1rem 0 0; }
+
+@media (max-width: 700px) {
+  .status-cols { grid-template-columns: 1fr; }
+}
+
+.status-cols h3 { margin: 0 0 0.5rem; font-size: 1rem; color: var(--muted); }
+
+.status-stack { display: grid; gap: 1.5rem; margin: 0; }
+
+.status-cols .soft .nowline { font-weight: 400; }
+
+.status.quiet { border-color: var(--muted); color: var(--muted); }
+.status.framed { color: var(--muted); }
+
+/* A+C: chyron — accent wipe under external links */
+.chyron a { position: relative; padding-bottom: 0.15em; }
+
+.chyron a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.chyron a:hover::after, .chyron a:focus-visible::after { transform: scaleX(1); }
+
+/* A: meter hairline — accent segment on the bar's bottom edge */
+.meter { position: relative; border-bottom-width: 2px; }
+
+.meter::after {
+  content: "";
+  position: absolute;
+  left: -1px;
+  bottom: -2px;
+  width: 25%;
+  height: 2px;
+  background: var(--accent);
+}
+
+/* B: LIVE bug — miniature of the hero status chip */
+.live-bug {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.15em 0.5em;
+  border: 1px solid var(--accent);
+  border-radius: var(--card-radius);
+  color: var(--accent);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+}
+
+/* B: signal bars — 3 of 4 lit */
+.signal { display: inline-flex; align-items: flex-end; gap: 3px; }
+
+.signal i { width: 4px; background: var(--accent); box-shadow: 0 0 0.3em var(--accent); }
+.signal i:nth-child(1) { height: 6px; }
+.signal i:nth-child(2) { height: 10px; }
+.signal i:nth-child(3) { height: 14px; }
+.signal i:nth-child(4) { height: 18px; }
+.signal i.dim { background: var(--muted); box-shadow: none; opacity: 0.4; }
+
+/* C: timecode */
+.timecode {
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.05em;
+}
+
+.subtitle {
+  color: var(--muted);
+  font-size: 1.15rem;
+  margin: 0;
+}
+
+/* card studies: tech placement variants */
+.card p.flat-tech { margin-bottom: 0; }
+.card p.static-tech { margin-top: 0; margin-bottom: 0.5rem; }
+.card p.fixed-lines { height: 6em; overflow: hidden; }
+.card p.tech-lead { margin-top: 0; margin-bottom: 1em; }
+
+.study-row {
+  display: grid;
+  grid-template-columns: repeat(4, 326px);
+  gap: 1.5rem;
+  overflow-x: auto;
+}
+
+.study-row .card { width: 326px; }
+
+/* ---- scheme section (debug tool UI) ---- */
+#scheme-panel { border-top: 1px dashed var(--muted); padding-top: 1rem; }
+
+.swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+.sw {
+  border: 2px solid var(--border);
+  border-radius: 0.6rem;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.sw.selected { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+.sw-chip { height: 3.5rem; }
+.sw[data-role="bg"] .sw-chip { background: var(--bg); }
+.sw[data-role="surface"] .sw-chip { background: var(--surface); }
+.sw[data-role="text"] .sw-chip { background: var(--text); }
+.sw[data-role="muted"] .sw-chip { background: var(--muted); }
+.sw[data-role="accent"] .sw-chip { background: var(--accent); }
+.sw[data-role="on-accent"] .sw-chip { background: var(--on-accent); }
+.sw[data-role="border"] .sw-chip { background: var(--border); }
+
+.sw-body { padding: 0.5rem 0.6rem; font-size: 0.8rem; }
+.sw-body strong { display: block; }
+.sw-body code { opacity: 0.85; font-size: 0.72rem; }
+.sw-ratio { display: block; margin-top: 0.2rem; }
+.sw-ratio.bad { color: #ff8080; font-weight: 700; }
+.sw-lock { display: flex; gap: 0.35rem; align-items: center; margin-top: 0.35rem; cursor: pointer; }
+.sw-edit {
+  margin-top: 0.4rem;
+  width: 100%;
+  padding: 0.3rem;
+  border: 0;
+  border-radius: 0.35rem;
+  cursor: pointer;
+}
+
+
+/* ---- floating menu (debug tool UI) ---- */
+#design-menu {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  width: min(36rem, calc(100vw - 2rem));
+  padding: 1rem;
+  border-radius: 0.75rem;
+  background: rgba(0, 0, 0, 0.78);
+  color: #fff;
+  backdrop-filter: blur(6px);
+  font-size: 0.9rem;
+  z-index: 1000;
+}
+
+#design-menu.min .menu-body { display: none; }
+
+.menu-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 560px) {
+  .menu-cols { grid-template-columns: 1fr; }
+}
+
+#design-menu h2 { margin: 0 0 0.5rem; font-size: 1rem; }
+
+#design-menu label {
+  display: grid;
+  grid-template-columns: 3.2rem 1fr 3.5rem;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.4rem 0;
+}
+
+#design-menu output { text-align: right; font-variant-numeric: tabular-nums; }
+
+#design-menu select, #design-menu input[type="number"] {
+  width: 100%;
+  padding: 0.25rem;
+  border-radius: 0.3rem;
+  border: 0;
+}
+
+#design-menu .row {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.6rem;
+}
+
+#design-menu .row button {
+  flex: 1;
+  padding: 0.4rem;
+  border: 0;
+  border-radius: 0.4rem;
+  cursor: pointer;
+}
+
+.menu-foot {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.6rem;
+}
+
+.menu-foot button {
+  padding: 0.35rem 0.9rem;
+  border: 0;
+  border-radius: 0.4rem;
+  cursor: pointer;
+}
+
+#design-menu pre {
+  margin: 0.6rem 0 0;
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 0.4rem;
+  white-space: pre-wrap;
+  word-break: break-all;
+  font-size: 0.72rem;
+}
+
+/* live-bug dot shares the breathe cycle */
+.live-bug .dot {
+  width: 0.8em;
+  height: 0.8em;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: breathe 2.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .live-bug .dot { animation: none; }
+}
