@@ -18,7 +18,7 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
   hides the card's "Read" button; the card stays and links to itch. Default
   `writeup: true` (see `_plugins/writeup_filter.rb`, `_config.yml` defaults).
   Currently all four projects are `writeup: false` (no article pages live).
-- **404:** `404.html` (layout `page`, sitemap-excluded) reuses `.page-preface` + theme buttons; serves site-styled 404 incl. for suppressed article URLs. Inline-only CSS pins the footer to the viewport bottom (body flex column + `main{flex:1}`), spaces stacked CTAs (`.not-found-ctas .btn` bottom margin), and mirrors main's responsive side padding on the footer (6rem / 4rem ≤1100px / 2rem ≤390px) so its edges align with the content column.
+- **404:** `404.html` (layout `notfound`, sitemap-excluded) reuses `.page-preface` + theme buttons; serves site-styled 404 incl. for suppressed article URLs. `_layouts/notfound.html` mirrors `page.html` chrome but nests the footer INSIDE `main`; inline-only CSS makes `main` a vertical flexbox (`space-between`: preface top, footer bottom), gives the footer article-detail padding (`1rem 0`, `1.5rem 0 0` ≤1100px — matches `theme.css` `.detail > footer`), leaves main padding on theme rules, and spaces stacked CTAs. Verified by CDP metrics + screenshots at 1440/390 (footer padding pixel-matches a live article footer; zero overflow).
 - **Theme system:** `assets/css/theme.css` (globals) + per-page
   `index.css` / `projects.css` + debug-only `lab.css`. Five accents
   (Yellow/Red/Green/Blue/Purple) cycled from the ticker, persisted +

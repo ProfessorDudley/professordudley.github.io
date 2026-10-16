@@ -1,23 +1,21 @@
 ---
-layout: page
+layout: notfound
 title: "Page not found | Sam Dicken"
 permalink: /404.html
 sitemap: false
 ---
 <style>
-/* 404-only: pin the footer to the viewport bottom and space stacked CTAs.
-   Inline so no other page is affected. The footer sits outside <main>, so
-   mirror main's responsive side padding (theme.css) to keep its edges
-   aligned with the content column above. */
-body { display: flex; flex-direction: column; min-height: 100dvh; }
-main { flex: 1 0 auto; width: 100%; padding-bottom: 6rem; }
-body > footer { padding-left: 6rem; padding-right: 6rem; }
+/* 404-only: main is a vertical flexbox holding the preface (top) and the
+   footer (bottom) via space-between. Footer sits INSIDE main so it inherits
+   the content column; its padding mirrors the article detail footer
+   (theme.css `.detail > footer`, base + ≤1100px). Main padding itself is
+   untouched theme.css. Inline so no other page is affected. */
+body.not-found { display: flex; flex-direction: column; min-height: 100dvh; }
+.not-found-main { flex: 1 0 auto; display: flex; flex-direction: column; justify-content: space-between; }
+.not-found-main > footer { padding: 1rem 0; }
 .not-found-ctas .btn { margin-bottom: 0.75rem; }
 @media (max-width: 1100px) {
-  body > footer { padding-left: 4rem; padding-right: 4rem; }
-}
-@media (max-width: 390px) {
-  body > footer { padding-left: 2rem; padding-right: 2rem; }
+  .not-found-main > footer { padding: 1.5rem 0 0; }
 }
 </style>
 <div class="page-preface">
