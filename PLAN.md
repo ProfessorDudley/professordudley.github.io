@@ -82,8 +82,7 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 ## Direction
 
 - **Now:** round-7 nav open/close consistency — DONE, merged, validated,
-  awaiting user sign-off (see Round 7 section). Queued next: ticker
-  blanking.
+  awaiting user sign-off (see Round 7 section).
 - **Next:** publish pass to `master` (strip lab via `exclude:` on the merge
   commit; favicon done; mobile floor; `_apps` gone) + custom-domain decision
   (CNAME vs github.io URL). Note `_config.yml` already points at
@@ -91,7 +90,11 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 - **Later:** blog (first standalone post triggers it), sprites as gacha
   content, flyout store, SEO pass.
 
-## Phone sprint — done (390px, merged to `dev`, awaiting user sign-off)
+## Round 8
+- [ ] ticker blanking (hide .wallet, .theme-cycle; keep .ticker bar)
+- [ ] mobile floor / size overrides (align 390px/768px/1440px)
+
+
 
 - **Stream H — global** (`7c6c26b`, 1 loop): `main` sides 6rem→2rem at ≤390px;
   hamburger/X menu button (checkbox toggle, zero JS), vertical internals +
@@ -639,13 +642,6 @@ until mobile takes over.
 
 ## Queued (user, Oct 15 — schedule after round 5)
 
-- **Ticker blanking:** wherever `#gacha-store` is hidden (landing Q
-  block 769–1100, 768, 390), also hide `.ticker .wallet` + `.ticker
-  .theme-cycle` (coins/skins UI is dead without the store) but keep the
-  `.ticker` bar itself rendering blank. Scope under `body.landing`;
-  CSS-hide only, never move the nodes (`game.js` queries them).
-    `bundle exec jekyll build` clean. Zero new JS, no new requests.
-  - Probes/shots: `/tmp/opencode/probe-x.py`, `/tmp/opencode/r4x/` (pre+post bars, dev-vs-post 1440/769).
 - **Orchestrator final validation (X merged as `33e13c4`, clean):**
   rebuilt + 10-width × 3-page sweep, ZERO overflow. Spacer 0px collapsed
   / 2px expanded @700 (measured on merged code); 8/8 nav probes pass
@@ -731,7 +727,7 @@ tablet or desktop.
   1440/1100/769 × 3 pages vs round-5 baseline (only known coin digits +
   AA shimmer outside it, as in rounds 4–5). Unsigned; `dev` pushed.
 
-## Round 7 (nav open/close consistency) — in progress (direct)
+## Round 7 (nav open/close consistency) — done
 
 User correction (Oct 15, 2 screenshots of the projects bar at ~768,
 open vs closed): the navstrip must read the SAME in both states.
@@ -790,4 +786,4 @@ open vs closed): the navstrip must read the SAME in both states.
   button glyph (max x 37) at 700 & 768; desktop nav band (y37-93)
   byte-identical across 1440/1100/1000/769 × 3 pages; canonical sweep
   8 widths × 3 pages `ovf no`. Unsigned; `dev` pushed.
-  Awaiting sign-off; ticker blanking still queued.
+  Awaiting sign-off; 

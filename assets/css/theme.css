@@ -209,6 +209,11 @@ body:has(.article-wrap) > footer { display: none; }
   .meta-box dl { gap: 0.5rem; }
   .meta-box .detail-links { margin-top: 0.5rem; flex-wrap: wrap; }
   .detail > footer { padding: 1.5rem 0 0; }
+
+  .ticker .wallet,
+  .ticker .theme-cycle {
+    visibility: hidden;
+  }
 }
 
 @media (max-width: 768px) {
