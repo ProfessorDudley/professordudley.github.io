@@ -3,7 +3,7 @@
 Personal portfolio + game-dev hub for Sam Dicken (ProfessorDudley).
 Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
 
-## Current state (dev @ `f662c5a`, tags v0.2–v0.5)
+## Current state (dev @ `d779031`, tags v0.2–v0.7)
 
 - **Branches:** `master` = legacy launchpad (do not touch without a publish plan);
   `dev` = all current work; `game-prototype` = open, sprite/game exploration.
@@ -20,6 +20,7 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
   pre-painted; borders derive from accent. `game.js` owns wallet, ownership,
   store, visit awards. `filter.js` owns 3-state tech/status/source filters
   + sort. See `docs/` for design notes and the project template.
+- **Ticker blanking:** at ≤1100px, `.ticker .wallet` and `.ticker .theme-cycle` are hidden via `visibility: hidden` in `assets/css/theme.css` to preserve the ticker bar's height. This applies on all pages (global scope).
 - **Portrait tablet (768px) — complete:** store hidden on landing; nav
   externals icon+text on desktop, icon-only at ≤768px (inline SimpleIcons);
   landing 2×2 cards with full-bleed images (same bleed as projects), roomy
@@ -91,7 +92,7 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
   content, flyout store, SEO pass.
 
 ## Round 8
-- [ ] ticker blanking (hide .wallet, .theme-cycle; keep .ticker bar)
+- [x] ticker blanking (hide .wallet, .theme-cycle; keep .ticker bar)
 - [ ] mobile floor / size overrides (align 390px/768px/1440px)
 
 
