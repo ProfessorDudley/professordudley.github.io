@@ -59,6 +59,7 @@ defaults:
       type: projects
     values:
       layout: article
+      writeup: true
 
 plugins:
   - jekyll-feed

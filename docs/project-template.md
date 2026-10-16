@@ -12,6 +12,7 @@ thumbnail: "https://..."        # 16:9 ideally; omit and the card shows text-onl
 thumbnail_alt: "What the image shows"
 status: "finished"              # finished | ongoing | shelved
 date: 2026-01-15                # first release / jam date
+writeup: true                   # false = no article page generated, card hides its "Read" button (game still links to itch)
 links:
   itch: "https://professordudley.itch.io/<game>"
   github: "https://github.com/ProfessorDudley/<repo>"

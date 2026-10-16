@@ -13,7 +13,10 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
   with meta rail), `debug.html` (design lab, never ships).
 - **Collections/content:** `_projects/` (4 real: Tiny Moves, Waiter!,
   Chaos Daycare, Count Crumble); blog removed from nav (no `_posts` yet —
-  project writeups double as the writing outlet).
+  project writeups double as the writing outlet). `writeup: false` in front
+  matter suppresses the article page (URL 404s, excluded from sitemap) and
+  hides the card's "Read" button; the card stays and links to itch. Default
+  `writeup: true` (see `_plugins/writeup_filter.rb`, `_config.yml` defaults).
 - **Theme system:** `assets/css/theme.css` (globals) + per-page
   `index.css` / `projects.css` + debug-only `lab.css`. Five accents
   (Yellow/Red/Green/Blue/Purple) cycled from the ticker, persisted +
