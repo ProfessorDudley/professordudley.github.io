@@ -4,10 +4,17 @@ title: "Page not found | Sam Dicken"
 permalink: /404.html
 sitemap: false
 ---
+<style>
+/* 404-only: pin the footer to the viewport bottom and space stacked CTAs.
+   Inline so no other page is affected. */
+body { display: flex; flex-direction: column; min-height: 100dvh; }
+main { flex: 1 0 auto; width: 100%; }
+.not-found-ctas .btn { margin-bottom: 0.75rem; }
+</style>
 <div class="page-preface">
 <h1>404 — Out of bounds</h1>
 <p class="hero-bio">This page doesn't exist (yet). The level geometry ends here — head back to safety.</p>
-<p>
+<p class="not-found-ctas">
 <a class="btn btn-primary" href="/">Back home</a>
 <a class="btn btn-secondary" href="/projects/">Browse projects</a>
 </p>
