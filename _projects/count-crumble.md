@@ -6,6 +6,7 @@ thumbnail: "https://img.itch.zone/aW1nLzI4ODA0MjQwLnBuZw==/original/Pb%2FtGZ.png
 thumbnail_alt: "Screenshot from the game Count Crumble"
 status: "finished"
 date: 2026-07-26
+writeup: false
 links:
   itch: "https://sleepyfi.itch.io/count-crumble"
 ---

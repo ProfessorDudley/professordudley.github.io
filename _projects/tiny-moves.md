@@ -6,6 +6,7 @@ thumbnail: "https://img.itch.zone/aW1nLzE5NTg4NjUzLnBuZw==/347x500/IVOitw.png"
 thumbnail_alt: "Tiny Moves game screenshot"
 status: "finished"
 date: 2025-08-27
+writeup: false
 links:
   itch: "https://professordudley.itch.io/tiny-moves"
   github: "https://github.com/ProfessorDudley/tinyjam"

@@ -6,6 +6,7 @@ thumbnail: "https://img.itch.zone/aW1hZ2UvMjgyMjUzMS8xNjg2MTgxMi5wbmc=/347x500/h
 thumbnail_alt: "Screenshot from the game Waiter"
 status: "finished"
 date: 2024-06-21
+writeup: false
 links:
   itch: "https://professordudley.itch.io/waiter"
   github: "https://github.com/ProfessorDudley/Waiter"

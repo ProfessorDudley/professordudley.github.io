@@ -6,6 +6,7 @@ thumbnail: "https://img.itch.zone/aW1nLzI2NzExNzc1LnBuZw==/original/BW3FDN.png"
 thumbnail_alt: chaos daycare screenshot
 status: finished
 date: 2026-04-15
+writeup: false
 links:
   itch: "https://jwhinny.itch.io/chaos-daycare"
 ---

@@ -17,6 +17,7 @@ Static Jekyll 4 site, GitHub Pages via Actions (`master` only).
   matter suppresses the article page (URL 404s, excluded from sitemap) and
   hides the card's "Read" button; the card stays and links to itch. Default
   `writeup: true` (see `_plugins/writeup_filter.rb`, `_config.yml` defaults).
+  Currently all four projects are `writeup: false` (no article pages live).
 - **Theme system:** `assets/css/theme.css` (globals) + per-page
   `index.css` / `projects.css` + debug-only `lab.css`. Five accents
   (Yellow/Red/Green/Blue/Purple) cycled from the ticker, persisted +
